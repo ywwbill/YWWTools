@@ -1,0 +1,8 @@
+/.classpath
+/.project
+/.settings/*
+/bin/*
+/data/lda/model/*
+/data/lda/synthetic/*
+/data/wsbm/synthetic/*
+.DS_Store

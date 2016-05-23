@@ -192,7 +192,7 @@ java -cp YWWTools.jar --tool slda --model slda --vocab <vocab-file> --corpus <co
 - Jointly models topics and document labels. Support multi-class classification.
 - Extends [LDA](#lda_cmd).
 - Semi-optional arguments
-	- `--label <label-file>` [optional in test]: Label file. Each line contains corresponding document's numeric label.
+	- `--label <label-file>` [optional in test]: Label file. Each line contains corresponding document's numeric label. If a document label is not available, leave the corresponding line empty.
 - Optional arguments
 	- `--sigma <sigma-value>`: Variance for the Gaussian generation of response variable in SLDA (default: 1.0). Must be a positive real number.
 	- `--nu <nu-value>`: Variance of normal priors for weight vectors in SLDA and its extensions (default: 1.0). Must be a positive real number.

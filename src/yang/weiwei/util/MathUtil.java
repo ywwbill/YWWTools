@@ -8,7 +8,6 @@ public class MathUtil
 {
 	public static Randoms randoms=new Randoms();
 	
-	//sampling
 	public static int selectDiscrete(double score[])
 	{
 		double sum=0.0;
@@ -38,7 +37,6 @@ public class MathUtil
 		return selectDiscrete(score);
 	}
 	
-	//array and matrix math
 	public static double selectMax(double score[])
 	{
 		double max=Double.NEGATIVE_INFINITY;

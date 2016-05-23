@@ -4,6 +4,11 @@ import yang.weiwei.lda.LDAParam;
 import yang.weiwei.util.IOUtil;
 import yang.weiwei.util.format.Fourmat;
 
+/**
+ * WSBM parameter
+ * @author Weiwei Yang
+ *
+ */
 public class WSBMParam
 {	
 	/** Indicate whether edges are directed (default: false) */

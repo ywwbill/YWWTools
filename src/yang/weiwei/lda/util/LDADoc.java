@@ -3,6 +3,11 @@ package yang.weiwei.lda.util;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * LDA document
+ * @author Weiwei Yang
+ *
+ */
 public class LDADoc
 {	
 	private int tokens[];
@@ -16,6 +21,12 @@ public class LDADoc
 		this("", numTopics, numVocab);
 	}
 	
+	/**
+	 * Initialize the object with a document
+	 * @param document Document
+	 * @param numTopics Number of topics
+	 * @param numVocab Vocabulary size
+	 */
 	public LDADoc(String document, int numTopics, int numVocab)
 	{
 		wordCount=new HashMap<Integer, Integer>();
@@ -79,16 +90,30 @@ public class LDADoc
 		}
 	}
 	
+	/**
+	 * Get document's number of tokens
+	 * @return Number of tokens
+	 */
 	public int docLength()
 	{
 		return tokens.length;
 	}
 	
+	/**
+	 * Get a token's topic assignment
+	 * @param pos Token position
+	 * @return Corresponding token's topic assignment
+	 */
 	public int getTopicAssign(int pos)
 	{
 		return topicAssigns[pos];
 	}
 	
+	/**
+	 * Assign a topic to a token
+	 * @param pos Token position
+	 * @param topic Topic to assign
+	 */
 	public void assignTopic(int pos, int topic)
 	{
 		int oldTopic=getTopicAssign(pos);
@@ -99,6 +124,10 @@ public class LDADoc
 		}
 	}
 	
+	/**
+	 * Unassign a token's topic
+	 * @param pos Token position
+	 */
 	public void unassignTopic(int pos)
 	{
 		int oldTopic=getTopicAssign(pos);
@@ -109,26 +138,50 @@ public class LDADoc
 		}
 	}
 	
+	/**
+	 * Get a token
+	 * @param pos Token position
+	 * @return Token
+	 */
 	public int getWord(int pos)
 	{
 		return tokens[pos];
 	}
 	
+	/**
+	 * Get number of tokens assigned to a topic
+	 * @param topic Topic number
+	 * @return Number of tokens assigned to this topic
+	 */
 	public int getTopicCount(int topic)
 	{
 		return topicCounts[topic];
 	}
 	
+	/**
+	 * Get set of unique words in this document
+	 * @return Set of unique words
+	 */
 	public Set<Integer> getWordSet()
 	{
 		return wordCount.keySet();
 	}
 	
+	/**
+	 * Get the frequency of a given word
+	 * @param word Word
+	 * @return Frequency of the given word
+	 */
 	public int getWordCount(int word)
 	{
 		return (wordCount.containsKey(word)? wordCount.get(word) : 0);
 	}
 	
+	/**
+	 * Check whether this document contains a given word
+	 * @param word Word
+	 * @return Whether this document contains the word
+	 */
 	public boolean containsWord(int word)
 	{
 		return wordCount.containsKey(word);

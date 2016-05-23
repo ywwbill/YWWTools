@@ -2,6 +2,11 @@ package yang.weiwei.lda.util;
 
 import yang.weiwei.util.format.Fourmat;
 
+/**
+ * LDA word
+ * @author Weiwei Yang
+ *
+ */
 public class LDAWord implements Comparable<LDAWord>
 {
 	private String word;
@@ -10,21 +15,38 @@ public class LDAWord implements Comparable<LDAWord>
 	
 	private boolean compareByCount;
 	
+	/**
+	 * Get word
+	 * @return word
+	 */
 	public String getWord()
 	{
 		return word;
 	}
 	
+	/**
+	 * Get the frequency of this word
+	 * @return Frequency of this word
+	 */
 	public int getCount()
 	{
 		return count;
 	}
 	
+	/**
+	 * Get the weight of this word
+	 * @return Weight of this word
+	 */
 	public double getWeight()
 	{
 		return weight;
 	}
 	
+	/**
+	 * Initialize the object with word and count
+	 * @param word Word
+	 * @param count Count
+	 */
 	public LDAWord(String word, int count)
 	{
 		this.word=word;
@@ -32,6 +54,11 @@ public class LDAWord implements Comparable<LDAWord>
 		compareByCount=true;
 	}
 	
+	/**
+	 * Initialize the object with word and weight
+	 * @param word Word
+	 * @param weight Weight
+	 */
 	public LDAWord(String word, double weight)
 	{
 		this.word=word;

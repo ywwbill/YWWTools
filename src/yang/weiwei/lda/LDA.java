@@ -21,11 +21,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
+/**
+ * Latent Dirichlet Allocation
+ * @author Yang Weiwei
+ *
+ */
 public class LDA
 {	
 	public static final int TRAIN=0;
 	public static final int TEST=1;
 	
+	/** Parameter object */
 	public final LDAParam param;
 	
 	protected static Randoms randoms;
@@ -48,6 +54,11 @@ public class LDA
 	protected double logLikelihood;
 	protected double perplexity;
 	
+	/** 
+	 * Read corpus
+	 * @param corpusFileName Corpus file name
+	 * @throws IOException IOException
+	 */
 	public void readCorpus(String corpusFileName) throws IOException
 	{
 		readCorpus(corpusFileName, true);
@@ -87,6 +98,9 @@ public class LDA
 		param.printBasicParam("\t");
 	}
 	
+	/**
+	 * Initialize LDA member variables
+	 */
 	public void initialize()
 	{
 		initDocVariables();
@@ -110,6 +124,11 @@ public class LDA
 		}
 	}
 	
+	/**
+	 * Initialize LDA member variables with user-provided topic assignments (may be unstable)
+	 * @param topicAssignFileName Topic assignment file name
+	 * @throws IOException IOException
+	 */
 	public void initialize(String topicAssignFileName) throws IOException
 	{
 		initDocVariables();
@@ -156,6 +175,10 @@ public class LDA
 		getNumTestWords();
 	}
 	
+	/**
+	 * Sample for given number of iterations
+	 * @param numIters Number of iterations
+	 */
 	public void sample(int numIters)
 	{
 		for (int iteration=1; iteration<=numIters; iteration++)
@@ -275,6 +298,10 @@ public class LDA
 		}
 	}
 	
+	/**
+	 * Add log likelihood and perplexity results to result collector
+	 * @param result Result collector
+	 */
 	public void addResults(LDAResult result)
 	{
 		result.add(LDAResult.LOGLIKELIHOOD, logLikelihood);
@@ -364,46 +391,84 @@ public class LDA
 		return (type==TRAIN ? 1 : 2);
 	}
 	
+	/**
+	 * Get document distribution over topics
+	 * @return Document distribution over topics
+	 */
 	public double[][] getDocTopicDist()
 	{
 		return theta;
 	}
 	
+	/**
+	 * Get topic distribution over words
+	 * @return Topic distribution over words
+	 */
 	public double[][] getTopicVocabDist()
 	{
 		return phi;
 	}
 	
+	/**
+	 * Get number of documents
+	 * @return Number of documents
+	 */
 	public int getNumDocs()
 	{
 		return numDocs;
 	}
 	
+	/**
+	 * Get number of tokens in the corpus
+	 * @return Number of tokens
+	 */
 	public int getNumWords()
 	{
 		return numWords;
 	}
 	
+	/**
+	 * Get a specific document
+	 * @param doc Document number
+	 * @return Corresponding document object
+	 */
 	public LDADoc getDoc(int doc)
 	{
 		return corpus.get(doc);
 	}
 	
+	/**
+	 * Get a specific topic
+	 * @param topic Topic number
+	 * @return Corresponding topic object
+	 */
 	public LDATopic getTopic(int topic)
 	{
 		return topics[topic];
 	}
 	
+	/**
+	 * Get log likelihood
+	 * @return Log likelihood
+	 */
 	public double getLogLikelihood()
 	{
 		return logLikelihood;
 	}
 	
+	/**
+	 * Get perplexity
+	 * @return Perplexity
+	 */
 	public double getPerplexity()
 	{
 		return perplexity;
 	}
 	
+	/**
+	 * Get documents' number of tokens assigned to every topic
+	 * @return Documents' number of tokens assigned to every topic
+	 */
 	public int[][] getDocTopicCounts()
 	{
 		int docTopicCounts[][]=new int[numDocs][param.numTopics];
@@ -417,6 +482,10 @@ public class LDA
 		return docTopicCounts;
 	}
 	
+	/** 
+	 * Get tokens' topic assignments
+	 * @return Tokens' topic assignments
+	 */
 	public int[][] getTokenTopicAssign()
 	{
 		int tokenTopicAssign[][]=new int[numDocs][];
@@ -431,6 +500,12 @@ public class LDA
 		return tokenTopicAssign;
 	}
 	
+	/** 
+	 * Get a topic's top words (with highest number of assignments)
+	 * @param topic Topic number
+	 * @param numTopWords Number of top words
+	 * @return Given topic's top words
+	 */
 	public String topWordsByFreq(int topic, int numTopWords)
 	{
 		String result="Topic "+topic+":";
@@ -448,6 +523,12 @@ public class LDA
 		return result;
 	}
 	
+	/** 
+	 * Get a topic's top words (with highest weight)
+	 * @param topic Topic number
+	 * @param numTopWords Number of top words
+	 * @return Given topic's top words
+	 */
 	public String topWordsByWeight(int topic, int numTopWords)
 	{
 		String result="Topic "+topic+":";
@@ -465,6 +546,12 @@ public class LDA
 		return result;
 	}
 	
+	/**
+	 * Write topics' top words to file
+	 * @param resultFileName Result file name
+	 * @param numTopWords Number of top words
+	 * @throws IOException IOException
+	 */
 	public void writeResult(String resultFileName, int numTopWords) throws IOException
 	{
 		BufferedWriter bw=new BufferedWriter(new FileWriter(resultFileName));
@@ -476,6 +563,11 @@ public class LDA
 		bw.close();
 	}
 	
+	/**
+	 * Write document distribution over topics to file
+	 * @param docTopicDistFileName Distribution file name
+	 * @throws IOException IOException
+	 */
 	public void writeDocTopicDist(String docTopicDistFileName) throws IOException
 	{
 		BufferedWriter bw=new BufferedWriter(new FileWriter(docTopicDistFileName));
@@ -483,6 +575,11 @@ public class LDA
 		bw.close();
 	}
 	
+	/**
+	 * Write documents' number of tokens assigned to topics to file
+	 * @param topicCountFileName Documents' topic count file name
+	 * @throws IOException IOException
+	 */
 	public void writeDocTopicCounts(String topicCountFileName) throws IOException
 	{
 		BufferedWriter bw=new BufferedWriter(new FileWriter(topicCountFileName));
@@ -490,6 +587,11 @@ public class LDA
 		bw.close();
 	}
 	
+	/**
+	 * Write tokens' topic assignments to file
+	 * @param topicAssignFileName Topic assignment file name
+	 * @throws IOException IOException
+	 */
 	public void writeTokenTopicAssign(String topicAssignFileName) throws IOException
 	{
 		BufferedWriter bw=new BufferedWriter(new FileWriter(topicAssignFileName));
@@ -497,6 +599,11 @@ public class LDA
 		bw.close();
 	}
 	
+	/**
+	 * Write model to file
+	 * @param modelFileName Model file name
+	 * @throws IOException IOException
+	 */
 	public void writeModel(String modelFileName) throws IOException
 	{
 		BufferedWriter bw=new BufferedWriter(new FileWriter(modelFileName));
@@ -543,6 +650,10 @@ public class LDA
 		gson=new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 	}
 	
+	/**
+	 * Initialize an LDA object for training
+	 * @param parameters Parameters
+	 */
 	public LDA(LDAParam parameters)
 	{
 		this.type=TRAIN;
@@ -555,6 +666,11 @@ public class LDA
 		}
 	}
 	
+	/**
+	 * Initialize an LDA object for test using a pre-trained LDA object
+	 * @param LDATrain Pre-trained LDA object
+	 * @param parameters Parameters
+	 */
 	public LDA(LDA LDATrain, LDAParam parameters)
 	{
 		this.type=TEST;
@@ -563,6 +679,12 @@ public class LDA
 		copyModel(LDATrain);
 	}
 	
+	/**
+	 * Initialize an LDA object for test using a pre-trained LDA model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public LDA(String modelFileName, LDAParam parameters) throws IOException
 	{
 		BufferedReader br=new BufferedReader(new FileReader(modelFileName));

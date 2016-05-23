@@ -13,6 +13,11 @@ import yang.weiwei.util.MathUtil;
 import yang.weiwei.util.format.Fourmat;
 import yang.weiwei.util.IOUtil;
 
+/**
+ * Weighted Stochastic Block Model
+ * @author Weiwei Yang
+ *
+ */
 public class WSBM
 {
 	/** Parameter object */

@@ -119,6 +119,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">SLDA</span>
 extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></pre>
+<div class="block">Supervised LDA</div>
+<dl>
+<dt><span class="simpleTagLabel">Author:</span></dt>
+<dd>Weiwei Yang</dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -152,15 +157,21 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#SLDA-yang.weiwei.lda.LDAParam-">SLDA</a></span>(<a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#SLDA-yang.weiwei.lda.LDAParam-">SLDA</a></span>(<a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an SLDA object for training</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#SLDA-yang.weiwei.lda.slda.SLDA-yang.weiwei.lda.LDAParam-">SLDA</a></span>(<a href="../../../../yang/weiwei/lda/slda/SLDA.html" title="class in yang.weiwei.lda.slda">SLDA</a>&nbsp;LDATrain,
-    <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+    <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an SLDA object for test using a pre-trained SLDA object</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#SLDA-java.lang.String-yang.weiwei.lda.LDAParam-">SLDA</a></span>(java.lang.String&nbsp;modelFileName,
-    <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+    <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an SLDA object for test using a pre-trained SLDA model in file</div>
+</td>
 </tr>
 </table>
 </li>
@@ -179,27 +190,39 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></span>(<a href="../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></span>(<a href="../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</code>
+<div class="block">Add log likelihood and perplexity results to result collector</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#getError--">getError</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#getError--">getError</a></span>()</code>
+<div class="block">Get root mean squared error</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#getLabelStatus-int-">getLabelStatus</a></span>(int&nbsp;doc)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#getLabelStatus-int-">getLabelStatus</a></span>(int&nbsp;doc)</code>
+<div class="block">Get the status of a document's label (whether it's available)</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#getResponseLabel-int-">getResponseLabel</a></span>(int&nbsp;doc)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#getResponseLabel-int-">getResponseLabel</a></span>(int&nbsp;doc)</code>
+<div class="block">Get a document's label</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#getTopicWeight-int-">getTopicWeight</a></span>(int&nbsp;topic)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#getTopicWeight-int-">getTopicWeight</a></span>(int&nbsp;topic)</code>
+<div class="block">Get the weight of a topic</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>double[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#getTopicWeights--">getTopicWeights</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#getTopicWeights--">getTopicWeights</a></span>()</code>
+<div class="block">Get topic weights</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>static void</code></td>
@@ -207,69 +230,95 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>
+<div class="block">Read corpus</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#readLabels-java.lang.String-">readLabels</a></span>(java.lang.String&nbsp;labelFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#readLabels-java.lang.String-">readLabels</a></span>(java.lang.String&nbsp;labelFileName)</code>
+<div class="block">Read labels</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
+<div class="block">Sample for given number of iterations</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-double-double-">selectTopics</a></span>(double[]&nbsp;topicWeights,
             double&nbsp;posWeightThreshold,
-            double&nbsp;negWeightThreshold)</code>&nbsp;</td>
+            double&nbsp;negWeightThreshold)</code>
+<div class="block">Select topics with weights higher than $posWeightThreshold or lower than $negWeightThreshold</div>
+</td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-int-">selectTopics</a></span>(double[]&nbsp;topicWeights,
-            int&nbsp;num)</code>&nbsp;</td>
+            int&nbsp;num)</code>
+<div class="block">Sort the topics with absolute weights and select top $num topics</div>
+</td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-int-int-">selectTopics</a></span>(double[]&nbsp;topicWeights,
             int&nbsp;posNum,
-            int&nbsp;negNum)</code>&nbsp;</td>
+            int&nbsp;negNum)</code>
+<div class="block">Sort the topics with weights and select $posNum in the top and $negNum in the bottom</div>
+</td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-double-double-">selectWords</a></span>(double[]&nbsp;wordWeights,
            double&nbsp;posWeightThreshold,
-           double&nbsp;negWeightThreshold)</code>&nbsp;</td>
+           double&nbsp;negWeightThreshold)</code>
+<div class="block">Select words with weights higher than $posWeightThreshold or lower than $negWeightThreshold</div>
+</td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-int-">selectWords</a></span>(double[]&nbsp;wordWeights,
-           int&nbsp;num)</code>&nbsp;</td>
+           int&nbsp;num)</code>
+<div class="block">Sort the words with absolute weights and select top $num words</div>
+</td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-int-int-">selectWords</a></span>(double[]&nbsp;wordWeights,
            int&nbsp;posNum,
-           int&nbsp;negNum)</code>&nbsp;</td>
+           int&nbsp;negNum)</code>
+<div class="block">Sort the words with weights and select $posNum in the top and $negNum in the bottom</div>
+</td>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#selectWordsFromTopics-java.util.Set-double-double-">selectWordsFromTopics</a></span>(java.util.Set&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectedTopics,
                      double&nbsp;posWeightThreshold,
-                     double&nbsp;negWeightThreshold)</code>&nbsp;</td>
+                     double&nbsp;negWeightThreshold)</code>
+<div class="block">Select words with weights higher than $posWeightThreshold or lower than $negWeightThreshold from selected topics</div>
+</td>
 </tr>
 <tr id="i17" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#selectWordsFromTopics-java.util.Set-int-">selectWordsFromTopics</a></span>(java.util.Set&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectedTopics,
-                     int&nbsp;num)</code>&nbsp;</td>
+                     int&nbsp;num)</code>
+<div class="block">Sort the words in each selected topic by weight and select the top $num words</div>
+</td>
 </tr>
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#writePredLabels-java.lang.String-">writePredLabels</a></span>(java.lang.String&nbsp;predLabelFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#writePredLabels-java.lang.String-">writePredLabels</a></span>(java.lang.String&nbsp;predLabelFileName)</code>
+<div class="block">Write predicted labels</div>
+</td>
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#writeSelectedWords-java.util.Set-java.lang.String-">writeSelectedWords</a></span>(java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;&nbsp;wordSet,
-                  java.lang.String&nbsp;wordFileName)</code>&nbsp;</td>
+                  java.lang.String&nbsp;wordFileName)</code>
+<div class="block">Write selected words to file</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -307,6 +356,11 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>SLDA</h4>
 <pre>public&nbsp;SLDA(<a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an SLDA object for training</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="SLDA-yang.weiwei.lda.slda.SLDA-yang.weiwei.lda.LDAParam-">
@@ -317,6 +371,12 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>SLDA</h4>
 <pre>public&nbsp;SLDA(<a href="../../../../yang/weiwei/lda/slda/SLDA.html" title="class in yang.weiwei.lda.slda">SLDA</a>&nbsp;LDATrain,
             <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an SLDA object for test using a pre-trained SLDA object</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>LDATrain</code> - Pre-trained SLDA object</dd>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="SLDA-java.lang.String-yang.weiwei.lda.LDAParam-">
@@ -328,9 +388,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <pre>public&nbsp;SLDA(java.lang.String&nbsp;modelFileName,
             <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)
      throws java.io.IOException</pre>
+<div class="block">Initialize an SLDA object for test using a pre-trained SLDA model in file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>modelFileName</code> - Model file name</dd>
+<dd><code>parameters</code> - Parameters</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -350,11 +414,15 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>readCorpus</h4>
 <pre>public&nbsp;void&nbsp;readCorpus(java.lang.String&nbsp;corpusFileName)
                 throws java.io.IOException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">LDA</a></code></span></div>
+<div class="block">Read corpus</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">readCorpus</a></code>&nbsp;in class&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>corpusFileName</code> - Corpus file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -366,9 +434,12 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>readLabels</h4>
 <pre>public&nbsp;void&nbsp;readLabels(java.lang.String&nbsp;labelFileName)
                 throws java.io.IOException</pre>
+<div class="block">Read labels</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>labelFileName</code> - Label file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -379,9 +450,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>sample</h4>
 <pre>public&nbsp;void&nbsp;sample(int&nbsp;numIters)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html#sample-int-">LDA</a></code></span></div>
+<div class="block">Sample for given number of iterations</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../yang/weiwei/lda/LDA.html#sample-int-">sample</a></code>&nbsp;in class&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numIters</code> - Number of iterations</dd>
 </dl>
 </li>
 </ul>
@@ -392,9 +467,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>addResults</h4>
 <pre>public&nbsp;void&nbsp;addResults(<a href="../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">LDA</a></code></span></div>
+<div class="block">Add log likelihood and perplexity results to result collector</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></code>&nbsp;in class&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>result</code> - Result collector</dd>
 </dl>
 </li>
 </ul>
@@ -406,9 +485,12 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>writePredLabels</h4>
 <pre>public&nbsp;void&nbsp;writePredLabels(java.lang.String&nbsp;predLabelFileName)
                      throws java.io.IOException</pre>
+<div class="block">Write predicted labels</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>predLabelFileName</code> - Predicted label file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -421,6 +503,15 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <pre>public&nbsp;java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;&nbsp;selectWords(double[]&nbsp;wordWeights,
                                           double&nbsp;posWeightThreshold,
                                           double&nbsp;negWeightThreshold)</pre>
+<div class="block">Select words with weights higher than $posWeightThreshold or lower than $negWeightThreshold</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordWeights</code> - Word weights</dd>
+<dd><code>posWeightThreshold</code> - Positive word threshold</dd>
+<dd><code>negWeightThreshold</code> - Negative word threshold</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Set of selected words</dd>
+</dl>
 </li>
 </ul>
 <a name="selectWords-double:A-int-int-">
@@ -432,6 +523,15 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <pre>public&nbsp;java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;&nbsp;selectWords(double[]&nbsp;wordWeights,
                                           int&nbsp;posNum,
                                           int&nbsp;negNum)</pre>
+<div class="block">Sort the words with weights and select $posNum in the top and $negNum in the bottom</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordWeights</code> - Word weights</dd>
+<dd><code>posNum</code> - Number of words in the top</dd>
+<dd><code>negNum</code> - Number of words in the bottom</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Set of selected words</dd>
+</dl>
 </li>
 </ul>
 <a name="selectWords-double:A-int-">
@@ -442,6 +542,14 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>selectWords</h4>
 <pre>public&nbsp;java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;&nbsp;selectWords(double[]&nbsp;wordWeights,
                                           int&nbsp;num)</pre>
+<div class="block">Sort the words with absolute weights and select top $num words</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordWeights</code> - Word weights</dd>
+<dd><code>num</code> - Number of words to select</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Set of selected words</dd>
+</dl>
 </li>
 </ul>
 <a name="selectTopics-double:A-double-double-">
@@ -453,6 +561,15 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <pre>public&nbsp;java.util.Set&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectTopics(double[]&nbsp;topicWeights,
                                                    double&nbsp;posWeightThreshold,
                                                    double&nbsp;negWeightThreshold)</pre>
+<div class="block">Select topics with weights higher than $posWeightThreshold or lower than $negWeightThreshold</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topicWeights</code> - Topic weights</dd>
+<dd><code>posWeightThreshold</code> - Positive weight threshold</dd>
+<dd><code>negWeightThreshold</code> - Negative weight threshold</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Set of selected topics</dd>
+</dl>
 </li>
 </ul>
 <a name="selectTopics-double:A-int-int-">
@@ -464,6 +581,15 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <pre>public&nbsp;java.util.Set&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectTopics(double[]&nbsp;topicWeights,
                                                    int&nbsp;posNum,
                                                    int&nbsp;negNum)</pre>
+<div class="block">Sort the topics with weights and select $posNum in the top and $negNum in the bottom</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topicWeights</code> - Topic weights</dd>
+<dd><code>posNum</code> - Number of topics in the top</dd>
+<dd><code>negNum</code> - Number of words in the bottom</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Set of selected topics</dd>
+</dl>
 </li>
 </ul>
 <a name="selectTopics-double:A-int-">
@@ -474,6 +600,14 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>selectTopics</h4>
 <pre>public&nbsp;java.util.Set&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectTopics(double[]&nbsp;topicWeights,
                                                    int&nbsp;num)</pre>
+<div class="block">Sort the topics with absolute weights and select top $num topics</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topicWeights</code> - Topic weights</dd>
+<dd><code>num</code> - Number of topics to select</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Set of selected topics</dd>
+</dl>
 </li>
 </ul>
 <a name="selectWordsFromTopics-java.util.Set-double-double-">
@@ -485,6 +619,15 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <pre>public&nbsp;java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;&nbsp;selectWordsFromTopics(java.util.Set&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectedTopics,
                                                     double&nbsp;posWeightThreshold,
                                                     double&nbsp;negWeightThreshold)</pre>
+<div class="block">Select words with weights higher than $posWeightThreshold or lower than $negWeightThreshold from selected topics</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>selectedTopics</code> - Set of selected topics</dd>
+<dd><code>posWeightThreshold</code> - Positive weight threshold</dd>
+<dd><code>negWeightThreshold</code> - Negative weight threshold</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Set of selected words</dd>
+</dl>
 </li>
 </ul>
 <a name="selectWordsFromTopics-java.util.Set-int-">
@@ -495,6 +638,14 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>selectWordsFromTopics</h4>
 <pre>public&nbsp;java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;&nbsp;selectWordsFromTopics(java.util.Set&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectedTopics,
                                                     int&nbsp;num)</pre>
+<div class="block">Sort the words in each selected topic by weight and select the top $num words</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>selectedTopics</code> - Set of selected topics</dd>
+<dd><code>num</code> - Number of words to select</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Set of selected words</dd>
+</dl>
 </li>
 </ul>
 <a name="writeSelectedWords-java.util.Set-java.lang.String-">
@@ -506,9 +657,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <pre>public&nbsp;void&nbsp;writeSelectedWords(java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;&nbsp;wordSet,
                                java.lang.String&nbsp;wordFileName)
                         throws java.io.IOException</pre>
+<div class="block">Write selected words to file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordSet</code> - Set of selected words</dd>
+<dd><code>wordFileName</code> - Word file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -519,6 +674,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>getTopicWeight</h4>
 <pre>public&nbsp;double&nbsp;getTopicWeight(int&nbsp;topic)</pre>
+<div class="block">Get the weight of a topic</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topic</code> - Topic</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The weight of given topic</dd>
+</dl>
 </li>
 </ul>
 <a name="getTopicWeights--">
@@ -528,6 +690,11 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>getTopicWeights</h4>
 <pre>public&nbsp;double[]&nbsp;getTopicWeights()</pre>
+<div class="block">Get topic weights</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Topic weights</dd>
+</dl>
 </li>
 </ul>
 <a name="getLabelStatus-int-">
@@ -537,6 +704,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>getLabelStatus</h4>
 <pre>public&nbsp;boolean&nbsp;getLabelStatus(int&nbsp;doc)</pre>
+<div class="block">Get the status of a document's label (whether it's available)</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>doc</code> - Document number</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Status of given document's label</dd>
+</dl>
 </li>
 </ul>
 <a name="getResponseLabel-int-">
@@ -546,6 +720,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>getResponseLabel</h4>
 <pre>public&nbsp;double&nbsp;getResponseLabel(int&nbsp;doc)</pre>
+<div class="block">Get a document's label</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>doc</code> - Document number</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Given document's label</dd>
+</dl>
 </li>
 </ul>
 <a name="getError--">
@@ -555,6 +736,11 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>getError</h4>
 <pre>public&nbsp;double&nbsp;getError()</pre>
+<div class="block">Get root mean squared error</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Root mean squared error</dd>
+</dl>
 </li>
 </ul>
 <a name="main-java.lang.String:A-">

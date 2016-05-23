@@ -10,6 +10,11 @@ import yang.weiwei.lda.slda.lex_wsb_bs_lda.LexWSBBSLDA;
 import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 
+/**
+ * Lex-WSB-BS-LDA with hinge loss
+ * @author Weiwei Yang
+ *
+ */
 public class LexWSBMedLDA extends LexWSBBSLDA
 {
 	protected double zeta[];
@@ -176,16 +181,31 @@ public class LexWSBMedLDA extends LexWSBBSLDA
 		}
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-Med-LDA object for training
+	 * @param parameters Parameters
+	 */
 	public LexWSBMedLDA(LDAParam parameters)
 	{
 		super(parameters);
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-Med-LDA object for test using a pre-trained Lex-WSB-Med-LDA object
+	 * @param LDATrain Pre-trained Lex-WSB-Med-LDA object
+	 * @param parameters Parameters
+	 */
 	public LexWSBMedLDA(LexWSBMedLDA LDATrain, LDAParam parameters)
 	{
 		super(LDATrain, parameters);
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-Med-LDA object for test using a pre-trained Lex-WSB-Med-LDA model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public LexWSBMedLDA(String modelFileName, LDAParam parameters) throws IOException
 	{
 		super(modelFileName, parameters);

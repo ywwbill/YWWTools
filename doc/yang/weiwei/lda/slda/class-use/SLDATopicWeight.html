@@ -105,18 +105,24 @@
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-double-double-">selectTopics</a></span>(double[]&nbsp;topicWeights,
             double&nbsp;posWeightThreshold,
-            double&nbsp;negWeightThreshold)</code>&nbsp;</td>
+            double&nbsp;negWeightThreshold)</code>
+<div class="block">Select topics with weights higher than $posWeightThreshold or lower than $negWeightThreshold</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-int-">selectTopics</a></span>(double[]&nbsp;topicWeights,
-            int&nbsp;num)</code>&nbsp;</td>
+            int&nbsp;num)</code>
+<div class="block">Sort the topics with absolute weights and select top $num topics</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-int-int-">selectTopics</a></span>(double[]&nbsp;topicWeights,
             int&nbsp;posNum,
-            int&nbsp;negNum)</code>&nbsp;</td>
+            int&nbsp;negNum)</code>
+<div class="block">Sort the topics with weights and select $posNum in the top and $negNum in the bottom</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -144,12 +150,16 @@
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWordsFromTopics-java.util.Set-double-double-">selectWordsFromTopics</a></span>(java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectedTopics,
                      double&nbsp;posWeightThreshold,
-                     double&nbsp;negWeightThreshold)</code>&nbsp;</td>
+                     double&nbsp;negWeightThreshold)</code>
+<div class="block">Select words with weights higher than $posWeightThreshold or lower than $negWeightThreshold from selected topics</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWordsFromTopics-java.util.Set-int-">selectWordsFromTopics</a></span>(java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectedTopics,
-                     int&nbsp;num)</code>&nbsp;</td>
+                     int&nbsp;num)</code>
+<div class="block">Sort the words in each selected topic by weight and select the top $num words</div>
+</td>
 </tr>
 </tbody>
 </table>

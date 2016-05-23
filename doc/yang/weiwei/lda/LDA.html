@@ -114,6 +114,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">LDA</span>
 extends java.lang.Object</pre>
+<div class="block">Latent Dirichlet Allocation</div>
+<dl>
+<dt><span class="simpleTagLabel">Author:</span></dt>
+<dd>Yang Weiwei</dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -134,7 +139,9 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#param">param</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#param">param</a></span></code>
+<div class="block">Parameter object</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static int</code></td>
@@ -160,14 +167,20 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#LDA-yang.weiwei.lda.LDA-yang.weiwei.lda.LDAParam-">LDA</a></span>(<a href="../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a>&nbsp;LDATrain,
-   <a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+   <a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an LDA object for test using a pre-trained LDA object</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#LDA-yang.weiwei.lda.LDAParam-">LDA</a></span>(<a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#LDA-yang.weiwei.lda.LDAParam-">LDA</a></span>(<a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an LDA object for training</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#LDA-java.lang.String-yang.weiwei.lda.LDAParam-">LDA</a></span>(java.lang.String&nbsp;modelFileName,
-   <a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+   <a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an LDA object for test using a pre-trained LDA model in file</div>
+</td>
 </tr>
 </table>
 </li>
@@ -186,55 +199,81 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></span>(<a href="../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></span>(<a href="../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</code>
+<div class="block">Add log likelihood and perplexity results to result collector</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../yang/weiwei/lda/util/LDADoc.html" title="class in yang.weiwei.lda.util">LDADoc</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getDoc-int-">getDoc</a></span>(int&nbsp;doc)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getDoc-int-">getDoc</a></span>(int&nbsp;doc)</code>
+<div class="block">Get a specific document</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>int[][]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getDocTopicCounts--">getDocTopicCounts</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getDocTopicCounts--">getDocTopicCounts</a></span>()</code>
+<div class="block">Get documents' number of tokens assigned to every topic</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>double[][]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getDocTopicDist--">getDocTopicDist</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getDocTopicDist--">getDocTopicDist</a></span>()</code>
+<div class="block">Get document distribution over topics</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getLogLikelihood--">getLogLikelihood</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getLogLikelihood--">getLogLikelihood</a></span>()</code>
+<div class="block">Get log likelihood</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getNumDocs--">getNumDocs</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getNumDocs--">getNumDocs</a></span>()</code>
+<div class="block">Get number of documents</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getNumWords--">getNumWords</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getNumWords--">getNumWords</a></span>()</code>
+<div class="block">Get number of tokens in the corpus</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getPerplexity--">getPerplexity</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getPerplexity--">getPerplexity</a></span>()</code>
+<div class="block">Get perplexity</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>int[][]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getTokenTopicAssign--">getTokenTopicAssign</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getTokenTopicAssign--">getTokenTopicAssign</a></span>()</code>
+<div class="block">Get tokens' topic assignments</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../yang/weiwei/lda/util/LDATopic.html" title="class in yang.weiwei.lda.util">LDATopic</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getTopic-int-">getTopic</a></span>(int&nbsp;topic)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getTopic-int-">getTopic</a></span>(int&nbsp;topic)</code>
+<div class="block">Get a specific topic</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>double[][]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getTopicVocabDist--">getTopicVocabDist</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#getTopicVocabDist--">getTopicVocabDist</a></span>()</code>
+<div class="block">Get topic distribution over words</div>
+</td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#initialize--">initialize</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#initialize--">initialize</a></span>()</code>
+<div class="block">Initialize LDA member variables</div>
+</td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#initialize-java.lang.String-">initialize</a></span>(java.lang.String&nbsp;topicAssignFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#initialize-java.lang.String-">initialize</a></span>(java.lang.String&nbsp;topicAssignFileName)</code>
+<div class="block">Initialize LDA member variables with user-provided topic assignments (may be unstable)</div>
+</td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
@@ -242,7 +281,9 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>
+<div class="block">Read corpus</div>
+</td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -251,38 +292,54 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
+<div class="block">Sample for given number of iterations</div>
+</td>
 </tr>
 <tr id="i17" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#topWordsByFreq-int-int-">topWordsByFreq</a></span>(int&nbsp;topic,
-              int&nbsp;numTopWords)</code>&nbsp;</td>
+              int&nbsp;numTopWords)</code>
+<div class="block">Get a topic's top words (with highest number of assignments)</div>
+</td>
 </tr>
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#topWordsByWeight-int-int-">topWordsByWeight</a></span>(int&nbsp;topic,
-                int&nbsp;numTopWords)</code>&nbsp;</td>
+                int&nbsp;numTopWords)</code>
+<div class="block">Get a topic's top words (with highest weight)</div>
+</td>
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#writeDocTopicCounts-java.lang.String-">writeDocTopicCounts</a></span>(java.lang.String&nbsp;topicCountFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#writeDocTopicCounts-java.lang.String-">writeDocTopicCounts</a></span>(java.lang.String&nbsp;topicCountFileName)</code>
+<div class="block">Write documents' number of tokens assigned to topics to file</div>
+</td>
 </tr>
 <tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#writeDocTopicDist-java.lang.String-">writeDocTopicDist</a></span>(java.lang.String&nbsp;docTopicDistFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#writeDocTopicDist-java.lang.String-">writeDocTopicDist</a></span>(java.lang.String&nbsp;docTopicDistFileName)</code>
+<div class="block">Write document distribution over topics to file</div>
+</td>
 </tr>
 <tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#writeModel-java.lang.String-">writeModel</a></span>(java.lang.String&nbsp;modelFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#writeModel-java.lang.String-">writeModel</a></span>(java.lang.String&nbsp;modelFileName)</code>
+<div class="block">Write model to file</div>
+</td>
 </tr>
 <tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#writeResult-java.lang.String-int-">writeResult</a></span>(java.lang.String&nbsp;resultFileName,
-           int&nbsp;numTopWords)</code>&nbsp;</td>
+           int&nbsp;numTopWords)</code>
+<div class="block">Write topics' top words to file</div>
+</td>
 </tr>
 <tr id="i23" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#writeTokenTopicAssign-java.lang.String-">writeTokenTopicAssign</a></span>(java.lang.String&nbsp;topicAssignFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDA.html#writeTokenTopicAssign-java.lang.String-">writeTokenTopicAssign</a></span>(java.lang.String&nbsp;topicAssignFileName)</code>
+<div class="block">Write tokens' topic assignments to file</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -339,6 +396,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>param</h4>
 <pre>public final&nbsp;<a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a> param</pre>
+<div class="block">Parameter object</div>
 </li>
 </ul>
 </li>
@@ -356,6 +414,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>LDA</h4>
 <pre>public&nbsp;LDA(<a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an LDA object for training</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="LDA-yang.weiwei.lda.LDA-yang.weiwei.lda.LDAParam-">
@@ -366,6 +429,12 @@ extends java.lang.Object</pre>
 <h4>LDA</h4>
 <pre>public&nbsp;LDA(<a href="../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a>&nbsp;LDATrain,
            <a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an LDA object for test using a pre-trained LDA object</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>LDATrain</code> - Pre-trained LDA object</dd>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="LDA-java.lang.String-yang.weiwei.lda.LDAParam-">
@@ -377,9 +446,13 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;LDA(java.lang.String&nbsp;modelFileName,
            <a href="../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)
     throws java.io.IOException</pre>
+<div class="block">Initialize an LDA object for test using a pre-trained LDA model in file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>modelFileName</code> - Model file name</dd>
+<dd><code>parameters</code> - Parameters</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -399,9 +472,12 @@ extends java.lang.Object</pre>
 <h4>readCorpus</h4>
 <pre>public&nbsp;void&nbsp;readCorpus(java.lang.String&nbsp;corpusFileName)
                 throws java.io.IOException</pre>
+<div class="block">Read corpus</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>corpusFileName</code> - Corpus file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -427,6 +503,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>initialize</h4>
 <pre>public&nbsp;void&nbsp;initialize()</pre>
+<div class="block">Initialize LDA member variables</div>
 </li>
 </ul>
 <a name="initialize-java.lang.String-">
@@ -437,9 +514,12 @@ extends java.lang.Object</pre>
 <h4>initialize</h4>
 <pre>public&nbsp;void&nbsp;initialize(java.lang.String&nbsp;topicAssignFileName)
                 throws java.io.IOException</pre>
+<div class="block">Initialize LDA member variables with user-provided topic assignments (may be unstable)</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topicAssignFileName</code> - Topic assignment file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -450,6 +530,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>sample</h4>
 <pre>public&nbsp;void&nbsp;sample(int&nbsp;numIters)</pre>
+<div class="block">Sample for given number of iterations</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numIters</code> - Number of iterations</dd>
+</dl>
 </li>
 </ul>
 <a name="addResults-yang.weiwei.lda.util.LDAResult-">
@@ -459,6 +544,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>addResults</h4>
 <pre>public&nbsp;void&nbsp;addResults(<a href="../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</pre>
+<div class="block">Add log likelihood and perplexity results to result collector</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>result</code> - Result collector</dd>
+</dl>
 </li>
 </ul>
 <a name="getDocTopicDist--">
@@ -468,6 +558,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getDocTopicDist</h4>
 <pre>public&nbsp;double[][]&nbsp;getDocTopicDist()</pre>
+<div class="block">Get document distribution over topics</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Document distribution over topics</dd>
+</dl>
 </li>
 </ul>
 <a name="getTopicVocabDist--">
@@ -477,6 +572,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getTopicVocabDist</h4>
 <pre>public&nbsp;double[][]&nbsp;getTopicVocabDist()</pre>
+<div class="block">Get topic distribution over words</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Topic distribution over words</dd>
+</dl>
 </li>
 </ul>
 <a name="getNumDocs--">
@@ -486,6 +586,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getNumDocs</h4>
 <pre>public&nbsp;int&nbsp;getNumDocs()</pre>
+<div class="block">Get number of documents</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Number of documents</dd>
+</dl>
 </li>
 </ul>
 <a name="getNumWords--">
@@ -495,6 +600,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getNumWords</h4>
 <pre>public&nbsp;int&nbsp;getNumWords()</pre>
+<div class="block">Get number of tokens in the corpus</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Number of tokens</dd>
+</dl>
 </li>
 </ul>
 <a name="getDoc-int-">
@@ -504,6 +614,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getDoc</h4>
 <pre>public&nbsp;<a href="../../../yang/weiwei/lda/util/LDADoc.html" title="class in yang.weiwei.lda.util">LDADoc</a>&nbsp;getDoc(int&nbsp;doc)</pre>
+<div class="block">Get a specific document</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>doc</code> - Document number</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Corresponding document object</dd>
+</dl>
 </li>
 </ul>
 <a name="getTopic-int-">
@@ -513,6 +630,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getTopic</h4>
 <pre>public&nbsp;<a href="../../../yang/weiwei/lda/util/LDATopic.html" title="class in yang.weiwei.lda.util">LDATopic</a>&nbsp;getTopic(int&nbsp;topic)</pre>
+<div class="block">Get a specific topic</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topic</code> - Topic number</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Corresponding topic object</dd>
+</dl>
 </li>
 </ul>
 <a name="getLogLikelihood--">
@@ -522,6 +646,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getLogLikelihood</h4>
 <pre>public&nbsp;double&nbsp;getLogLikelihood()</pre>
+<div class="block">Get log likelihood</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Log likelihood</dd>
+</dl>
 </li>
 </ul>
 <a name="getPerplexity--">
@@ -531,6 +660,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getPerplexity</h4>
 <pre>public&nbsp;double&nbsp;getPerplexity()</pre>
+<div class="block">Get perplexity</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Perplexity</dd>
+</dl>
 </li>
 </ul>
 <a name="getDocTopicCounts--">
@@ -540,6 +674,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getDocTopicCounts</h4>
 <pre>public&nbsp;int[][]&nbsp;getDocTopicCounts()</pre>
+<div class="block">Get documents' number of tokens assigned to every topic</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Documents' number of tokens assigned to every topic</dd>
+</dl>
 </li>
 </ul>
 <a name="getTokenTopicAssign--">
@@ -549,6 +688,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getTokenTopicAssign</h4>
 <pre>public&nbsp;int[][]&nbsp;getTokenTopicAssign()</pre>
+<div class="block">Get tokens' topic assignments</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Tokens' topic assignments</dd>
+</dl>
 </li>
 </ul>
 <a name="topWordsByFreq-int-int-">
@@ -559,6 +703,14 @@ extends java.lang.Object</pre>
 <h4>topWordsByFreq</h4>
 <pre>public&nbsp;java.lang.String&nbsp;topWordsByFreq(int&nbsp;topic,
                                        int&nbsp;numTopWords)</pre>
+<div class="block">Get a topic's top words (with highest number of assignments)</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topic</code> - Topic number</dd>
+<dd><code>numTopWords</code> - Number of top words</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Given topic's top words</dd>
+</dl>
 </li>
 </ul>
 <a name="topWordsByWeight-int-int-">
@@ -569,6 +721,14 @@ extends java.lang.Object</pre>
 <h4>topWordsByWeight</h4>
 <pre>public&nbsp;java.lang.String&nbsp;topWordsByWeight(int&nbsp;topic,
                                          int&nbsp;numTopWords)</pre>
+<div class="block">Get a topic's top words (with highest weight)</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topic</code> - Topic number</dd>
+<dd><code>numTopWords</code> - Number of top words</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Given topic's top words</dd>
+</dl>
 </li>
 </ul>
 <a name="writeResult-java.lang.String-int-">
@@ -580,9 +740,13 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;void&nbsp;writeResult(java.lang.String&nbsp;resultFileName,
                         int&nbsp;numTopWords)
                  throws java.io.IOException</pre>
+<div class="block">Write topics' top words to file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>resultFileName</code> - Result file name</dd>
+<dd><code>numTopWords</code> - Number of top words</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -594,9 +758,12 @@ extends java.lang.Object</pre>
 <h4>writeDocTopicDist</h4>
 <pre>public&nbsp;void&nbsp;writeDocTopicDist(java.lang.String&nbsp;docTopicDistFileName)
                        throws java.io.IOException</pre>
+<div class="block">Write document distribution over topics to file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>docTopicDistFileName</code> - Distribution file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -608,9 +775,12 @@ extends java.lang.Object</pre>
 <h4>writeDocTopicCounts</h4>
 <pre>public&nbsp;void&nbsp;writeDocTopicCounts(java.lang.String&nbsp;topicCountFileName)
                          throws java.io.IOException</pre>
+<div class="block">Write documents' number of tokens assigned to topics to file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topicCountFileName</code> - Documents' topic count file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -622,9 +792,12 @@ extends java.lang.Object</pre>
 <h4>writeTokenTopicAssign</h4>
 <pre>public&nbsp;void&nbsp;writeTokenTopicAssign(java.lang.String&nbsp;topicAssignFileName)
                            throws java.io.IOException</pre>
+<div class="block">Write tokens' topic assignments to file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topicAssignFileName</code> - Topic assignment file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -636,9 +809,12 @@ extends java.lang.Object</pre>
 <h4>writeModel</h4>
 <pre>public&nbsp;void&nbsp;writeModel(java.lang.String&nbsp;modelFileName)
                 throws java.io.IOException</pre>
+<div class="block">Write model to file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>modelFileName</code> - Model file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>

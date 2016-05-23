@@ -109,29 +109,39 @@
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-double-double-">selectWords</a></span>(double[]&nbsp;wordWeights,
            double&nbsp;posWeightThreshold,
-           double&nbsp;negWeightThreshold)</code>&nbsp;</td>
+           double&nbsp;negWeightThreshold)</code>
+<div class="block">Select words with weights higher than $posWeightThreshold or lower than $negWeightThreshold</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-int-">selectWords</a></span>(double[]&nbsp;wordWeights,
-           int&nbsp;num)</code>&nbsp;</td>
+           int&nbsp;num)</code>
+<div class="block">Sort the words with absolute weights and select top $num words</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-int-int-">selectWords</a></span>(double[]&nbsp;wordWeights,
            int&nbsp;posNum,
-           int&nbsp;negNum)</code>&nbsp;</td>
+           int&nbsp;negNum)</code>
+<div class="block">Sort the words with weights and select $posNum in the top and $negNum in the bottom</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWordsFromTopics-java.util.Set-double-double-">selectWordsFromTopics</a></span>(java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectedTopics,
                      double&nbsp;posWeightThreshold,
-                     double&nbsp;negWeightThreshold)</code>&nbsp;</td>
+                     double&nbsp;negWeightThreshold)</code>
+<div class="block">Select words with weights higher than $posWeightThreshold or lower than $negWeightThreshold from selected topics</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWordsFromTopics-java.util.Set-int-">selectWordsFromTopics</a></span>(java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;&nbsp;selectedTopics,
-                     int&nbsp;num)</code>&nbsp;</td>
+                     int&nbsp;num)</code>
+<div class="block">Sort the words in each selected topic by weight and select the top $num words</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -145,7 +155,9 @@
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SLDA.</span><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#writeSelectedWords-java.util.Set-java.lang.String-">writeSelectedWords</a></span>(java.util.Set&lt;<a href="../../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;&nbsp;wordSet,
-                  java.lang.String&nbsp;wordFileName)</code>&nbsp;</td>
+                  java.lang.String&nbsp;wordFileName)</code>
+<div class="block">Write selected words to file</div>
+</td>
 </tr>
 </tbody>
 </table>

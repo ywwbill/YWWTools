@@ -12,6 +12,11 @@ import yang.weiwei.lda.rtm.lex_wsb_rtm.LexWSBRTM;
 import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 
+/**
+ * Lex-WSB-RTM with hinge loss
+ * @author Weiwei Yang
+ *
+ */
 public class LexWSBMedRTM extends LexWSBRTM
 {
 	protected ArrayList<HashMap<Integer, Double>> zeta;
@@ -196,16 +201,31 @@ public class LexWSBMedRTM extends LexWSBRTM
 		lambda=new ArrayList<HashMap<Integer, Double>>();
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-Med-RTM object for training
+	 * @param parameters Parameters
+	 */
 	public LexWSBMedRTM(LDAParam parameters)
 	{
 		super(parameters);
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-Med-RTM object for test using a pre-trained Lex-WSB-Med-RTM object
+	 * @param RTMTrain Pre-trained Lex-WSB-Med-RTM object
+	 * @param parameters Parameters
+	 */
 	public LexWSBMedRTM(LexWSBMedRTM RTMTrain, LDAParam parameters)
 	{
 		super(RTMTrain, parameters);
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-Med-RTM object for test using a pre-trained Lex-WSB-Med-RTM model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public LexWSBMedRTM(String modelFileName, LDAParam parameters) throws IOException
 	{
 		super(modelFileName, parameters);

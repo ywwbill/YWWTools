@@ -14,6 +14,11 @@ import yang.weiwei.lda.slda.bs_lda.BSLDA;
 import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 
+/**
+ * BS-LDA with lexical weights and weighted stochastic block priors
+ * @author Weiwei Yang
+ *
+ */
 public class LexWSBBSLDA extends BSLDA
 {
 	@Expose protected double tau[];
@@ -32,6 +37,11 @@ public class LexWSBBSLDA extends BSLDA
 		wsbm=new WSBM(wsbmParam);
 	}
 	
+	/**
+	 * Read document links for WSBM
+	 * @param blockGraphFileName Document link file name
+	 * @throws IOException IOException
+	 */
 	public void readBlockGraph(String blockGraphFileName) throws IOException
 	{
 		wsbm.readGraph(blockGraphFileName);
@@ -242,11 +252,19 @@ public class LexWSBBSLDA extends BSLDA
 		}
 	}
 	
+	/**
+	 * Write blocks to file
+	 * @param blockFileName Block file name
+	 * @throws IOException IOException
+	 */
 	public void writeBlocks(String blockFileName) throws IOException
 	{
 		wsbm.writeBlocks(blockFileName);
 	}
 	
+	/**
+	 * Print blocks on console
+	 */
 	public void printBlocks()
 	{
 		wsbm.printResults();
@@ -258,11 +276,20 @@ public class LexWSBBSLDA extends BSLDA
 		result.add(LDAResult.BLOCKLOGLIKELIHOOD, wsbm.getLogLikelihood());
 	}
 	
+	/**
+	 * Get a word's weight
+	 * @param vocab Word
+	 * @return Word's weight
+	 */
 	public double getLexWeight(int vocab)
 	{
 		return tau[vocab];
 	}
 	
+	/**
+	 * Get words' weights
+	 * @return Words' weights
+	 */
 	public double[] getLexWeights()
 	{
 		return tau;
@@ -278,16 +305,30 @@ public class LexWSBBSLDA extends BSLDA
 		return wsbm.getBlockEdgeRates();
 	}
 	
+	/**
+	 * Get block distribution
+	 * @return Block distribution
+	 */
 	public double[] getBlockDist()
 	{
 		return wsbm.getBlockDist();
 	}
 	
+	/**
+	 * Get block assignment of the given document
+	 * @param doc Document number
+	 * @return Given document's block assignment
+	 */
 	public int getBlockAssign(int doc)
 	{
 		return wsbm.getBlockAssign(doc);
 	}
 	
+	
+	/**
+	 * Get block distribution over topics
+	 * @return Block distribution over topics
+	 */
 	public double[][] getBlockTopicDist()
 	{
 		return pi;
@@ -317,6 +358,10 @@ public class LexWSBBSLDA extends BSLDA
 		}
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-BS-LDA object for training
+	 * @param parameters Parameters
+	 */
 	public LexWSBBSLDA(LDAParam parameters)
 	{
 		super(parameters);
@@ -326,11 +371,22 @@ public class LexWSBBSLDA extends BSLDA
 		}
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-BS-LDA object for test using a pre-trained Lex-WSB-BS-LDA object
+	 * @param LDATrain Pre-trained Lex-WSB-BS-LDA object
+	 * @param parameters Parameters
+	 */
 	public LexWSBBSLDA(LexWSBBSLDA LDATrain, LDAParam parameters)
 	{
 		super(LDATrain, parameters);
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-BS-LDA object for test using a pre-trained Lex-WSB-BS-LDA model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public LexWSBBSLDA(String modelFileName, LDAParam parameters) throws IOException
 	{
 		super(modelFileName, parameters);

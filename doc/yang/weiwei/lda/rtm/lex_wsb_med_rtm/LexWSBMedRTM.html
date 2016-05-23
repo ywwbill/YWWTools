@@ -125,6 +125,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">LexWSBMedRTM</span>
 extends <a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" title="class in yang.weiwei.lda.rtm.lex_wsb_rtm">LexWSBRTM</a></pre>
+<div class="block">Lex-WSB-RTM with hinge loss</div>
+<dl>
+<dt><span class="simpleTagLabel">Author:</span></dt>
+<dd>Weiwei Yang</dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -165,15 +170,21 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" 
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html#LexWSBMedRTM-yang.weiwei.lda.LDAParam-">LexWSBMedRTM</a></span>(<a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html#LexWSBMedRTM-yang.weiwei.lda.LDAParam-">LexWSBMedRTM</a></span>(<a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an Lex-WSB-Med-RTM object for training</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html#LexWSBMedRTM-yang.weiwei.lda.rtm.lex_wsb_med_rtm.LexWSBMedRTM-yang.weiwei.lda.LDAParam-">LexWSBMedRTM</a></span>(<a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html" title="class in yang.weiwei.lda.rtm.lex_wsb_med_rtm">LexWSBMedRTM</a>&nbsp;RTMTrain,
-            <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+            <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an Lex-WSB-Med-RTM object for test using a pre-trained Lex-WSB-Med-RTM object</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html#LexWSBMedRTM-java.lang.String-yang.weiwei.lda.LDAParam-">LexWSBMedRTM</a></span>(java.lang.String&nbsp;modelFileName,
-            <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+            <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an Lex-WSB-Med-RTM object for test using a pre-trained Lex-WSB-Med-RTM model in file</div>
+</td>
 </tr>
 </table>
 </li>
@@ -196,16 +207,22 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" 
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>
+<div class="block">Read corpus</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html#readGraph-java.lang.String-int-">readGraph</a></span>(java.lang.String&nbsp;graphFileName,
-         int&nbsp;graphType)</code>&nbsp;</td>
+         int&nbsp;graphType)</code>
+<div class="block">Read document links</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
+<div class="block">Sample for given number of iterations</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -257,6 +274,11 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" 
 <li class="blockList">
 <h4>LexWSBMedRTM</h4>
 <pre>public&nbsp;LexWSBMedRTM(<a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an Lex-WSB-Med-RTM object for training</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="LexWSBMedRTM-yang.weiwei.lda.rtm.lex_wsb_med_rtm.LexWSBMedRTM-yang.weiwei.lda.LDAParam-">
@@ -267,6 +289,12 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" 
 <h4>LexWSBMedRTM</h4>
 <pre>public&nbsp;LexWSBMedRTM(<a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_med_rtm/LexWSBMedRTM.html" title="class in yang.weiwei.lda.rtm.lex_wsb_med_rtm">LexWSBMedRTM</a>&nbsp;RTMTrain,
                     <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an Lex-WSB-Med-RTM object for test using a pre-trained Lex-WSB-Med-RTM object</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>RTMTrain</code> - Pre-trained Lex-WSB-Med-RTM object</dd>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="LexWSBMedRTM-java.lang.String-yang.weiwei.lda.LDAParam-">
@@ -278,9 +306,13 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" 
 <pre>public&nbsp;LexWSBMedRTM(java.lang.String&nbsp;modelFileName,
                     <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)
              throws java.io.IOException</pre>
+<div class="block">Initialize an Lex-WSB-Med-RTM object for test using a pre-trained Lex-WSB-Med-RTM model in file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>modelFileName</code> - Model file name</dd>
+<dd><code>parameters</code> - Parameters</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -300,11 +332,15 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" 
 <h4>readCorpus</h4>
 <pre>public&nbsp;void&nbsp;readCorpus(java.lang.String&nbsp;corpusFileName)
                 throws java.io.IOException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">LDA</a></code></span></div>
+<div class="block">Read corpus</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#readCorpus-java.lang.String-">readCorpus</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" title="class in yang.weiwei.lda.rtm.lex_wsb_rtm">LexWSBRTM</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>corpusFileName</code> - Corpus file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -317,11 +353,16 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" 
 <pre>public&nbsp;void&nbsp;readGraph(java.lang.String&nbsp;graphFileName,
                       int&nbsp;graphType)
                throws java.io.IOException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html#readGraph-java.lang.String-int-">RTM</a></code></span></div>
+<div class="block">Read document links</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html#readGraph-java.lang.String-int-">readGraph</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in yang.weiwei.lda.rtm">RTM</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>graphFileName</code> - Graph file name</dd>
+<dd><code>graphType</code> - Graph type</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -332,9 +373,13 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" 
 <li class="blockList">
 <h4>sample</h4>
 <pre>public&nbsp;void&nbsp;sample(int&nbsp;numIters)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#sample-int-">LDA</a></code></span></div>
+<div class="block">Sample for given number of iterations</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#sample-int-">sample</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" title="class in yang.weiwei.lda.rtm.lex_wsb_rtm">LexWSBRTM</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numIters</code> - Number of iterations</dd>
 </dl>
 </li>
 </ul>

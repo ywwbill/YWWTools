@@ -124,6 +124,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">LexWSBRTM</span>
 extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in yang.weiwei.lda.rtm">RTM</a></pre>
+<div class="block">RTM with lexical weights and weighted stochastic block priors</div>
+<dl>
+<dt><span class="simpleTagLabel">Author:</span></dt>
+<dd>Weiwei Yang</dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -164,15 +169,21 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#LexWSBRTM-yang.weiwei.lda.LDAParam-">LexWSBRTM</a></span>(<a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#LexWSBRTM-yang.weiwei.lda.LDAParam-">LexWSBRTM</a></span>(<a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an Lex-WSB-RTM object for training</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#LexWSBRTM-yang.weiwei.lda.rtm.lex_wsb_rtm.LexWSBRTM-yang.weiwei.lda.LDAParam-">LexWSBRTM</a></span>(<a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" title="class in yang.weiwei.lda.rtm.lex_wsb_rtm">LexWSBRTM</a>&nbsp;RTMTrain,
-         <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+         <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an Lex-WSB-RTM object for test using a pre-trained Lex-WSB-RTM object</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#LexWSBRTM-java.lang.String-yang.weiwei.lda.LDAParam-">LexWSBRTM</a></span>(java.lang.String&nbsp;modelFileName,
-         <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+         <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an Lex-WSB-RTM object for test using a pre-trained Lex-WSB-RTM model in file</div>
+</td>
 </tr>
 </table>
 </li>
@@ -191,15 +202,21 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></span>(<a href="../../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></span>(<a href="../../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</code>
+<div class="block">Add log likelihood and perplexity results to result collector</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getBlockAssign-int-">getBlockAssign</a></span>(int&nbsp;doc)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getBlockAssign-int-">getBlockAssign</a></span>(int&nbsp;doc)</code>
+<div class="block">Get block assignment of the given document</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>double[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getBlockDist--">getBlockDist</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getBlockDist--">getBlockDist</a></span>()</code>
+<div class="block">Get block distribution</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>double</code></td>
@@ -212,32 +229,46 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>double[][]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getBlockTopicDist--">getBlockTopicDist</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getBlockTopicDist--">getBlockTopicDist</a></span>()</code>
+<div class="block">Get block distribution over topics</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getBlockWeight-int-int-">getBlockWeight</a></span>(int&nbsp;b1,
-              int&nbsp;b2)</code>&nbsp;</td>
+              int&nbsp;b2)</code>
+<div class="block">Get two blocks' weight</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>double[][]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getBlockWeights--">getBlockWeights</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getBlockWeights--">getBlockWeights</a></span>()</code>
+<div class="block">Get block weights</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getLexWeight-int-">getLexWeight</a></span>(int&nbsp;vocab)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getLexWeight-int-">getLexWeight</a></span>(int&nbsp;vocab)</code>
+<div class="block">Get a word's weight</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>double[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getLexWeights--">getLexWeights</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#getLexWeights--">getLexWeights</a></span>()</code>
+<div class="block">Get words' weights</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#initialize--">initialize</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#initialize--">initialize</a></span>()</code>
+<div class="block">Initialize LDA member variables</div>
+</td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#initialize-java.lang.String-">initialize</a></span>(java.lang.String&nbsp;topicAssignFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#initialize-java.lang.String-">initialize</a></span>(java.lang.String&nbsp;topicAssignFileName)</code>
+<div class="block">Initialize LDA member variables with user-provided topic assignments (may be unstable)</div>
+</td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>static void</code></td>
@@ -245,23 +276,33 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#printBlocks--">printBlocks</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#printBlocks--">printBlocks</a></span>()</code>
+<div class="block">Print blocks on console</div>
+</td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#readBlockGraph-java.lang.String-">readBlockGraph</a></span>(java.lang.String&nbsp;blockGraphFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#readBlockGraph-java.lang.String-">readBlockGraph</a></span>(java.lang.String&nbsp;blockGraphFileName)</code>
+<div class="block">Read document links for WSBM</div>
+</td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>
+<div class="block">Read corpus</div>
+</td>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
+<div class="block">Sample for given number of iterations</div>
+</td>
 </tr>
 <tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#writeBlocks-java.lang.String-">writeBlocks</a></span>(java.lang.String&nbsp;blockFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#writeBlocks-java.lang.String-">writeBlocks</a></span>(java.lang.String&nbsp;blockFileName)</code>
+<div class="block">Write blocks to file</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -306,6 +347,11 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>LexWSBRTM</h4>
 <pre>public&nbsp;LexWSBRTM(<a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an Lex-WSB-RTM object for training</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="LexWSBRTM-yang.weiwei.lda.rtm.lex_wsb_rtm.LexWSBRTM-yang.weiwei.lda.LDAParam-">
@@ -316,6 +362,12 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <h4>LexWSBRTM</h4>
 <pre>public&nbsp;LexWSBRTM(<a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html" title="class in yang.weiwei.lda.rtm.lex_wsb_rtm">LexWSBRTM</a>&nbsp;RTMTrain,
                  <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an Lex-WSB-RTM object for test using a pre-trained Lex-WSB-RTM object</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>RTMTrain</code> - Pre-trained Lex-WSB-RTM object</dd>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="LexWSBRTM-java.lang.String-yang.weiwei.lda.LDAParam-">
@@ -327,9 +379,13 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <pre>public&nbsp;LexWSBRTM(java.lang.String&nbsp;modelFileName,
                  <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)
           throws java.io.IOException</pre>
+<div class="block">Initialize an Lex-WSB-RTM object for test using a pre-trained Lex-WSB-RTM model in file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>modelFileName</code> - Model file name</dd>
+<dd><code>parameters</code> - Parameters</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -349,11 +405,15 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <h4>readCorpus</h4>
 <pre>public&nbsp;void&nbsp;readCorpus(java.lang.String&nbsp;corpusFileName)
                 throws java.io.IOException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">LDA</a></code></span></div>
+<div class="block">Read corpus</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html#readCorpus-java.lang.String-">readCorpus</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in yang.weiwei.lda.rtm">RTM</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>corpusFileName</code> - Corpus file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -365,9 +425,12 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <h4>readBlockGraph</h4>
 <pre>public&nbsp;void&nbsp;readBlockGraph(java.lang.String&nbsp;blockGraphFileName)
                     throws java.io.IOException</pre>
+<div class="block">Read document links for WSBM</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>blockGraphFileName</code> - Document link file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -378,6 +441,8 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>initialize</h4>
 <pre>public&nbsp;void&nbsp;initialize()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#initialize--">LDA</a></code></span></div>
+<div class="block">Initialize LDA member variables</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/LDA.html#initialize--">initialize</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
@@ -392,11 +457,15 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <h4>initialize</h4>
 <pre>public&nbsp;void&nbsp;initialize(java.lang.String&nbsp;topicAssignFileName)
                 throws java.io.IOException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#initialize-java.lang.String-">LDA</a></code></span></div>
+<div class="block">Initialize LDA member variables with user-provided topic assignments (may be unstable)</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/LDA.html#initialize-java.lang.String-">initialize</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topicAssignFileName</code> - Topic assignment file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -407,9 +476,13 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>sample</h4>
 <pre>public&nbsp;void&nbsp;sample(int&nbsp;numIters)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#sample-int-">LDA</a></code></span></div>
+<div class="block">Sample for given number of iterations</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html#sample-int-">sample</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in yang.weiwei.lda.rtm">RTM</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numIters</code> - Number of iterations</dd>
 </dl>
 </li>
 </ul>
@@ -421,9 +494,12 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <h4>writeBlocks</h4>
 <pre>public&nbsp;void&nbsp;writeBlocks(java.lang.String&nbsp;blockFileName)
                  throws java.io.IOException</pre>
+<div class="block">Write blocks to file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>blockFileName</code> - Block file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -434,6 +510,7 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>printBlocks</h4>
 <pre>public&nbsp;void&nbsp;printBlocks()</pre>
+<div class="block">Print blocks on console</div>
 </li>
 </ul>
 <a name="addResults-yang.weiwei.lda.util.LDAResult-">
@@ -443,9 +520,13 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>addResults</h4>
 <pre>public&nbsp;void&nbsp;addResults(<a href="../../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">LDA</a></code></span></div>
+<div class="block">Add log likelihood and perplexity results to result collector</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in yang.weiwei.lda.rtm">RTM</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>result</code> - Result collector</dd>
 </dl>
 </li>
 </ul>
@@ -456,6 +537,13 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>getLexWeight</h4>
 <pre>public&nbsp;double&nbsp;getLexWeight(int&nbsp;vocab)</pre>
+<div class="block">Get a word's weight</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vocab</code> - Word</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Word's weight</dd>
+</dl>
 </li>
 </ul>
 <a name="getLexWeights--">
@@ -465,6 +553,11 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>getLexWeights</h4>
 <pre>public&nbsp;double[]&nbsp;getLexWeights()</pre>
+<div class="block">Get words' weights</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Words' weights</dd>
+</dl>
 </li>
 </ul>
 <a name="getBlockEdgeRate-int-int-">
@@ -493,6 +586,11 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>getBlockDist</h4>
 <pre>public&nbsp;double[]&nbsp;getBlockDist()</pre>
+<div class="block">Get block distribution</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Block distribution</dd>
+</dl>
 </li>
 </ul>
 <a name="getBlockAssign-int-">
@@ -502,6 +600,13 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>getBlockAssign</h4>
 <pre>public&nbsp;int&nbsp;getBlockAssign(int&nbsp;doc)</pre>
+<div class="block">Get block assignment of the given document</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>doc</code> - Document number</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Given document's block assignment</dd>
+</dl>
 </li>
 </ul>
 <a name="getBlockTopicDist--">
@@ -511,6 +616,11 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>getBlockTopicDist</h4>
 <pre>public&nbsp;double[][]&nbsp;getBlockTopicDist()</pre>
+<div class="block">Get block distribution over topics</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Block distribution over topics</dd>
+</dl>
 </li>
 </ul>
 <a name="getBlockWeight-int-int-">
@@ -521,6 +631,14 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <h4>getBlockWeight</h4>
 <pre>public&nbsp;double&nbsp;getBlockWeight(int&nbsp;b1,
                              int&nbsp;b2)</pre>
+<div class="block">Get two blocks' weight</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>b1</code> - Block 1</dd>
+<dd><code>b2</code> - Block 2</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Given blocks' weight</dd>
+</dl>
 </li>
 </ul>
 <a name="getBlockWeights--">
@@ -530,6 +648,11 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <li class="blockList">
 <h4>getBlockWeights</h4>
 <pre>public&nbsp;double[][]&nbsp;getBlockWeights()</pre>
+<div class="block">Get block weights</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Block weights</dd>
+</dl>
 </li>
 </ul>
 <a name="main-java.lang.String:A-">

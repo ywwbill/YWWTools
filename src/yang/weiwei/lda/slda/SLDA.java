@@ -20,6 +20,11 @@ import yang.weiwei.util.IOUtil;
 import com.google.gson.annotations.Expose;
 import cc.mallet.optimize.LimitedMemoryBFGS;
 
+/**
+ * Supervised LDA
+ * @author Weiwei Yang
+ *
+ */
 public class SLDA extends LDA
 {
 	@Expose protected double eta[];
@@ -45,6 +50,11 @@ public class SLDA extends LDA
 		}
 	}
 	
+	/**
+	 * Read labels
+	 * @param labelFileName Label file name
+	 * @throws IOException IOException
+	 */
 	public void readLabels(String labelFileName) throws IOException
 	{
 		BufferedReader br=new BufferedReader(new FileReader(labelFileName));
@@ -204,6 +214,11 @@ public class SLDA extends LDA
 		result.add(LDAResult.ERROR, error);
 	}
 	
+	/**
+	 * Write predicted labels
+	 * @param predLabelFileName Predicted label file name
+	 * @throws IOException IOException
+	 */
 	public void writePredLabels(String predLabelFileName) throws IOException
 	{
 		computePredLabels();
@@ -212,6 +227,13 @@ public class SLDA extends LDA
 		bw.close();
 	}
 	
+	/**
+	 * Select words with weights higher than $posWeightThreshold or lower than $negWeightThreshold
+	 * @param wordWeights Word weights
+	 * @param posWeightThreshold Positive word threshold
+	 * @param negWeightThreshold Negative word threshold
+	 * @return Set of selected words
+	 */
 	public Set<LDAWord> selectWords(double wordWeights[], double posWeightThreshold, double negWeightThreshold)
 	{
 		Set<LDAWord> wordSet=new HashSet<LDAWord>();
@@ -225,6 +247,13 @@ public class SLDA extends LDA
 		return wordSet;
 	}
 	
+	/**
+	 * Sort the words with weights and select $posNum in the top and $negNum in the bottom
+	 * @param wordWeights Word weights
+	 * @param posNum Number of words in the top
+	 * @param negNum Number of words in the bottom
+	 * @return Set of selected words
+	 */
 	public Set<LDAWord> selectWords(double wordWeights[], int posNum, int negNum)
 	{
 		LDAWord words[]=new LDAWord[param.numVocab];
@@ -246,6 +275,12 @@ public class SLDA extends LDA
 		return wordSet;
 	}
 	
+	/**
+	 * Sort the words with absolute weights and select top $num words
+	 * @param wordWeights Word weights
+	 * @param num Number of words to select
+	 * @return Set of selected words
+	 */
 	public Set<LDAWord> selectWords(double wordWeights[], int num)
 	{
 		double newWeights[]=new double[param.numVocab];
@@ -256,6 +291,13 @@ public class SLDA extends LDA
 		return selectWords(newWeights, num, 0);
 	}
 	
+	/**
+	 * Select topics with weights higher than $posWeightThreshold or lower than $negWeightThreshold
+	 * @param topicWeights Topic weights
+	 * @param posWeightThreshold Positive weight threshold
+	 * @param negWeightThreshold Negative weight threshold
+	 * @return Set of selected topics
+	 */
 	public Set<SLDATopicWeight> selectTopics(double topicWeights[], double posWeightThreshold, double negWeightThreshold)
 	{
 		Set<SLDATopicWeight> topicSet=new HashSet<SLDATopicWeight>();
@@ -269,6 +311,13 @@ public class SLDA extends LDA
 		return topicSet;
 	}
 	
+	/**
+	 * Sort the topics with weights and select $posNum in the top and $negNum in the bottom
+	 * @param topicWeights Topic weights
+	 * @param posNum Number of topics in the top
+	 * @param negNum Number of words in the bottom
+	 * @return Set of selected topics
+	 */
 	public Set<SLDATopicWeight> selectTopics(double topicWeights[], int posNum, int negNum)
 	{
 		SLDATopicWeight SLDATopics[]=new SLDATopicWeight[param.numTopics];
@@ -290,6 +339,12 @@ public class SLDA extends LDA
 		return topicSet;
 	}
 	
+	/**
+	 * Sort the topics with absolute weights and select top $num topics
+	 * @param topicWeights Topic weights
+	 * @param num Number of topics to select
+	 * @return Set of selected topics
+	 */
 	public Set<SLDATopicWeight> selectTopics(double topicWeights[], int num)
 	{
 		double newTopicWeights[]=new double[param.numTopics];
@@ -300,6 +355,13 @@ public class SLDA extends LDA
 		return selectTopics(newTopicWeights, num, 0);
 	}
 	
+	/**
+	 * Select words with weights higher than $posWeightThreshold or lower than $negWeightThreshold from selected topics
+	 * @param selectedTopics Set of selected topics
+	 * @param posWeightThreshold Positive weight threshold
+	 * @param negWeightThreshold Negative weight threshold
+	 * @return Set of selected words
+	 */
 	public Set<LDAWord> selectWordsFromTopics(Set<SLDATopicWeight> selectedTopics,
 			double posWeightThreshold, double negWeightThreshold)
 	{
@@ -311,6 +373,12 @@ public class SLDA extends LDA
 		return wordSet;
 	}
 	
+	/**
+	 * Sort the words in each selected topic by weight and select the top $num words
+	 * @param selectedTopics Set of selected topics
+	 * @param num Number of words to select
+	 * @return Set of selected words
+	 */
 	public Set<LDAWord> selectWordsFromTopics(Set<SLDATopicWeight> selectedTopics, int num)
 	{
 		Set<LDAWord> wordSet=new HashSet<LDAWord>();
@@ -321,6 +389,12 @@ public class SLDA extends LDA
 		return wordSet;
 	}
 	
+	/**
+	 * Write selected words to file
+	 * @param wordSet Set of selected words
+	 * @param wordFileName Word file name
+	 * @throws IOException IOException
+	 */
 	public void writeSelectedWords(Set<LDAWord> wordSet, String wordFileName) throws IOException
 	{
 		BufferedWriter bw=new BufferedWriter(new FileWriter(wordFileName));
@@ -352,26 +426,49 @@ public class SLDA extends LDA
 		return 1;
 	}
 	
+	/**
+	 * Get the weight of a topic
+	 * @param topic Topic
+	 * @return The weight of given topic
+	 */
 	public double getTopicWeight(int topic)
 	{
 		return eta[topic];
 	}
 	
+	/**
+	 * Get topic weights
+	 * @return Topic weights
+	 */
 	public double[] getTopicWeights()
 	{
 		return eta;
 	}
 	
+	/**
+	 * Get the status of a document's label (whether it's available)
+	 * @param doc Document number
+	 * @return Status of given document's label
+	 */
 	public boolean getLabelStatus(int doc)
 	{
 		return labelStatuses[doc];
 	}
 	
+	/**
+	 * Get a document's label
+	 * @param doc Document number
+	 * @return Given document's label
+	 */
 	public double getResponseLabel(int doc)
 	{
 		return labels[doc];
 	}
 	
+	/**
+	 * Get root mean squared error
+	 * @return Root mean squared error
+	 */
 	public double getError()
 	{
 		return error;
@@ -392,6 +489,10 @@ public class SLDA extends LDA
 		}
 	}
 	
+	/**
+	 * Initialize an SLDA object for training
+	 * @param parameters Parameters
+	 */
 	public SLDA(LDAParam parameters)
 	{
 		super(parameters);
@@ -401,11 +502,22 @@ public class SLDA extends LDA
 		}
 	}
 	
+	/**
+	 * Initialize an SLDA object for test using a pre-trained SLDA object
+	 * @param LDATrain Pre-trained SLDA object
+	 * @param parameters Parameters
+	 */
 	public SLDA(SLDA LDATrain, LDAParam parameters)
 	{
 		super(LDATrain, parameters);
 	}
 	
+	/**
+	 * Initialize an SLDA object for test using a pre-trained SLDA model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public SLDA(String modelFileName, LDAParam parameters) throws IOException
 	{
 		super(modelFileName, parameters);

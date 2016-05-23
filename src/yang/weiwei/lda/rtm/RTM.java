@@ -19,6 +19,11 @@ import yang.weiwei.util.IOUtil;
 import cc.mallet.optimize.LimitedMemoryBFGS;
 import com.google.gson.annotations.Expose;
 
+/**
+ * Relational topic model
+ * @author Weiwei Yang
+ *
+ */
 public class RTM extends LDA
 {
 	public static final int TRAIN_GRAPH=0;
@@ -48,6 +53,12 @@ public class RTM extends LDA
 		}
 	}
 	
+	/**
+	 * Read document links
+	 * @param graphFileName Graph file name
+	 * @param graphType Graph type
+	 * @throws IOException IOException
+	 */
 	public void readGraph(String graphFileName, int graphType) throws IOException
 	{
 		BufferedReader br=new BufferedReader(new FileReader(graphFileName));
@@ -311,6 +322,11 @@ public class RTM extends LDA
 		result.add(LDAResult.ERROR, error);
 	}
 	
+	/**
+	 * Write predictive link rank to file
+	 * @param plrFileName PLR file name
+	 * @throws IOException IOException
+	 */
 	public void writePLR(String plrFileName) throws IOException
 	{
 		BufferedWriter bw=new BufferedWriter(new FileWriter(plrFileName));
@@ -337,6 +353,11 @@ public class RTM extends LDA
 		bw.close();
 	}
 	
+	/**
+	 * Write predicted document link probabilities to file
+	 * @param predFileName Prediction file name
+	 * @throws IOException IOException
+	 */
 	public void writePred(String predFileName) throws IOException
 	{
 		double probs[][]=new double[numDocs][numDocs];
@@ -373,16 +394,29 @@ public class RTM extends LDA
 		return 1;
 	}
 	
+	/**
+	 * Get predictive link rank
+	 * @return PLR
+	 */
 	public double getPLR()
 	{
 		return PLR;
 	}
 	
+	/**
+	 * Get the weight of a topic
+	 * @param topic Topic
+	 * @return The weight of given topic
+	 */
 	public double getTopicWeight(int topic)
 	{
 		return eta[topic];
 	}
 	
+	/**
+	 * Get topic weights
+	 * @return Topic weights
+	 */
 	public double[] getTopicWeights()
 	{
 		return eta;
@@ -415,6 +449,10 @@ public class RTM extends LDA
 		}
 	}
 	
+	/**
+	 * Initialize an RTM object for training
+	 * @param parameters Parameters
+	 */
 	public RTM(LDAParam parameters)
 	{
 		super(parameters);
@@ -424,11 +462,22 @@ public class RTM extends LDA
 		}
 	}
 	
+	/**
+	 * Initialize an RTM object for test using a pre-trained RTM object
+	 * @param RTMTrain Pre-trained RTM object
+	 * @param parameters Parameters
+	 */
 	public RTM(RTM RTMTrain, LDAParam parameters)
 	{
 		super(RTMTrain, parameters);
 	}
 	
+	/**
+	 * Initialize an RTM object for test using a pre-trained RTM model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public RTM(String modelFileName, LDAParam parameters) throws IOException
 	{
 		super(modelFileName, parameters);

@@ -115,6 +115,11 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">SLDATopicWeight</span>
 extends java.lang.Object
 implements java.lang.Comparable&lt;<a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a>&gt;</pre>
+<div class="block">SLDA topic with weight</div>
+<dl>
+<dt><span class="simpleTagLabel">Author:</span></dt>
+<dd>Yang Weiwei</dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -135,7 +140,9 @@ implements java.lang.Comparable&lt;<a href="../../../../yang/weiwei/lda/slda/SLD
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html#SLDATopicWeight-double:A-double-int-">SLDATopicWeight</a></span>(double[]&nbsp;wordDist,
                double&nbsp;weight,
-               int&nbsp;topicNo)</code>&nbsp;</td>
+               int&nbsp;topicNo)</code>
+<div class="block">Initialize SLDA topic object</div>
+</td>
 </tr>
 </table>
 </li>
@@ -162,15 +169,21 @@ implements java.lang.Comparable&lt;<a href="../../../../yang/weiwei/lda/slda/SLD
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html#getTopicNo--">getTopicNo</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html#getTopicNo--">getTopicNo</a></span>()</code>
+<div class="block">Get this topic's number</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html#getWeight--">getWeight</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html#getWeight--">getWeight</a></span>()</code>
+<div class="block">Get this topic's weight</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>double[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html#getWordDist--">getWordDist</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDATopicWeight.html#getWordDist--">getWordDist</a></span>()</code>
+<div class="block">Get this topic's word distribution</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
@@ -207,6 +220,13 @@ implements java.lang.Comparable&lt;<a href="../../../../yang/weiwei/lda/slda/SLD
 <pre>public&nbsp;SLDATopicWeight(double[]&nbsp;wordDist,
                        double&nbsp;weight,
                        int&nbsp;topicNo)</pre>
+<div class="block">Initialize SLDA topic object</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>wordDist</code> - Topic's word distribution</dd>
+<dd><code>weight</code> - Topic weight</dd>
+<dd><code>topicNo</code> - Topic number</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -250,6 +270,11 @@ implements java.lang.Comparable&lt;<a href="../../../../yang/weiwei/lda/slda/SLD
 <li class="blockList">
 <h4>getWordDist</h4>
 <pre>public&nbsp;double[]&nbsp;getWordDist()</pre>
+<div class="block">Get this topic's word distribution</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>This topic's word distribution</dd>
+</dl>
 </li>
 </ul>
 <a name="getWeight--">
@@ -259,6 +284,11 @@ implements java.lang.Comparable&lt;<a href="../../../../yang/weiwei/lda/slda/SLD
 <li class="blockList">
 <h4>getWeight</h4>
 <pre>public&nbsp;double&nbsp;getWeight()</pre>
+<div class="block">Get this topic's weight</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>This topic's weight</dd>
+</dl>
 </li>
 </ul>
 <a name="getTopicNo--">
@@ -268,6 +298,11 @@ implements java.lang.Comparable&lt;<a href="../../../../yang/weiwei/lda/slda/SLD
 <li class="blockList">
 <h4>getTopicNo</h4>
 <pre>public&nbsp;int&nbsp;getTopicNo()</pre>
+<div class="block">Get this topic's number</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>This topic's number</dd>
+</dl>
 </li>
 </ul>
 <a name="toString--">

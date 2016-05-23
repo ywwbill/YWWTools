@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * 
  * Strongly Connected Component
- * 
  * @author Weiwei Yang
  *
  */

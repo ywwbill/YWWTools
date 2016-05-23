@@ -10,6 +10,11 @@ import yang.weiwei.util.IOUtil;
 import yang.weiwei.wsbm.WSBM;
 import yang.weiwei.wsbm.WSBMParam;
 
+/**
+ * Weighted stochastic block topic model
+ * @author Weiwei Yang
+ *
+ */
 public class WSBTM extends LDA
 {
 	protected double _alpha;
@@ -27,6 +32,11 @@ public class WSBTM extends LDA
 		wsbm=new WSBM(wsbmParam);
 	}
 	
+	/**
+	 * Read graph for WSBM
+	 * @param graphFileName Graph file name
+	 * @throws IOException IOException
+	 */
 	public void readGraph(String graphFileName) throws IOException
 	{
 		wsbm.readGraph(graphFileName);
@@ -180,16 +190,28 @@ public class WSBTM extends LDA
 		}
 	}
 	
+	/**
+	 * Get block distribution over topics
+	 * @return Block distribution over topics
+	 */
 	public double[][] getBlockTopicDist()
 	{
 		return pi;
 	}
 	
+	/**
+	 * Write blocks to file
+	 * @param blockFileName Block file name
+	 * @throws IOException IOException
+	 */
 	public void writeBlocks(String blockFileName) throws IOException
 	{
 		wsbm.writeBlocks(blockFileName);
 	}
 	
+	/**
+	 * Print blocks on console
+	 */
 	public void printBlocks()
 	{
 		wsbm.printResults();
@@ -204,16 +226,31 @@ public class WSBTM extends LDA
 		pi=new double[param.numBlocks][param.numTopics];
 	}
 	
+	/**
+	 * Initialize an WSB-TM object for training
+	 * @param parameters Parameters
+	 */
 	public WSBTM(LDAParam parameters)
 	{
 		super(parameters);
 	}
 	
+	/**
+	 * Initialize an WSB-TM object for test using a pre-trained WSB-TM object
+	 * @param LDATrain Pre-trained WSB-TM object
+	 * @param parameters Parameters
+	 */
 	public WSBTM(WSBTM LDATrain, LDAParam parameters)
 	{
 		super(LDATrain, parameters);
 	}
 	
+	/**
+	 * Initialize an WSB-TM object for test using a pre-trained WSB-TM model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public WSBTM(String modelFileName, LDAParam parameters) throws IOException
 	{
 		super(modelFileName, parameters);

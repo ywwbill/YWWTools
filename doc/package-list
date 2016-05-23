@@ -1,6 +1,4 @@
-yang.weiwei
 yang.weiwei.ICTCLAS
-yang.weiwei.cfg
 yang.weiwei.lda
 yang.weiwei.lda.bp_lda
 yang.weiwei.lda.rtm
@@ -15,8 +13,6 @@ yang.weiwei.lda.util
 yang.weiwei.lda.wsb_tm
 yang.weiwei.preprocess
 yang.weiwei.scc
-yang.weiwei.tools
-yang.weiwei.tools.lda
 yang.weiwei.util
 yang.weiwei.util.format
 yang.weiwei.wsbm

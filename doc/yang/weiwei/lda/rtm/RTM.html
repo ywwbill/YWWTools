@@ -119,6 +119,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">RTM</span>
 extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></pre>
+<div class="block">Relational topic model</div>
+<dl>
+<dt><span class="simpleTagLabel">Author:</span></dt>
+<dd>Weiwei Yang</dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -167,15 +172,21 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#RTM-yang.weiwei.lda.LDAParam-">RTM</a></span>(<a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#RTM-yang.weiwei.lda.LDAParam-">RTM</a></span>(<a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an RTM object for training</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#RTM-yang.weiwei.lda.rtm.RTM-yang.weiwei.lda.LDAParam-">RTM</a></span>(<a href="../../../../yang/weiwei/lda/rtm/RTM.html" title="class in yang.weiwei.lda.rtm">RTM</a>&nbsp;RTMTrain,
-   <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+   <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an RTM object for test using a pre-trained RTM object</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#RTM-java.lang.String-yang.weiwei.lda.LDAParam-">RTM</a></span>(java.lang.String&nbsp;modelFileName,
-   <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+   <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an RTM object for test using a pre-trained RTM model in file</div>
+</td>
 </tr>
 </table>
 </li>
@@ -194,19 +205,27 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></span>(<a href="../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></span>(<a href="../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</code>
+<div class="block">Add log likelihood and perplexity results to result collector</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getPLR--">getPLR</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getPLR--">getPLR</a></span>()</code>
+<div class="block">Get predictive link rank</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getTopicWeight-int-">getTopicWeight</a></span>(int&nbsp;topic)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getTopicWeight-int-">getTopicWeight</a></span>(int&nbsp;topic)</code>
+<div class="block">Get the weight of a topic</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>double[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getTopicWeights--">getTopicWeights</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getTopicWeights--">getTopicWeights</a></span>()</code>
+<div class="block">Get topic weights</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>int</code></td>
@@ -223,24 +242,34 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>
+<div class="block">Read corpus</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#readGraph-java.lang.String-int-">readGraph</a></span>(java.lang.String&nbsp;graphFileName,
-         int&nbsp;graphType)</code>&nbsp;</td>
+         int&nbsp;graphType)</code>
+<div class="block">Read document links</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
+<div class="block">Sample for given number of iterations</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#writePLR-java.lang.String-">writePLR</a></span>(java.lang.String&nbsp;plrFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#writePLR-java.lang.String-">writePLR</a></span>(java.lang.String&nbsp;plrFileName)</code>
+<div class="block">Write predictive link rank to file</div>
+</td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#writePred-java.lang.String-">writePred</a></span>(java.lang.String&nbsp;predFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#writePred-java.lang.String-">writePred</a></span>(java.lang.String&nbsp;predFileName)</code>
+<div class="block">Write predicted document link probabilities to file</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -312,6 +341,11 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>RTM</h4>
 <pre>public&nbsp;RTM(<a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an RTM object for training</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="RTM-yang.weiwei.lda.rtm.RTM-yang.weiwei.lda.LDAParam-">
@@ -322,6 +356,12 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>RTM</h4>
 <pre>public&nbsp;RTM(<a href="../../../../yang/weiwei/lda/rtm/RTM.html" title="class in yang.weiwei.lda.rtm">RTM</a>&nbsp;RTMTrain,
            <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an RTM object for test using a pre-trained RTM object</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>RTMTrain</code> - Pre-trained RTM object</dd>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="RTM-java.lang.String-yang.weiwei.lda.LDAParam-">
@@ -333,9 +373,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <pre>public&nbsp;RTM(java.lang.String&nbsp;modelFileName,
            <a href="../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)
     throws java.io.IOException</pre>
+<div class="block">Initialize an RTM object for test using a pre-trained RTM model in file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>modelFileName</code> - Model file name</dd>
+<dd><code>parameters</code> - Parameters</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -355,11 +399,15 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>readCorpus</h4>
 <pre>public&nbsp;void&nbsp;readCorpus(java.lang.String&nbsp;corpusFileName)
                 throws java.io.IOException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">LDA</a></code></span></div>
+<div class="block">Read corpus</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">readCorpus</a></code>&nbsp;in class&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>corpusFileName</code> - Corpus file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -372,9 +420,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <pre>public&nbsp;void&nbsp;readGraph(java.lang.String&nbsp;graphFileName,
                       int&nbsp;graphType)
                throws java.io.IOException</pre>
+<div class="block">Read document links</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>graphFileName</code> - Graph file name</dd>
+<dd><code>graphType</code> - Graph type</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -385,9 +437,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>sample</h4>
 <pre>public&nbsp;void&nbsp;sample(int&nbsp;numIters)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html#sample-int-">LDA</a></code></span></div>
+<div class="block">Sample for given number of iterations</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../yang/weiwei/lda/LDA.html#sample-int-">sample</a></code>&nbsp;in class&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numIters</code> - Number of iterations</dd>
 </dl>
 </li>
 </ul>
@@ -398,9 +454,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>addResults</h4>
 <pre>public&nbsp;void&nbsp;addResults(<a href="../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">LDA</a></code></span></div>
+<div class="block">Add log likelihood and perplexity results to result collector</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></code>&nbsp;in class&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>result</code> - Result collector</dd>
 </dl>
 </li>
 </ul>
@@ -412,9 +472,12 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>writePLR</h4>
 <pre>public&nbsp;void&nbsp;writePLR(java.lang.String&nbsp;plrFileName)
               throws java.io.IOException</pre>
+<div class="block">Write predictive link rank to file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>plrFileName</code> - PLR file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -426,9 +489,12 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <h4>writePred</h4>
 <pre>public&nbsp;void&nbsp;writePred(java.lang.String&nbsp;predFileName)
                throws java.io.IOException</pre>
+<div class="block">Write predicted document link probabilities to file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>predFileName</code> - Prediction file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -439,6 +505,11 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>getPLR</h4>
 <pre>public&nbsp;double&nbsp;getPLR()</pre>
+<div class="block">Get predictive link rank</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>PLR</dd>
+</dl>
 </li>
 </ul>
 <a name="getTopicWeight-int-">
@@ -448,6 +519,13 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>getTopicWeight</h4>
 <pre>public&nbsp;double&nbsp;getTopicWeight(int&nbsp;topic)</pre>
+<div class="block">Get the weight of a topic</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topic</code> - Topic</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The weight of given topic</dd>
+</dl>
 </li>
 </ul>
 <a name="getTopicWeights--">
@@ -457,6 +535,11 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <li class="blockList">
 <h4>getTopicWeights</h4>
 <pre>public&nbsp;double[]&nbsp;getTopicWeights()</pre>
+<div class="block">Get topic weights</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Topic weights</dd>
+</dl>
 </li>
 </ul>
 <a name="getTrainLinkedDocs-int-">

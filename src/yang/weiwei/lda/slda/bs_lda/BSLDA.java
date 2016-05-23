@@ -14,6 +14,11 @@ import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 import yang.weiwei.util.MathUtil;
 
+/**
+ * Binary SLDA
+ * @author Weiwei Yang
+ *
+ */
 public class BSLDA extends SLDA
 {
 	protected int labels[];
@@ -142,6 +147,10 @@ public class BSLDA extends SLDA
 		}
 	}
 	
+	/**
+	 * Compute accuracy
+	 * @return Accuracy
+	 */
 	public double computeAccuracy()
 	{
 		if (numLabels==0) return 0.0;
@@ -165,21 +174,41 @@ public class BSLDA extends SLDA
 		bw.close();
 	}
 	
+	/**
+	 * Get label of a document
+	 * @param doc Document number
+	 * @return Given document's label
+	 */
 	public int getLabel(int doc)
 	{
 		return labels[doc];
 	}
 	
+	/**
+	 * Initialize an BS-LDA object for training
+	 * @param parameters Parameters
+	 */
 	public BSLDA(LDAParam parameters)
 	{
 		super(parameters);
 	}
 	
+	/**
+	 * Initialize an BS-LDA object for test using a pre-trained BS-LDA object
+	 * @param LDATrain Pre-trained BS-LDA object
+	 * @param parameters Parameters
+	 */
 	public BSLDA(BSLDA LDATrain, LDAParam parameters)
 	{
 		super(LDATrain, parameters);
 	}
 	
+	/**
+	 * Initialize an BS-LDA object for test using a pre-trained BS-LDA model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public BSLDA(String modelFileName, LDAParam parameters) throws IOException
 	{
 		super(modelFileName, parameters);

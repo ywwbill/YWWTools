@@ -12,36 +12,57 @@ import yang.weiwei.util.format.Fourmat;
 public class LDAParam
 {
 	//for topic model
+	/** Sum of alpha (parameter of document-topic distribution's Dirichlet prior), i.e. alpha*numTopics, default: 20.0 */
 	public double alphaSum=20.0;
+	/** Sum of alpha' (parameter of block-topic distribution's Dirichlet prior), i.e. alpha'*numTopics, default: 2.0 */
 	public double _alphaSum=2.0;
+	/** Parameter of topic-word distribution's Dirichlet prior (default: 0.1) */
 	public double beta=0.1;
+	/** Number of topics (default: 20) */
 	public int numTopics=20;
+	/** Print log on console (default: true) */
 	public boolean verbose=true;
 	
+	/** Update alpha (default: false) */
 	public boolean updateAlpha=false;
+	/** Interval of updating alpha (default: 10) */
 	public int updateAlphaInterval=10;
 	
+	/** Vocabulary list */
 	public ArrayList<String> vocabList;
+	/** Word to number map */
 	public HashMap<String, Integer> vocabMap;
+	/** Vocabulary size */
 	public int numVocab;
 	
 	//for hinge loss
+	/** Regularization parameter for hinge loss (default: 1.0) */
 	public double c=1.0;
 	
 	//for rtm
+	/** Variance of downstream models' weights' Gaussian prior (default: 1.0) */
 	public double nu=1.0;
+	/** Interval of computing predictive link rank in RTM (default: 50) */
 	public int showPLRInterval=50;
+	/** Sample negative link in RTM (default: true) */
 	public boolean negEdge=true;
+	/** Ratio of number of negative links to positive links in RTM (default: 1.0) */
 	public double negEdgeRatio=1.0;
 	
 	//for slda
+	/** Variance of Gaussian distribution when generating SLDA's response variable (default: 1.0) */
 	public double sigma=1.0;
 	
 	//for wsbm
+	/** Set links directed (default: false) */
 	public boolean directed=false;
+	/** Parameter of Gamma prior in WSBM (default 1.0) */
 	public double a=1.0;
+	/** Parameter of Gamma prior in WSBM (default 1.0) */
 	public double b=1.0;
+	/** Parameter of block distribution's Dirichlet prior  in WSBM (default 1.0) */
 	public double gamma=1.0;
+	/** Number of blocks in WSBM (default: 20) */
 	public int numBlocks=20;
 	
 	public void printBasicParam(String prefix)
@@ -92,6 +113,11 @@ public class LDAParam
 		}
 	}
 	
+	/**
+	 * Initialize parameter object with vocabulary file
+	 * @param vocabFileName Vocabulary file name
+	 * @throws IOException IOException
+	 */
 	public LDAParam(String vocabFileName) throws IOException
 	{
 		vocabList=new ArrayList<String>();

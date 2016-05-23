@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import yang.weiwei.util.IOUtil;
 import yang.weiwei.util.format.Fourmat;
 
+/**
+ * LDA result collector
+ * @author Weiwei Yang
+ *
+ */
 public class LDAResult
 {
 	public static final int LOGLIKELIHOOD=0;
@@ -19,6 +24,11 @@ public class LDAResult
 	private ArrayList<Double> plr;
 	private ArrayList<Double> error;
 	
+	/**
+	 * Add a result
+	 * @param resultType Result type
+	 * @param result Result value
+	 */
 	public void add(int resultType, double result)
 	{
 		switch (resultType)
@@ -31,6 +41,11 @@ public class LDAResult
 		}
 	}
 	
+	/**
+	 * Print average result
+	 * @param message Optional message
+	 * @param resultType Result type
+	 */
 	public void printResults(String message, int resultType)
 	{
 		switch (resultType)
@@ -43,7 +58,7 @@ public class LDAResult
 		}
 	}
 	
-	public static void printAvg(String message, ArrayList<Double> values)
+	private static void printAvg(String message, ArrayList<Double> values)
 	{
 		if (values.size()==0) return;
 		double avg=0.0;

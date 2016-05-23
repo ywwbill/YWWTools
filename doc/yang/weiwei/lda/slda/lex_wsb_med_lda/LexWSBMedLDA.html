@@ -130,6 +130,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">LexWSBMedLDA</span>
 extends <a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html" title="class in yang.weiwei.lda.slda.lex_wsb_bs_lda">LexWSBBSLDA</a></pre>
+<div class="block">Lex-WSB-BS-LDA with hinge loss</div>
+<dl>
+<dt><span class="simpleTagLabel">Author:</span></dt>
+<dd>Weiwei Yang</dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -163,15 +168,21 @@ extends <a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html#LexWSBMedLDA-yang.weiwei.lda.LDAParam-">LexWSBMedLDA</a></span>(<a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html#LexWSBMedLDA-yang.weiwei.lda.LDAParam-">LexWSBMedLDA</a></span>(<a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an Lex-WSB-Med-LDA object for training</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html#LexWSBMedLDA-yang.weiwei.lda.slda.lex_wsb_med_lda.LexWSBMedLDA-yang.weiwei.lda.LDAParam-">LexWSBMedLDA</a></span>(<a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html" title="class in yang.weiwei.lda.slda.lex_wsb_med_lda">LexWSBMedLDA</a>&nbsp;LDATrain,
-            <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+            <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an Lex-WSB-Med-LDA object for test using a pre-trained Lex-WSB-Med-LDA object</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html#LexWSBMedLDA-java.lang.String-yang.weiwei.lda.LDAParam-">LexWSBMedLDA</a></span>(java.lang.String&nbsp;modelFileName,
-            <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>&nbsp;</td>
+            <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</code>
+<div class="block">Initialize an Lex-WSB-Med-LDA object for test using a pre-trained Lex-WSB-Med-LDA model in file</div>
+</td>
 </tr>
 </table>
 </li>
@@ -194,15 +205,21 @@ extends <a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>
+<div class="block">Read corpus</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html#readLabels-java.lang.String-">readLabels</a></span>(java.lang.String&nbsp;labelFileName)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html#readLabels-java.lang.String-">readLabels</a></span>(java.lang.String&nbsp;labelFileName)</code>
+<div class="block">Read labels</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
+<div class="block">Sample for given number of iterations</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -261,6 +278,11 @@ extends <a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.
 <li class="blockList">
 <h4>LexWSBMedLDA</h4>
 <pre>public&nbsp;LexWSBMedLDA(<a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an Lex-WSB-Med-LDA object for training</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="LexWSBMedLDA-yang.weiwei.lda.slda.lex_wsb_med_lda.LexWSBMedLDA-yang.weiwei.lda.LDAParam-">
@@ -271,6 +293,12 @@ extends <a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.
 <h4>LexWSBMedLDA</h4>
 <pre>public&nbsp;LexWSBMedLDA(<a href="../../../../../yang/weiwei/lda/slda/lex_wsb_med_lda/LexWSBMedLDA.html" title="class in yang.weiwei.lda.slda.lex_wsb_med_lda">LexWSBMedLDA</a>&nbsp;LDATrain,
                     <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)</pre>
+<div class="block">Initialize an Lex-WSB-Med-LDA object for test using a pre-trained Lex-WSB-Med-LDA object</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>LDATrain</code> - Pre-trained Lex-WSB-Med-LDA object</dd>
+<dd><code>parameters</code> - Parameters</dd>
+</dl>
 </li>
 </ul>
 <a name="LexWSBMedLDA-java.lang.String-yang.weiwei.lda.LDAParam-">
@@ -282,9 +310,13 @@ extends <a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.
 <pre>public&nbsp;LexWSBMedLDA(java.lang.String&nbsp;modelFileName,
                     <a href="../../../../../yang/weiwei/lda/LDAParam.html" title="class in yang.weiwei.lda">LDAParam</a>&nbsp;parameters)
              throws java.io.IOException</pre>
+<div class="block">Initialize an Lex-WSB-Med-LDA object for test using a pre-trained Lex-WSB-Med-LDA model in file</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>modelFileName</code> - Model file name</dd>
+<dd><code>parameters</code> - Parameters</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -304,11 +336,15 @@ extends <a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.
 <h4>readCorpus</h4>
 <pre>public&nbsp;void&nbsp;readCorpus(java.lang.String&nbsp;corpusFileName)
                 throws java.io.IOException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">LDA</a></code></span></div>
+<div class="block">Read corpus</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#readCorpus-java.lang.String-">readCorpus</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html" title="class in yang.weiwei.lda.slda.lex_wsb_bs_lda">LexWSBBSLDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>corpusFileName</code> - Corpus file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -320,11 +356,15 @@ extends <a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.
 <h4>readLabels</h4>
 <pre>public&nbsp;void&nbsp;readLabels(java.lang.String&nbsp;labelFileName)
                 throws java.io.IOException</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#readLabels-java.lang.String-">SLDA</a></code></span></div>
+<div class="block">Read labels</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#readLabels-java.lang.String-">readLabels</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html" title="class in yang.weiwei.lda.slda.bs_lda">BSLDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>labelFileName</code> - Label file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
 </li>
 </ul>
@@ -335,9 +375,13 @@ extends <a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.
 <li class="blockList">
 <h4>sample</h4>
 <pre>public&nbsp;void&nbsp;sample(int&nbsp;numIters)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#sample-int-">LDA</a></code></span></div>
+<div class="block">Sample for given number of iterations</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#sample-int-">sample</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html" title="class in yang.weiwei.lda.slda.lex_wsb_bs_lda">LexWSBBSLDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numIters</code> - Number of iterations</dd>
 </dl>
 </li>
 </ul>

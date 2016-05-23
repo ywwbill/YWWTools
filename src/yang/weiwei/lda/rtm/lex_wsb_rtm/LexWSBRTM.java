@@ -15,6 +15,11 @@ import yang.weiwei.util.IOUtil;
 
 import com.google.gson.annotations.Expose;
 
+/**
+ * RTM with lexical weights and weighted stochastic block priors
+ * @author Weiwei Yang
+ *
+ */
 public class LexWSBRTM extends RTM
 {
 	protected double _alpha;
@@ -35,6 +40,11 @@ public class LexWSBRTM extends RTM
 		wsbm=new WSBM(wsbmParam);
 	}
 	
+	/**
+	 * Read document links for WSBM
+	 * @param blockGraphFileName Document link file name
+	 * @throws IOException IOException
+	 */
 	public void readBlockGraph(String blockGraphFileName) throws IOException
 	{
 		wsbm.readGraph(blockGraphFileName);
@@ -279,11 +289,19 @@ public class LexWSBRTM extends RTM
 		}
 	}
 	
+	/**
+	 * Write blocks to file
+	 * @param blockFileName Block file name
+	 * @throws IOException IOException
+	 */
 	public void writeBlocks(String blockFileName) throws IOException
 	{
 		wsbm.writeBlocks(blockFileName);
 	}
 	
+	/**
+	 * Print blocks on console
+	 */
 	public void printBlocks()
 	{
 		wsbm.printResults();
@@ -295,11 +313,20 @@ public class LexWSBRTM extends RTM
 		result.add(LDAResult.BLOCKLOGLIKELIHOOD, wsbm.getLogLikelihood());
 	}
 	
+	/**
+	 * Get a word's weight
+	 * @param vocab Word
+	 * @return Word's weight
+	 */
 	public double getLexWeight(int vocab)
 	{
 		return tau[vocab];
 	}
 	
+	/**
+	 * Get words' weights
+	 * @return Words' weights
+	 */
 	public double[] getLexWeights()
 	{
 		return tau;
@@ -315,26 +342,49 @@ public class LexWSBRTM extends RTM
 		return wsbm.getBlockEdgeRates();
 	}
 	
+	/**
+	 * Get block distribution
+	 * @return Block distribution
+	 */
 	public double[] getBlockDist()
 	{
 		return wsbm.getBlockDist();
 	}
 	
+	/**
+	 * Get block assignment of the given document
+	 * @param doc Document number
+	 * @return Given document's block assignment
+	 */
 	public int getBlockAssign(int doc)
 	{
 		return wsbm.getBlockAssign(doc);
 	}
 	
+	/**
+	 * Get block distribution over topics
+	 * @return Block distribution over topics
+	 */
 	public double[][] getBlockTopicDist()
 	{
 		return pi;
 	}
 	
+	/**
+	 * Get two blocks' weight
+	 * @param b1 Block 1
+	 * @param b2 Block 2
+	 * @return Given blocks' weight
+	 */
 	public double getBlockWeight(int b1, int b2)
 	{
 		return rho[b1][b2];
 	}
 	
+	/**
+	 * Get block weights
+	 * @return Block weights
+	 */
 	public double[][] getBlockWeights()
 	{
 		return rho;
@@ -372,6 +422,10 @@ public class LexWSBRTM extends RTM
 		}
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-RTM object for training
+	 * @param parameters Parameters
+	 */
 	public LexWSBRTM(LDAParam parameters)
 	{
 		super(parameters);
@@ -388,11 +442,22 @@ public class LexWSBRTM extends RTM
 		}
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-RTM object for test using a pre-trained Lex-WSB-RTM object
+	 * @param RTMTrain Pre-trained Lex-WSB-RTM object
+	 * @param parameters Parameters
+	 */
 	public LexWSBRTM(LexWSBRTM RTMTrain, LDAParam parameters)
 	{
 		super(RTMTrain, parameters);
 	}
 	
+	/**
+	 * Initialize an Lex-WSB-RTM object for test using a pre-trained Lex-WSB-RTM model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public LexWSBRTM(String modelFileName, LDAParam parameters) throws IOException
 	{
 		super(modelFileName, parameters);

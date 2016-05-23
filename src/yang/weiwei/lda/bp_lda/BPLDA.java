@@ -11,6 +11,11 @@ import yang.weiwei.lda.util.LDADoc;
 import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 
+/**
+ * LDA with block priors
+ * @author Weiwei Yang
+ *
+ */
 public class BPLDA extends LDA
 {
 	protected double _alpha;
@@ -22,6 +27,11 @@ public class BPLDA extends LDA
 	
 	protected double pi[][];
 	
+	/**
+	 * Read blocks
+	 * @param blockFileName Block file name
+	 * @throws IOException IOException
+	 */
 	public void readBlocks(String blockFileName) throws IOException
 	{
 		BufferedReader br=new BufferedReader(new FileReader(blockFileName));
@@ -183,16 +193,31 @@ public class BPLDA extends LDA
 		_alpha=param._alphaSum/param.numTopics;
 	}
 	
+	/**
+	 * Initialize an BP-LDA object for training
+	 * @param parameters Parameters
+	 */
 	public BPLDA(LDAParam parameters)
 	{
 		super(parameters);
 	}
 	
+	/**
+	 * Initialize an BP-LDA object for test using a pre-trained BP-LDA object
+	 * @param LDATrain Pre-trained BP-LDA object
+	 * @param parameters Parameters
+	 */
 	public BPLDA(BPLDA LDATrain, LDAParam parameters)
 	{
 		super(LDATrain, parameters);
 	}
 	
+	/**
+	 * Initialize an BP-LDA object for test using a pre-trained BP-LDA model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public BPLDA(String modelFileName, LDAParam parameters) throws IOException
 	{
 		super(modelFileName, parameters);

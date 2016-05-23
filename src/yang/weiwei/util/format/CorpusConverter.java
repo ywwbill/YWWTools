@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * 
  * Corpus converter
- * 
  * @author Weiwei Yang
  *
  */

@@ -11,6 +11,11 @@ import yang.weiwei.lda.LDAParam;
 import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 
+/**
+ * Sing topic LDA
+ * @author Weiwei Yang
+ *
+ */
 public class STLDA extends LDA
 {
 	protected int docTopicAssign[];
@@ -154,21 +159,38 @@ public class STLDA extends LDA
 		return 1;
 	}
 	
+	/**
+	 * Get all documents' topic assignments
+	 * @return Documents' topic assignments
+	 */
 	public int[] getDocTopicAssign()
 	{
 		return docTopicAssign;
 	}
 	
+	/**
+	 * Get number of documents assigned to topics
+	 * @return Number of documents assigned to topics
+	 */
 	public int[] getTopicCounts()
 	{
 		return topicCounts;
 	}
 	
+	/**
+	 * Get topic distribution
+	 * @return Topic distribution
+	 */
 	public double[] getTopicDist()
 	{
 		return theta;
 	}
 	
+	/**
+	 * Write documents' topic assignments to file
+	 * @param topicAssignFileName Topic assignment file name
+	 * @throws IOException IOException
+	 */
 	public void writeDocTopicAssign(String topicAssignFileName) throws IOException
 	{
 		BufferedWriter bw=new BufferedWriter(new FileWriter(topicAssignFileName));
@@ -176,16 +198,31 @@ public class STLDA extends LDA
 		bw.close();
 	}
 	
+	/**
+	 * Initialize an ST-LDA object for training
+	 * @param parameters Parameters
+	 */
 	public STLDA(LDAParam parameters)
 	{
 		super(parameters);
 	}
 	
+	/**
+	 * Initialize an ST-LDA object for test using a pre-trained ST-LDA object
+	 * @param LDATrain Pre-trained ST-LDA object
+	 * @param parameters Parameters
+	 */
 	public STLDA(STLDA LDATrain, LDAParam parameters)
 	{
 		super(LDATrain, parameters);
 	}
 	
+	/**
+	 * Initialize an ST-LDA object for test using a pre-trained ST-LDA model in file
+	 * @param modelFileName Model file name
+	 * @param parameters Parameters
+	 * @throws IOException IOException
+	 */
 	public STLDA(String modelFileName, LDAParam parameters) throws IOException
 	{
 		super(modelFileName, parameters);

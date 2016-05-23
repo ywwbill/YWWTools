@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":9,"i3":10,"i4":10,"i5":10};
+var methods = {"i0":10,"i1":10,"i2":9,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -195,8 +195,8 @@ extends <a href="../../../../../yang/weiwei/lda/slda/SLDA.html" title="class in 
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#computeAccuracy--">computeAccuracy</a></span>()</code>
-<div class="block">Compute accuracy</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#getAccuracy--">getAccuracy</a></span>()</code>
+<div class="block">Get accuracy</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -223,6 +223,12 @@ extends <a href="../../../../../yang/weiwei/lda/slda/SLDA.html" title="class in 
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
+<div class="block">Sample for given number of iterations</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#writePredLabels-java.lang.String-">writePredLabels</a></span>(java.lang.String&nbsp;predLabelFileName)</code>
 <div class="block">Write predicted labels</div>
 </td>
@@ -233,7 +239,7 @@ extends <a href="../../../../../yang/weiwei/lda/slda/SLDA.html" title="class in 
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;yang.weiwei.lda.slda.<a href="../../../../../yang/weiwei/lda/slda/SLDA.html" title="class in yang.weiwei.lda.slda">SLDA</a></h3>
-<code><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#getError--">getError</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#getLabelStatus-int-">getLabelStatus</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#getResponseLabel-int-">getResponseLabel</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#getTopicWeight-int-">getTopicWeight</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#getTopicWeights--">getTopicWeights</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#sample-int-">sample</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-double-double-">selectTopics</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-int-">selectTopics</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-int-int-">selectTopics</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-double-double-">selectWords</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-int-">selectWords</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-int-int-">selectWords</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWordsFromTopics-java.util.Set-double-double-">selectWordsFromTopics</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWordsFromTopics-java.util.Set-int-">selectWordsFromTopics</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#writeSelectedWords-java.util.Set-java.lang.String-">writeSelectedWords</a></code></li>
+<code><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#getError--">getError</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#getLabelStatus-int-">getLabelStatus</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#getResponseLabel-int-">getResponseLabel</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#getTopicWeight-int-">getTopicWeight</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#getTopicWeights--">getTopicWeights</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-double-double-">selectTopics</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-int-">selectTopics</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectTopics-double:A-int-int-">selectTopics</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-double-double-">selectWords</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-int-">selectWords</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWords-double:A-int-int-">selectWords</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWordsFromTopics-java.util.Set-double-double-">selectWordsFromTopics</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#selectWordsFromTopics-java.util.Set-int-">selectWordsFromTopics</a>, <a href="../../../../../yang/weiwei/lda/slda/SLDA.html#writeSelectedWords-java.util.Set-java.lang.String-">writeSelectedWords</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.yang.weiwei.lda.LDA">
@@ -360,14 +366,31 @@ extends <a href="../../../../../yang/weiwei/lda/slda/SLDA.html" title="class in 
 </dl>
 </li>
 </ul>
-<a name="computeAccuracy--">
+<a name="sample-int-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>computeAccuracy</h4>
-<pre>public&nbsp;double&nbsp;computeAccuracy()</pre>
-<div class="block">Compute accuracy</div>
+<h4>sample</h4>
+<pre>public&nbsp;void&nbsp;sample(int&nbsp;numIters)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#sample-int-">LDA</a></code></span></div>
+<div class="block">Sample for given number of iterations</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#sample-int-">sample</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/slda/SLDA.html" title="class in yang.weiwei.lda.slda">SLDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numIters</code> - Number of iterations</dd>
+</dl>
+</li>
+</ul>
+<a name="getAccuracy--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAccuracy</h4>
+<pre>public&nbsp;double&nbsp;getAccuracy()</pre>
+<div class="block">Get accuracy</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Accuracy</dd>

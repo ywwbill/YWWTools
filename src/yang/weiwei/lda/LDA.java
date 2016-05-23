@@ -105,7 +105,7 @@ public class LDA
 	{
 		initDocVariables();
 		initTopicAssigns();
-		if (param.verbose) printParam();
+		printParam();
 	}
 	
 	protected void initTopicAssigns()
@@ -133,7 +133,7 @@ public class LDA
 	{
 		initDocVariables();
 		initTopicAssigns(topicAssignFileName);
-		if (param.verbose) printParam();
+		printParam();
 	}
 	
 	protected void initTopicAssigns(String topicAssignFileName) throws IOException
@@ -175,6 +175,21 @@ public class LDA
 		getNumTestWords();
 	}
 	
+	protected void printMetrics()
+	{
+		IOUtil.print("Finished "+this.getClass().getSimpleName()+" ");
+		if (type==TRAIN)
+		{
+			IOUtil.println("Training");
+		}
+		else
+		{
+			IOUtil.println("Test");
+		}
+		IOUtil.println("Log Likelihood: "+format(logLikelihood));
+		IOUtil.println("Perplexity: "+format(perplexity));
+	}
+	
 	/**
 	 * Sample for given number of iterations
 	 * @param numIters Number of iterations
@@ -206,6 +221,8 @@ public class LDA
 				IOUtil.println(topWordsByFreq(topic, 10));
 			}
 		}
+		
+		printMetrics();
 	}
 	
 	protected void sampleDoc(int doc)

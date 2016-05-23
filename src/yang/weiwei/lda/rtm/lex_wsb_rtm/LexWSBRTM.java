@@ -83,6 +83,12 @@ public class LexWSBRTM extends RTM
 		}
 	}
 	
+	protected void printMetrics()
+	{
+		super.printMetrics();
+		IOUtil.println("Block Log Likelihood: "+format(wsbm.getLogLikelihood()));
+	}
+	
 	public void sample(int numIters)
 	{
 		for (int iteration=1; iteration<=numIters; iteration++)
@@ -119,6 +125,8 @@ public class LexWSBRTM extends RTM
 				IOUtil.println(topWordsByFreq(topic, 10));
 			}
 		}
+		
+		printMetrics();
 	}
 	
 	protected void sampleBlock(int doc)

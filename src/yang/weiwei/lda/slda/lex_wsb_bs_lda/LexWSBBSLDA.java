@@ -80,6 +80,12 @@ public class LexWSBBSLDA extends BSLDA
 		}
 	}
 	
+	protected void printMetrics()
+	{
+		super.printMetrics();
+		IOUtil.println("Block Log Likelihood: "+format(wsbm.getLogLikelihood()));
+	}
+	
 	public void sample(int numIters)
 	{
 		for (int iteration=1; iteration<=numIters; iteration++)
@@ -96,11 +102,12 @@ public class LexWSBBSLDA extends BSLDA
 			{
 				optimize();
 				computeError();
+				computeAccuracy();
 			}
 			if (param.verbose)
 			{
 				IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
-						"\tError: "+format(error)+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood()));
+						"\tError: "+format(error)+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\tAccuracy: "+accuracy);
 			}
 			if (param.updateAlpha && iteration%param.updateAlphaInterval==0 && type==TRAIN)
 			{
@@ -115,6 +122,8 @@ public class LexWSBBSLDA extends BSLDA
 				IOUtil.println(topWordsByFreq(topic, 10));
 			}
 		}
+		
+		printMetrics();
 	}
 	
 	protected void sampleBlock(int doc)

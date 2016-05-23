@@ -72,11 +72,12 @@ public class LexWSBMedLDA extends LexWSBBSLDA
 			if (type==TRAIN)
 			{
 				computeError();
+				computeAccuracy();
 			}
 			if (param.verbose)
 			{
 				IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
-						"\tError: "+format(error)+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood()));
+						"\tError: "+format(error)+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\tAccuracy: "+format(accuracy));
 			}
 			if (param.updateAlpha && iteration%param.updateAlphaInterval==0 && type==TRAIN)
 			{
@@ -91,6 +92,8 @@ public class LexWSBMedLDA extends LexWSBBSLDA
 				IOUtil.println(topWordsByFreq(topic, 10));
 			}
 		}
+		
+		printMetrics();
 	}
 	
 	protected double topicUpdating(int doc, int topic, int vocab)

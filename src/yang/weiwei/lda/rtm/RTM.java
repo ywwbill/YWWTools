@@ -124,6 +124,12 @@ public class RTM extends LDA
 		IOUtil.println("\t#train edges: "+numTrainEdges);
 	}
 	
+	protected void printMetrics()
+	{
+		super.printMetrics();
+		IOUtil.println("Predictive Link Rank: "+format(PLR));
+	}
+	
 	public void sample(int numIters)
 	{
 		for (int iteration=1; iteration<=numIters; iteration++)
@@ -165,6 +171,8 @@ public class RTM extends LDA
 				IOUtil.println(topWordsByFreq(topic, 10));
 			}
 		}
+		
+		printMetrics();
 	}
 	
 	protected void sampleDoc(int doc)

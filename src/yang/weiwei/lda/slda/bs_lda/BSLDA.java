@@ -23,6 +23,7 @@ public class BSLDA extends SLDA
 {
 	protected int labels[];
 	protected int predLabels[];
+	protected double accuracy;
 	
 	public void readCorpus(String corpusFileName) throws IOException
 	{
@@ -47,6 +48,51 @@ public class BSLDA extends SLDA
 			}
 		}
 		br.close();
+	}
+	
+	protected void printMetrics()
+	{
+		super.printMetrics();
+		IOUtil.println("Accuracy: "+format(accuracy));
+	}
+	
+	public void sample(int numIters)
+	{
+		for (int iteration=1; iteration<=numIters; iteration++)
+		{
+			for (int doc=0; doc<numDocs; doc++)
+			{
+				sampleDoc(doc);
+			}
+			computeLogLikelihood();
+			perplexity=Math.exp(-logLikelihood/numTestWords);
+			
+			if (type==TRAIN)
+			{
+				optimize();
+				computeError();
+				computeAccuracy();
+			}
+			if (param.verbose)
+			{
+				IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+
+						"\tPPX: "+format(perplexity)+"\tError: "+format(error)+"\tAccuracy: "+format(accuracy));
+			}
+			if (param.updateAlpha && iteration%param.updateAlphaInterval==0 && type==TRAIN)
+			{
+				updateHyperParam();
+			}
+		}
+		
+		if (type==TRAIN && param.verbose)
+		{
+			for (int topic=0; topic<param.numTopics; topic++)
+			{
+				IOUtil.println(topWordsByFreq(topic, 10));
+			}
+		}
+		
+		printMetrics();
 	}
 	
 	protected void sampleDoc(int doc)
@@ -147,13 +193,10 @@ public class BSLDA extends SLDA
 		}
 	}
 	
-	/**
-	 * Compute accuracy
-	 * @return Accuracy
-	 */
-	public double computeAccuracy()
+	protected void computeAccuracy()
 	{
-		if (numLabels==0) return 0.0;
+		accuracy=0.0;
+		if (numLabels==0) return;
 		computePredLabels();
 		int correctCount=0;
 		for (int doc=0; doc<numDocs; doc++)
@@ -163,7 +206,16 @@ public class BSLDA extends SLDA
 				correctCount++;
 			}
 		}
-		return (double)correctCount/(double)numLabels;
+		accuracy=(double)correctCount/(double)numLabels;
+	}
+	
+	/**
+	 * Get accuracy
+	 * @return Accuracy
+	 */
+	public double getAccuracy()
+	{
+		return accuracy;
 	}
 	
 	public void writePredLabels(String predLabelFileName) throws IOException

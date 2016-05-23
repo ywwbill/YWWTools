@@ -4,7 +4,6 @@ A package of my ([Weiwei Yang](http://cs.umd.edu/~wwyang/)'s) various tools (mos
 
 * [Check Out](#check_out)
 * [Dependencies](#dependencies)
-* [How to Run](#how_to_run)
 * [Use YWW Tools in Command Line](#command)
 * [Latent Dirichlet Allocation (LDA) in Command Line](#lda_cmd)
 	* [Relational Topic Model (RTM)](#rtm_cmd)
@@ -54,20 +53,16 @@ git clone git@github.com:ywwbill/YWWTools.git
 
 ## <h2 id="dependencies">Dependencies</h2>
 
+- Java 8.
 - Everything in `lib/`.
-- Java 1.8.
-
-## <h2 id="how_to_run">How to Run</h2>
-
-- In command line: See [below](#command).
-- In your own project: Include lib/YWWTools.jar in your project build path. See `doc/` for more details.
 
 ## <h2 id="command">Use YWW Tools in Command Line</h2>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool <tool-name> --arg-1 <arg-1-value> --arg-2 <arg-2-value> ... --arg-n <arg-n-value>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool <tool-name> --arg-1 <arg-1-value> --arg-2 <arg-2-value> ... --arg-n <arg-n-value>
 ```
 
+- **<font size=4>Windows users please replace `YWWTools.jar:lib/*` with `YWWTools.jar;lib/*`.</font>**
 - Supported `<tool-name>` (case unsensitive) include
 	- [LDA](#lda_cmd): Latent Dirichlet allocation. Include a variety of extensions.
 	- [WSBM](#wsbm_cmd): Weighted stochastic block model. Find blocks in a network.
@@ -83,19 +78,19 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool <tool-name> --arg-1 <arg-1-value>
 	- supported tool names if you don't specify a tool name
 
 		```
-		java -cp YWWTools.jar yang.weiwei.Tools --help
+		java -cp YWWTools.jar:lib/* yang.weiwei.Tools --help
 		```
 	- a specific tool if you specify it (take [LDA](#lda_cmd) as an example)
 
 		```
-		java -cp YWWTools.jar yang.weiwei.Tools --tool LDA --help
+		java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool LDA --help
 		```
 - In following command examples, arguments in `{}` (e.g. `{cmd-1|cmd-2|cmd-3}`) denote that one and only one of them should be declared.
 
 ## <h2 id="lda_cmd">Latent Dirichlet Allocation (LDA) in Command Line</h2>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool lda --model lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool lda --model lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file>
 ```
 
 - Implementation of (Blei et al., 2003).
@@ -110,7 +105,7 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool lda --model lda --vocab <vocab-fi
 		`<doc-len>` is the total number of *tokens* in this document. `<word-type-i>` denotes the i-th word in `<vocab-file>`, starting from 0. Words with zero frequency can be omitted.
 	- `<model-file>`: Trained model file in JSON format. Read and written by program.
 - Optional arguments
-	- `--model <model-name>`: The topic model you want to use (default: [LDA](#lda_cmd)). Supported `<model-name>` are
+	- `--model <model-name>`: The topic model you want to use (default: [LDA](#lda_cmd)). Supported `<model-name>` (case unsensitive) are
 		- [LDA](#lda_cmd): Vanilla LDA
 		- [RTM](#rtm_cmd): Relational topic model.
 			- [Lex-WSB-RTM](#lex_wsb_rtm_cmd): RTM with WSB-computed block priors and lexical weights.
@@ -137,7 +132,7 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool lda --model lda --vocab <vocab-fi
 ### <h3 id="rtm_cmd">Relational Topic Model (RTM)</h3>
 
 ```
-java -cp YWWTools.jar --tool lda --model rtm --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --rtm-train-graph <rtm-train-graph-file>
+java -cp YWWTools.jar:lib/* --tool lda --model rtm --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --rtm-train-graph <rtm-train-graph-file>
 ```
 
 - Implementation of (Chang and Blei, 2010).
@@ -157,7 +152,7 @@ java -cp YWWTools.jar --tool lda --model rtm --vocab <vocab-file> --corpus <corp
 #### <h4 id="lex_wsb_rtm_cmd">RTM with Lexical Weights and Weighted Stochastic Block Priors (Lex-WSB-RTM)</h4>
 
 ```
-java -cp YWWTools.jar --tool lda --model lex-wsb-rtm --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --rtm-train-graph <rtm-train-graph-file>
+java -cp YWWTools.jar:lib/* --tool lda --model lex-wsb-rtm --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --rtm-train-graph <rtm-train-graph-file>
 ```
 
 - Extends [RTM](#rtm_cmd).
@@ -173,7 +168,7 @@ java -cp YWWTools.jar --tool lda --model lex-wsb-rtm --vocab <vocab-file> --corp
 #### <h4 id="lex_wsb_med_rtm_cmd">Lex-WSB-RTM with Hinge Loss (Lex-WSB-Med-RTM)</h4>
 
 ```
-java -cp YWWTools.jar --tool lda --model lex-wsb-med-rtm --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --rtm-train-graph <rtm-train-graph-file>
+java -cp YWWTools.jar:lib/* --tool lda --model lex-wsb-med-rtm --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --rtm-train-graph <rtm-train-graph-file>
 ```
 
 - See (Zhu et al., 2012) and (Zhu et al., 2014) for hinge loss.
@@ -185,7 +180,7 @@ java -cp YWWTools.jar --tool lda --model lex-wsb-med-rtm --vocab <vocab-file> --
 ### <h3 id="slda_cmd">Supervised LDA (SLDA)</h3>
 
 ```
-java -cp YWWTools.jar --tool slda --model slda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --label <label-file>
+java -cp YWWTools.jar:lib/* --tool lda --model slda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --label <label-file>
 ```
 
 - Implementation of (McAuliffe and Blei, 2008).
@@ -201,7 +196,7 @@ java -cp YWWTools.jar --tool slda --model slda --vocab <vocab-file> --corpus <co
 #### <h4 id="bs_lda_cmd">Binary SLDA (BS-LDA)</h4>
 
 ```
-java -cp YWWTools.jar --tool bs-lda --model rtm --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --label <label-file>
+java -cp YWWTools.jar:lib/* --tool lda --model bs-lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --label <label-file>
 ```
 
 - For binary classification only.
@@ -211,7 +206,7 @@ java -cp YWWTools.jar --tool bs-lda --model rtm --vocab <vocab-file> --corpus <c
 #### <h4 id="lex_wsb_bs_lda_cmd">BS-LDA with Lexcial Weights and Weighted Stochastic Block Priors (Lex-WSB-BS-LDA)</h4>
 
 ```
-java -cp YWWTools.jar --tool slda --model lex-wsb-bs-lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --label <label-file>
+java -cp YWWTools.jar:lib/* --tool lda --model lex-wsb-bs-lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --label <label-file>
 ```
 
 - Extends [BS-LDA](#bs_lda_cmd).
@@ -228,7 +223,7 @@ java -cp YWWTools.jar --tool slda --model lex-wsb-bs-lda --vocab <vocab-file> --
 #### <h4 id="lex_wsb_med_lda_cmd">Lex-WSB-BS-LDA with Hinge Loss (Lex-WSB-Med-LDA)</h4>
 
 ```
-java -cp YWWTools.jar --tool slda --model lex-wsb-med-lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --label <label-file>
+java -cp YWWTools.jar:lib/* --tool lda --model lex-wsb-med-lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --label <label-file>
 ```
 
 - See (Zhu et al., 2012) and (Zhu et al., 2014) for hinge loss.
@@ -240,7 +235,7 @@ java -cp YWWTools.jar --tool slda --model lex-wsb-med-lda --vocab <vocab-file> -
 ### <h3 id="bp_lda_cmd">LDA with Block Priors (BP-LDA)</h3>
 
 ```
-java -cp YWWTools.jar --tool lda --model bp-lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --block-graph <block-graph-file>
+java -cp YWWTools.jar:lib/* --tool lda --model bp-lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --block-graph <block-graph-file>
 ```
 
 - Use priors from pre-computed blocks.
@@ -253,7 +248,7 @@ java -cp YWWTools.jar --tool lda --model bp-lda --vocab <vocab-file> --corpus <c
 ### <h3 id="st_lda_cmd">Single Topic LDA (ST-LDA)</h3>
 
 ```
-java -cp YWWTools.jar --tool lda --model st-lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file>
+java -cp YWWTools.jar:lib/* --tool lda --model st-lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file>
 ```
 
 - Each document can only be assigned to one topic.
@@ -262,7 +257,7 @@ java -cp YWWTools.jar --tool lda --model st-lda --vocab <vocab-file> --corpus <c
 ### <h3 id="wsb_tm_cmd">Weighted Stochastic Block Topic Model (WSB-TM)</h3>
 
 ```
-java -cp YWWTools.jar --tool lda --model wsb-tm --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --wsbm-graph <wsbm-graph-file>
+java -cp YWWTools.jar:lib/* --tool lda --model wsb-tm --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file> --wsbm-graph <wsbm-graph-file>
 ```
 
 - Use priors from [WSBM](#wsbm_cmd)-computed blocks.
@@ -283,7 +278,7 @@ java -cp YWWTools.jar --tool lda --model wsb-tm --vocab <vocab-file> --corpus <c
 ### <h3 id="wsbm_cmd">Weighted Stochastic Block Model (WSBM)</h3>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool wsbm --nodes <num-nodes> --blocks <num-blocks> --graph <graph-file> --output <output-file>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool wsbm --nodes <num-nodes> --blocks <num-blocks> --graph <graph-file> --output <output-file>
 ```
 
 - Implementation of (Aicher et al., 2014).
@@ -304,7 +299,7 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool wsbm --nodes <num-nodes> --blocks
 ### <h3 id="scc_cmd">Strongly Connected Components (SCC)</h3>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool scc --nodes <num-nodes> --graph <graph-file> --output <output-file>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool scc --nodes <num-nodes> --graph <graph-file> --output <output-file>
 ```
 
 - New implementation.
@@ -317,7 +312,7 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool scc --nodes <num-nodes> --graph <
 ### <h3 id="stoplist_cmd">Stoplist</h3>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool stoplist --corpus <corpus-file> --output <output-file>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool stoplist --corpus <corpus-file> --output <output-file>
 ```
 
 - New implementation.
@@ -331,7 +326,7 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool stoplist --corpus <corpus-file> -
 ### <h3 id="lemmatizer_cmd">Lemmatizer</h3>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool lemmatizer --corpus <corpus-file> --output <output-file>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool lemmatizer --corpus <corpus-file> --output <output-file>
 ```
 
 - A re-packaging of `opennlp.tools.lemmatizer.SimpleLemmatizer`.
@@ -345,7 +340,7 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool lemmatizer --corpus <corpus-file>
 ### <h3 id="pos_tagger_cmd">POS Tagger</h3>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool pos-tagger --corpus <corpus-file> --output <output-file>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool pos-tagger --corpus <corpus-file> --output <output-file>
 ```
 
 - A re-packaing of `opennlp.tools.postag.POSTaggerME` (<https://opennlp.apache.org/documentation/1.6.0/manual/opennlp.html#tools.postagger>)
@@ -359,7 +354,7 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool pos-tagger --corpus <corpus-file>
 ### <h3 id="stemmer_cmd">Stemmer</h3>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool stemmer --corpus <corpus-file> --output <output-file>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool stemmer --corpus <corpus-file> --output <output-file>
 ```
 
 - A re-packaging of `PorterStemmer` (<http://tartarus.org/~martin/PorterStemmer/index.html>)
@@ -371,7 +366,7 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool stemmer --corpus <corpus-file> --
 ### <h3 id="tokenizer_cmd">Tokenizer</h3>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool tokenizer --corpus <corpus-file> --output <output-file>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool tokenizer --corpus <corpus-file> --output <output-file>
 ```
 
 - A re-packaging of `opennlp.tools.tokenize.TokenizerME` (<https://opennlp.apache.org/documentation/1.6.0/manual/opennlp.html#tools.tokenizer>)
@@ -385,7 +380,7 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool tokenizer --corpus <corpus-file> 
 ### <h3 id="corpus_converter_cmd">Corpus Converter</h3>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool corpus-convertor {--get-vocab|--to-index|--to-word} --word-corpus <word-corpus-file> --index-corpus <index-corpus-file> --vocab <vocab-file>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool corpus-convertor {--get-vocab|--to-index|--to-word} --word-corpus <word-corpus-file> --index-corpus <index-corpus-file> --vocab <vocab-file>
 ```
 
 - New implementation
@@ -408,7 +403,7 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool corpus-convertor {--get-vocab|--t
 ### <h3 id="ictclas_cmd">ICTCLAS</h3>
 
 ```
-java -cp YWWTools.jar yang.weiwei.Tools --tool ICTCLAS --corpus <corpus-file> --output <output-file>
+java -cp YWWTools.jar:lib/* yang.weiwei.Tools --tool ICTCLAS --corpus <corpus-file> --output <output-file>
 ```
 
 - A re-packaging of `ICTCLAS` (<http://ictclas.nlpir.org/>)
@@ -420,7 +415,9 @@ java -cp YWWTools.jar yang.weiwei.Tools --tool ICTCLAS --corpus <corpus-file> --
 
 ## <h2 id="code_examples">Use YWWTools Source Code</h2>
 
-If you want to integrate my code into your own project, here are examples for running some algorithms in this package. For more information, please look at JavaDoc.
+To integrate my code into your project, please include `YWWTools.jar` and `lib/*.jar` in your project build path. Besides, copy `lib/` to your project root directory.
+
+Here are examples for running some algorithms in this package. For more information, please look at JavaDoc in `doc/`.
 
 ## <h2 id="lda_code">LDA Code Examples</h2>
 

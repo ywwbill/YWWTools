@@ -12,10 +12,10 @@ import yang.weiwei.util.format.Fourmat;
 public class LDAParam
 {
 	//for topic model
-	/** Sum of alpha (parameter of document-topic distribution's Dirichlet prior), i.e. alpha*numTopics, default: 20.0 */
-	public double alphaSum=20.0;
-	/** Sum of alpha' (parameter of block-topic distribution's Dirichlet prior), i.e. alpha'*numTopics, default: 2.0 */
-	public double _alphaSum=2.0;
+	/** Parameter of document-topic distribution's Dirichlet prior (default: 1.0) */
+	public double alpha=1.0;
+	/** parameter of block-topic distribution's Dirichlet prior (default: 0.1) */
+	public double _alpha=0.1;
 	/** Parameter of topic-word distribution's Dirichlet prior (default: 0.1) */
 	public double beta=0.1;
 	/** Number of topics (default: 20) */
@@ -67,7 +67,7 @@ public class LDAParam
 	
 	public void printBasicParam(String prefix)
 	{
-		IOUtil.println(prefix+"alpha: "+Fourmat.format(alphaSum/numTopics));
+		IOUtil.println(prefix+"alpha: "+Fourmat.format(alpha));
 		IOUtil.println(prefix+"beta: "+Fourmat.format(beta));
 		IOUtil.println(prefix+"#topics: "+numTopics);
 		IOUtil.println(prefix+"#vocab: "+numVocab);
@@ -93,7 +93,7 @@ public class LDAParam
 	
 	public void printBlockParam(String prefix)
 	{
-		IOUtil.println(prefix+"alpha': "+Fourmat.format(_alphaSum/numTopics));
+		IOUtil.println(prefix+"alpha': "+Fourmat.format(_alpha));
 	}
 	
 	public void printHingeParam(String prefix)
@@ -136,8 +136,8 @@ public class LDAParam
 	
 	public LDAParam(LDASynParam param)
 	{
-		alphaSum=param.alpha*param.numTopics;
-		_alphaSum=param._alpha*param.numTopics;
+		alpha=param.alpha;
+		_alpha=param._alpha;
 		beta=param.beta;
 		numTopics=param.numTopics;
 		numVocab=param.numVocab;

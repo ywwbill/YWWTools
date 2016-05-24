@@ -16,9 +16,7 @@ import yang.weiwei.wsbm.WSBMParam;
  *
  */
 public class WSBTM extends LDA
-{
-	protected double _alpha;
-	
+{	
 	protected double pi[][];
 	protected int blockTopicCounts[][];
 	protected int blockTokenCounts[];
@@ -150,16 +148,16 @@ public class WSBTM extends LDA
 	
 	protected double topicUpdating(int doc, int topic, int vocab)
 	{
-		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+_alpha)/
-				(blockTokenCounts[wsbm.getBlockAssign(doc)]+_alpha*param.numTopics);
+		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
+				(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
 		if (wsbm.getNumEdges()==0) ratio=1.0/param.numTopics;
 		if (type==TRAIN)
 		{
-			return (param.alphaSum*ratio+corpus.get(doc).getTopicCount(topic))*
+			return (param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*
 					(param.beta+topics[topic].getVocabCount(vocab))/
 					(param.beta*param.numVocab+topics[topic].getTotalTokens());
 		}
-		return (param.alphaSum*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
+		return (param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
 	}
 	
 	public void addResults(LDAResult result)
@@ -180,7 +178,7 @@ public class WSBTM extends LDA
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
 			{
-				pi[l][topic]=(_alpha+blockTopicCounts[l][topic])/(blockTokenCounts[l]+_alpha*param.numTopics);
+				pi[l][topic]=(param._alpha+blockTopicCounts[l][topic])/(blockTokenCounts[l]+param._alpha*param.numTopics);
 			}
 		}
 	}
@@ -192,8 +190,8 @@ public class WSBTM extends LDA
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
 			{
-				theta[doc][topic]=(param.alphaSum*pi[wsbm.getBlockAssign(doc)][topic]+corpus.get(doc).getTopicCount(topic))/
-						(param.alphaSum+getSampleSize(corpus.get(doc).docLength()));
+				theta[doc][topic]=(param.alpha*param.numTopics*pi[wsbm.getBlockAssign(doc)][topic]+corpus.get(doc).getTopicCount(topic))/
+						(param.alpha*param.numTopics+getSampleSize(corpus.get(doc).docLength()));
 			}
 		}
 	}
@@ -228,7 +226,6 @@ public class WSBTM extends LDA
 	protected void initVariables()
 	{
 		super.initVariables();
-		_alpha=param._alphaSum/param.numTopics;
 		blockTopicCounts=new int[param.numBlocks][param.numTopics];
 		blockTokenCounts=new int[param.numBlocks];
 		pi=new double[param.numBlocks][param.numTopics];

@@ -135,7 +135,7 @@ public class STLDA extends LDA
 	{
 		for (int topic=0; topic<param.numTopics; topic++)
 		{
-			theta[topic]=(alpha[topic]+topicCounts[topic])/(param.alphaSum+numDocs);
+			theta[topic]=(alpha[topic]+topicCounts[topic])/(param.alpha*param.numTopics+numDocs);
 		}
 	}
 	

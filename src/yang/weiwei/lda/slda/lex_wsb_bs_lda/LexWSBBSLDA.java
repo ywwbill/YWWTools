@@ -23,7 +23,6 @@ public class LexWSBBSLDA extends BSLDA
 {
 	@Expose protected double tau[];
 	
-	protected double _alpha;
 	protected int blockTopicCounts[][];
 	protected int blockTokenCounts[];
 	protected double pi[][];
@@ -176,18 +175,18 @@ public class LexWSBBSLDA extends BSLDA
 	protected double topicUpdating(int doc, int topic, int vocab)
 	{
 		double score=0.0;
-		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+_alpha)/
-				(blockTokenCounts[wsbm.getBlockAssign(doc)]+_alpha*param.numTopics);
+		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
+				(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
 		if (wsbm.getNumEdges()==0) ratio=1.0/param.numTopics;
 		if (type==TRAIN)
 		{
-			score=(param.alphaSum*ratio+corpus.get(doc).getTopicCount(topic))*
+			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*
 					(param.beta+topics[topic].getVocabCount(vocab))/
 					(param.beta*param.numVocab+topics[topic].getTotalTokens());
 		}
 		else
 		{
-			score=(param.alphaSum*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
+			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
 		}
 		
 		if (type==TRAIN && labelStatuses[doc])
@@ -243,7 +242,7 @@ public class LexWSBBSLDA extends BSLDA
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
 			{
-				pi[l][topic]=(blockTopicCounts[l][topic]+_alpha)/(blockTokenCounts[l]+_alpha*param.numTopics);
+				pi[l][topic]=(blockTopicCounts[l][topic]+param._alpha)/(blockTokenCounts[l]+param._alpha*param.numTopics);
 			}
 		}
 	}
@@ -255,8 +254,8 @@ public class LexWSBBSLDA extends BSLDA
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
 			{
-				theta[doc][topic]=(param.alphaSum*pi[wsbm.getBlockAssign(doc)][topic]+corpus.get(doc).getTopicCount(topic))/
-						(param.alphaSum+getSampleSize(corpus.get(doc).docLength()));
+				theta[doc][topic]=(param.alpha*param.numTopics*pi[wsbm.getBlockAssign(doc)][topic]+corpus.get(doc).getTopicCount(topic))/
+						(param.alpha*param.numTopics+getSampleSize(corpus.get(doc).docLength()));
 			}
 		}
 	}
@@ -351,7 +350,6 @@ public class LexWSBBSLDA extends BSLDA
 	protected void initVariables()
 	{
 		super.initVariables();
-		_alpha=param._alphaSum/param.numTopics;
 		blockTopicCounts=new int[param.numBlocks][param.numTopics];
 		blockTokenCounts=new int[param.numBlocks];
 		pi=new double[param.numBlocks][param.numTopics];

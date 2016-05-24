@@ -99,18 +99,18 @@ public class LexWSBMedLDA extends LexWSBBSLDA
 	protected double topicUpdating(int doc, int topic, int vocab)
 	{
 		double score=0.0;
-		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+_alpha)/
-				(blockTokenCounts[wsbm.getBlockAssign(doc)]+_alpha*param.numTopics);
+		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
+				(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
 		if (wsbm.getNumEdges()==0) ratio=1.0/param.numTopics;
 		if (type==TRAIN)
 		{
-			score=(param.alphaSum*ratio+corpus.get(doc).getTopicCount(topic))*
+			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*
 					(param.beta+topics[topic].getVocabCount(vocab))/
 					(param.beta*param.numVocab+topics[topic].getTotalTokens());
 		}
 		else
 		{
-			score=(param.alphaSum*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
+			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
 		}
 		
 		if (type==TRAIN && labelStatuses[doc])

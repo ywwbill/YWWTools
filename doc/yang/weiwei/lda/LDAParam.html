@@ -130,8 +130,8 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDAParam.html#Z:Z_alphaSum">_alphaSum</a></span></code>
-<div class="block">Sum of alpha' (parameter of block-topic distribution's Dirichlet prior), i.e.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDAParam.html#Z:Z_alpha">_alpha</a></span></code>
+<div class="block">parameter of block-topic distribution's Dirichlet prior (default: 0.1)</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -142,8 +142,8 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDAParam.html#alphaSum">alphaSum</a></span></code>
-<div class="block">Sum of alpha (parameter of document-topic distribution's Dirichlet prior), i.e.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../yang/weiwei/lda/LDAParam.html#alpha">alpha</a></span></code>
+<div class="block">Parameter of document-topic distribution's Dirichlet prior (default: 1.0)</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -336,24 +336,24 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a name="alphaSum">
+<a name="alpha">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>alphaSum</h4>
-<pre>public&nbsp;double alphaSum</pre>
-<div class="block">Sum of alpha (parameter of document-topic distribution's Dirichlet prior), i.e. alpha*numTopics, default: 20.0</div>
+<h4>alpha</h4>
+<pre>public&nbsp;double alpha</pre>
+<div class="block">Parameter of document-topic distribution's Dirichlet prior (default: 1.0)</div>
 </li>
 </ul>
-<a name="Z:Z_alphaSum">
+<a name="Z:Z_alpha">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>_alphaSum</h4>
-<pre>public&nbsp;double _alphaSum</pre>
-<div class="block">Sum of alpha' (parameter of block-topic distribution's Dirichlet prior), i.e. alpha'*numTopics, default: 2.0</div>
+<h4>_alpha</h4>
+<pre>public&nbsp;double _alpha</pre>
+<div class="block">parameter of block-topic distribution's Dirichlet prior (default: 0.1)</div>
 </li>
 </ul>
 <a name="beta">

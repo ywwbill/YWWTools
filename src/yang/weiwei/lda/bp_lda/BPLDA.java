@@ -18,8 +18,6 @@ import yang.weiwei.util.IOUtil;
  */
 public class BPLDA extends LDA
 {
-	protected double _alpha;
-	
 	protected int numBlocks;
 	protected int blockAssign[];
 	protected int blockTopicCounts[][];
@@ -132,18 +130,18 @@ public class BPLDA extends LDA
 		double ratio=1.0/param.numTopics;
 		if (no!=-1)
 		{
-			ratio=(blockTopicCounts[no][topic]+_alpha)/(blockTokenCounts[no]+_alpha*param.numTopics);
+			ratio=(blockTopicCounts[no][topic]+param._alpha)/(blockTokenCounts[no]+param._alpha*param.numTopics);
 		}
 		double score=0.0;
 		if (type==TRAIN)
 		{
-			score=(param.alphaSum*ratio+corpus.get(doc).getTopicCount(topic))*
+			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*
 					(param.beta+topics[topic].getVocabCount(vocab))/
 					(param.beta*param.numVocab+topics[topic].getTotalTokens());
 		}
 		else
 		{
-			score=(param.alphaSum*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
+			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
 		}
 		return score;
 	}
@@ -160,8 +158,8 @@ public class BPLDA extends LDA
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
 			{
-				pi[block][topic]=(blockTopicCounts[block][topic]+_alpha)/
-						(blockTokenCounts[block]+_alpha*param.numTopics);
+				pi[block][topic]=(blockTopicCounts[block][topic]+param._alpha)/
+						(blockTokenCounts[block]+param._alpha*param.numTopics);
 			}
 		}
 	}
@@ -175,22 +173,16 @@ public class BPLDA extends LDA
 				int no=(numBlocks>0? blockAssign[doc] : -1);
 				if (no!=-1)
 				{
-					theta[doc][topic]=(param.alphaSum*pi[no][topic]+corpus.get(doc).getTopicCount(topic))/
-							(param.alphaSum+getSampleSize(corpus.get(doc).docLength()));
+					theta[doc][topic]=(param.alpha*param.numTopics*pi[no][topic]+corpus.get(doc).getTopicCount(topic))/
+							(param.alpha*param.numTopics+getSampleSize(corpus.get(doc).docLength()));
 				}
 				else
 				{
-					theta[doc][topic]=(param.alphaSum/param.numTopics+corpus.get(doc).getTopicCount(topic))/
-							(param.alphaSum+getSampleSize(corpus.get(doc).docLength()));
+					theta[doc][topic]=(param.alpha+corpus.get(doc).getTopicCount(topic))/
+							(param.alpha*param.numTopics+getSampleSize(corpus.get(doc).docLength()));
 				}
 			}
 		}
-	}
-	
-	protected void initVariables()
-	{
-		super.initVariables();
-		_alpha=param._alphaSum/param.numTopics;
 	}
 	
 	/**

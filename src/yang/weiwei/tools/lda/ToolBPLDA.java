@@ -40,7 +40,7 @@ public class ToolBPLDA extends ToolLDA
 	protected LDAParam createParam() throws IOException
 	{
 		LDAParam param=super.createParam();
-		param._alphaSum=_alpha*numTopics;
+		param._alpha=_alpha;
 		return param;
 	}
 	

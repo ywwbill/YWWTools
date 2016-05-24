@@ -78,7 +78,7 @@ public class ToolWSBTM extends ToolLDA
 	protected LDAParam createParam() throws IOException
 	{
 		LDAParam param=super.createParam();
-		param._alphaSum=_alpha*numTopics;
+		param._alpha=_alpha;
 		param.a=a;
 		param.b=b;
 		param.gamma=gamma;

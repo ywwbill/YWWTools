@@ -169,7 +169,7 @@ public class LDA
 		{
 			numWords+=corpus.get(doc).docLength();
 			int sampleSize=getSampleSize(corpus.get(doc).docLength());
-			updateDenom+=(double)(sampleSize)/(double)(sampleSize+param.alphaSum);
+			updateDenom+=(double)(sampleSize)/(double)(sampleSize+param.alpha*param.numTopics);
 		}
 		theta=new double[numDocs][param.numTopics];
 		getNumTestWords();
@@ -311,7 +311,7 @@ public class LDA
 		}
 		for (int topic=0; topic<param.numTopics; topic++)
 		{
-			alpha[topic]*=param.alphaSum/newAlphaSum;
+			alpha[topic]*=param.alpha*param.numTopics/newAlphaSum;
 		}
 	}
 	
@@ -360,7 +360,7 @@ public class LDA
 			for (int topic=0; topic<param.numTopics; topic++)
 			{
 				theta[doc][topic]=(alpha[topic]+corpus.get(doc).getTopicCount(topic))/
-						(param.alphaSum+getSampleSize(corpus.get(doc).docLength()));
+						(param.alpha*param.numTopics+getSampleSize(corpus.get(doc).docLength()));
 			}
 		}
 	}
@@ -679,7 +679,7 @@ public class LDA
 		
 		for (int topic=0; topic<param.numTopics; topic++)
 		{
-			alpha[topic]=param.alphaSum/param.numTopics;
+			alpha[topic]=param.alpha;
 		}
 	}
 	

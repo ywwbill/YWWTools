@@ -210,8 +210,8 @@ public class ToolLDAInterface2 extends ToolInterface
 	public LDAParam createParam() throws IOException
 	{
 		LDAParam param=new LDAParam(vocabFileName);
-		param.alphaSum=alpha*numTopics;
-		param._alphaSum=_alpha*numTopics;
+		param.alpha=alpha;
+		param._alpha=_alpha;
 		param.beta=beta;
 		param.numTopics=numTopics;
 		param.verbose=verbose;

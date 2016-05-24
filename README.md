@@ -659,7 +659,13 @@ Here are examples for running some algorithms in this package. For more informat
 
 - If you use [Lex-WSB-RTM](#lex_wsb_rtm_cmd), [Lex-WSB-Med-RTM](#lex_wsb_med_rtm_cmd), [Lex-WSB-BS-LDA](#lex_wsb_bs_lda_cmd), and/or [Lex-WSB-Med-LDA](#lex_wsb_med_lda_cmd), please cite
 
-		TBD
+		@InProceedings{Yang:Boyd-Graber:Resnik-2016,
+			Title = {A Discriminative Topic Model using Document Network Structure},
+			Booktitle = {Association for Computational Linguistics},
+			Author = {Weiwei Yang and Jordan Boyd-Graber and Philip Resnik},
+			Year = {2016},
+			Location = {Berlin, Germany},
+		}
 
 ## <h2 id="ref">References</h2>
 

@@ -76,8 +76,16 @@ public class LexWSBMedLDA extends LexWSBBSLDA
 			}
 			if (param.verbose)
 			{
-				IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
-						"\tError: "+format(error)+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\tAccuracy: "+format(accuracy));
+				if (wsbm!=null)
+				{
+					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
+							"\tError: "+format(error)+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\tAccuracy: "+format(accuracy));
+				}
+				else
+				{
+					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
+							"\tError: "+format(error)+"\tAccuracy: "+format(accuracy));
+				}
 			}
 			if (param.updateAlpha && iteration%param.updateAlphaInterval==0 && type==TRAIN)
 			{
@@ -99,9 +107,12 @@ public class LexWSBMedLDA extends LexWSBBSLDA
 	protected double topicUpdating(int doc, int topic, int vocab)
 	{
 		double score=0.0;
-		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
-				(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
-		if (wsbm.getNumEdges()==0) ratio=1.0/param.numTopics;
+		double ratio=1.0/param.numTopics;
+		if (wsbm!=null)
+		{
+			ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
+					(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
+		}
 		if (type==TRAIN)
 		{
 			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*

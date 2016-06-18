@@ -100,8 +100,7 @@ public class LexWSBRTMSyn extends RTMSyn
 				weight+=tau[token]*corpus.get(doc1).get(token)/param.docLength*corpus.get(doc2).get(token)/param.docLength;
 			}
 		}
-		int b1=wsbmSyn.getBlockAssign(doc1),b2=wsbmSyn.getBlockAssign(doc2);
-		return weight+rho[b1][b2]*wsbmSyn.getOmega()[b1][b2];
+		return weight;
 	}
 	
 	public void writeParams(String paramFileName, String wsbmParamFileName) throws IOException

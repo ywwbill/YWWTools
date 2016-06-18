@@ -48,6 +48,8 @@ public class LDAParam
 	public boolean negEdge=true;
 	/** Ratio of number of negative links to positive links in RTM (default: 1.0) */
 	public double negEdgeRatio=1.0;
+	/** Include block feature in link prediction (default: false) */
+	public boolean blockFeat=false;
 	
 	//for slda
 	/** Variance of Gaussian distribution when generating SLDA's response variable (default: 1.0) */
@@ -82,6 +84,7 @@ public class LDAParam
 		IOUtil.println(prefix+"nu: "+Fourmat.format(nu));
 		IOUtil.println(prefix+"PLR interval: " +showPLRInterval);
 		IOUtil.println(prefix+"negative edge: "+negEdge);
+		IOUtil.println(prefix+"block feature: "+blockFeat);
 		if (negEdge) IOUtil.println(prefix+"negative edge ratio: "+Fourmat.format(negEdgeRatio));
 	}
 	

@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":9,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":9,"i13":10,"i14":10,"i15":10,"i16":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -288,17 +288,11 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>
-<div class="block">Read corpus</div>
-</td>
-</tr>
-<tr id="i16" class="altColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
 <div class="block">Sample for given number of iterations</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/rtm/lex_wsb_rtm/LexWSBRTM.html#writeBlocks-java.lang.String-">writeBlocks</a></span>(java.lang.String&nbsp;blockFileName)</code>
 <div class="block">Write blocks to file</div>
@@ -310,7 +304,7 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;yang.weiwei.lda.rtm.<a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in yang.weiwei.lda.rtm">RTM</a></h3>
-<code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html#getPLR--">getPLR</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#getTopicWeight-int-">getTopicWeight</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#getTopicWeights--">getTopicWeights</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#getTrainEdgeWeight-int-int-">getTrainEdgeWeight</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#getTrainLinkedDocs-int-">getTrainLinkedDocs</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#readGraph-java.lang.String-int-">readGraph</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#writePLR-java.lang.String-">writePLR</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#writePred-java.lang.String-">writePred</a></code></li>
+<code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html#getPLR--">getPLR</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#getTopicWeight-int-">getTopicWeight</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#getTopicWeights--">getTopicWeights</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#getTrainEdgeWeight-int-int-">getTrainEdgeWeight</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#getTrainLinkedDocs-int-">getTrainLinkedDocs</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#readCorpus-java.lang.String-">readCorpus</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#readGraph-java.lang.String-int-">readGraph</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#writePLR-java.lang.String-">writePLR</a>, <a href="../../../../../yang/weiwei/lda/rtm/RTM.html#writePred-java.lang.String-">writePred</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.yang.weiwei.lda.LDA">
@@ -397,26 +391,6 @@ extends <a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in ya
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="readCorpus-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>readCorpus</h4>
-<pre>public&nbsp;void&nbsp;readCorpus(java.lang.String&nbsp;corpusFileName)
-                throws java.io.IOException</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">LDA</a></code></span></div>
-<div class="block">Read corpus</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html#readCorpus-java.lang.String-">readCorpus</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/rtm/RTM.html" title="class in yang.weiwei.lda.rtm">RTM</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>corpusFileName</code> - Corpus file name</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code> - IOException</dd>
-</dl>
-</li>
-</ul>
 <a name="readBlockGraph-java.lang.String-">
 <!--   -->
 </a>

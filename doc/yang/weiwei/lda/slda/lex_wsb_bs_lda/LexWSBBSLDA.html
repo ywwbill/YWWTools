@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":9,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":9,"i12":10,"i13":10,"i14":10,"i15":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -277,17 +277,11 @@ extends <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html" title="c
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>
-<div class="block">Read corpus</div>
-</td>
-</tr>
-<tr id="i15" class="rowColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
 <div class="block">Sample for given number of iterations</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#writeBlocks-java.lang.String-">writeBlocks</a></span>(java.lang.String&nbsp;blockFileName)</code>
 <div class="block">Write blocks to file</div>
@@ -299,7 +293,7 @@ extends <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html" title="c
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;yang.weiwei.lda.slda.bs_lda.<a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html" title="class in yang.weiwei.lda.slda.bs_lda">BSLDA</a></h3>
-<code><a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#getAccuracy--">getAccuracy</a>, <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#getLabel-int-">getLabel</a>, <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#readLabels-java.lang.String-">readLabels</a>, <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#writePredLabels-java.lang.String-">writePredLabels</a></code></li>
+<code><a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#getAccuracy--">getAccuracy</a>, <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#getLabel-int-">getLabel</a>, <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#readCorpus-java.lang.String-">readCorpus</a>, <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#readLabels-java.lang.String-">readLabels</a>, <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#writePredLabels-java.lang.String-">writePredLabels</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.yang.weiwei.lda.slda.SLDA">
@@ -393,26 +387,6 @@ extends <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html" title="c
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="readCorpus-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>readCorpus</h4>
-<pre>public&nbsp;void&nbsp;readCorpus(java.lang.String&nbsp;corpusFileName)
-                throws java.io.IOException</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">LDA</a></code></span></div>
-<div class="block">Read corpus</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html#readCorpus-java.lang.String-">readCorpus</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html" title="class in yang.weiwei.lda.slda.bs_lda">BSLDA</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>corpusFileName</code> - Corpus file name</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code> - IOException</dd>
-</dl>
-</li>
-</ul>
 <a name="readBlockGraph-java.lang.String-">
 <!--   -->
 </a>

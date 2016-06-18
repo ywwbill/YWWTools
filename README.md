@@ -164,6 +164,7 @@ java -cp YWWTools.jar:lib/* yang.weiwei.Tools yang.weiwei.Tools --tool lda --mod
 	- `-g <gamma-value>`: Parameter of Dirichlet prior for block distribution (default: 1.0). Must be a positive real number.
 	- `--blocks <num-blocks>`: Number of blocks (default: 10). Must be a positive integer.
 	- `--output-wsbm <wsbm-output-file>`: File for [WSBM](#wsbm_cmd)-identified blocks. See [WSBM](#wsbm_cmd) for details.
+	- `--block-feature`: Include block features in link prediction (default: false).
 
 #### <h4 id="lex_wsb_med_rtm_cmd">Lex-WSB-RTM with Hinge Loss (Lex-WSB-Med-RTM)</h4>
 

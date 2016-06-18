@@ -153,11 +153,6 @@ public class MathUtil
 		return x*x;
 	}
 	
-	public static int sqr(int x)
-	{
-		return x*x;
-	}
-	
 	//generation from distribution(s)
 	public static double sampleIG(double muIG, double lambdaIG)
 	{

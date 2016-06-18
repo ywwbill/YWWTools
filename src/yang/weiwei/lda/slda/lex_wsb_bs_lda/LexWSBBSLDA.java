@@ -29,13 +29,6 @@ public class LexWSBBSLDA extends BSLDA
 	
 	protected WSBM wsbm;
 	
-	public void readCorpus(String corpusFileName) throws IOException
-	{
-		super.readCorpus(corpusFileName);
-		WSBMParam wsbmParam=new WSBMParam(param, numDocs);
-		wsbm=new WSBM(wsbmParam);
-	}
-	
 	/**
 	 * Read document links for WSBM
 	 * @param blockGraphFileName Document link file name
@@ -43,15 +36,21 @@ public class LexWSBBSLDA extends BSLDA
 	 */
 	public void readBlockGraph(String blockGraphFileName) throws IOException
 	{
+		WSBMParam wsbmParam=new WSBMParam(param, numDocs);
+		wsbm=new WSBM(wsbmParam);
 		wsbm.readGraph(blockGraphFileName);
 		wsbm.init();
+		
+		blockTopicCounts=new int[param.numBlocks][param.numTopics];
+		blockTokenCounts=new int[param.numBlocks];
+		pi=new double[param.numBlocks][param.numTopics];
 	}
 	
 	protected void printParam()
 	{
 		super.printParam();
 		param.printBlockParam("\t");
-		wsbm.param.printParam("\t");
+		if (wsbm!=null) wsbm.param.printParam("\t");
 	}
 	
 	public void initialize()
@@ -68,7 +67,7 @@ public class LexWSBBSLDA extends BSLDA
 	
 	protected void initBlockAssigns()
 	{
-		if (wsbm.getNumEdges()==0) return;
+		if (wsbm==null) return;
 		for (int doc=0; doc<numDocs; doc++)
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
@@ -82,6 +81,7 @@ public class LexWSBBSLDA extends BSLDA
 	protected void printMetrics()
 	{
 		super.printMetrics();
+		if (wsbm==null) return;
 		IOUtil.println("Block Log Likelihood: "+format(wsbm.getLogLikelihood()));
 	}
 	
@@ -105,8 +105,16 @@ public class LexWSBBSLDA extends BSLDA
 			}
 			if (param.verbose)
 			{
-				IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
-						"\tError: "+format(error)+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\tAccuracy: "+accuracy);
+				if (wsbm!=null)
+				{
+					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
+							"\tError: "+format(error)+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\tAccuracy: "+accuracy);
+				}
+				else
+				{
+					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
+							"\tError: "+format(error)+"\tAccuracy: "+accuracy);
+				}
 			}
 			if (param.updateAlpha && iteration%param.updateAlphaInterval==0 && type==TRAIN)
 			{
@@ -127,7 +135,7 @@ public class LexWSBBSLDA extends BSLDA
 	
 	protected void sampleBlock(int doc)
 	{
-		if (wsbm.getNumEdges()==0) return;
+		if (wsbm==null) return;
 		int oldBlock=wsbm.getBlockAssign(doc);
 		wsbm.sampleNode(doc);
 		int newBlock=wsbm.getBlockAssign(doc);
@@ -151,7 +159,7 @@ public class LexWSBBSLDA extends BSLDA
 			{
 				weight-=eta[oldTopic]/corpus.get(doc).docLength();
 			}
-			if (wsbm.getNumEdges()>0)
+			if (wsbm!=null)
 			{
 				blockTopicCounts[wsbm.getBlockAssign(doc)][oldTopic]--;
 				blockTokenCounts[wsbm.getBlockAssign(doc)]--;
@@ -164,7 +172,7 @@ public class LexWSBBSLDA extends BSLDA
 			{
 				weight+=eta[newTopic]/corpus.get(doc).docLength();
 			}
-			if (wsbm.getNumEdges()>0)
+			if (wsbm!=null)
 			{
 				blockTopicCounts[wsbm.getBlockAssign(doc)][newTopic]++;
 				blockTokenCounts[wsbm.getBlockAssign(doc)]++;
@@ -175,9 +183,12 @@ public class LexWSBBSLDA extends BSLDA
 	protected double topicUpdating(int doc, int topic, int vocab)
 	{
 		double score=0.0;
-		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
-				(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
-		if (wsbm.getNumEdges()==0) ratio=1.0/param.numTopics;
+		double ratio=1.0/param.numTopics;
+		if (wsbm!=null)
+		{
+			ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
+					(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
+		}
 		if (type==TRAIN)
 		{
 			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*
@@ -233,11 +244,12 @@ public class LexWSBBSLDA extends BSLDA
 	protected void computeLogLikelihood()
 	{
 		super.computeLogLikelihood();
-		if (wsbm.getNumEdges()>0) wsbm.computeLogLikelihood();
+		if (wsbm!=null) wsbm.computeLogLikelihood();
 	}
 	
 	protected void computePi()
 	{
+		if (wsbm==null) return;
 		for (int l=0; l<param.numBlocks; l++)
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
@@ -249,6 +261,11 @@ public class LexWSBBSLDA extends BSLDA
 	
 	protected void computeTheta()
 	{
+		if (wsbm==null)
+		{
+			super.computeTheta();
+			return;
+		}
 		computePi();
 		for (int doc=0; doc<numDocs; doc++)
 		{
@@ -267,6 +284,7 @@ public class LexWSBBSLDA extends BSLDA
 	 */
 	public void writeBlocks(String blockFileName) throws IOException
 	{
+		if (wsbm==null) return;
 		wsbm.writeBlocks(blockFileName);
 	}
 	
@@ -275,12 +293,14 @@ public class LexWSBBSLDA extends BSLDA
 	 */
 	public void printBlocks()
 	{
+		if (wsbm==null) return;
 		wsbm.printResults();
 	}
 	
 	public void addResults(LDAResult result)
 	{
 		super.addResults(result);
+		if (wsbm==null) return;
 		result.add(LDAResult.BLOCKLOGLIKELIHOOD, wsbm.getLogLikelihood());
 	}
 	
@@ -305,11 +325,13 @@ public class LexWSBBSLDA extends BSLDA
 	
 	public double getBlockEdgeRate(int block1, int block2)
 	{
+		if (wsbm==null) return 0.0;
 		return wsbm.getBlockEdgeRate(block1, block2);
 	}
 	
 	public double[][] getBlockEdgeRates()
 	{
+		if (wsbm==null) return null;
 		return wsbm.getBlockEdgeRates();
 	}
 	
@@ -319,6 +341,7 @@ public class LexWSBBSLDA extends BSLDA
 	 */
 	public double[] getBlockDist()
 	{
+		if (wsbm==null) return null;
 		return wsbm.getBlockDist();
 	}
 	
@@ -329,9 +352,9 @@ public class LexWSBBSLDA extends BSLDA
 	 */
 	public int getBlockAssign(int doc)
 	{
+		if (wsbm==null) return -1;
 		return wsbm.getBlockAssign(doc);
 	}
-	
 	
 	/**
 	 * Get block distribution over topics
@@ -339,6 +362,7 @@ public class LexWSBBSLDA extends BSLDA
 	 */
 	public double[][] getBlockTopicDist()
 	{
+		if (wsbm==null) return null;
 		return pi;
 	}
 	
@@ -350,9 +374,6 @@ public class LexWSBBSLDA extends BSLDA
 	protected void initVariables()
 	{
 		super.initVariables();
-		blockTopicCounts=new int[param.numBlocks][param.numTopics];
-		blockTokenCounts=new int[param.numBlocks];
-		pi=new double[param.numBlocks][param.numTopics];
 		tau=new double[param.numVocab];
 	}
 	
@@ -372,10 +393,6 @@ public class LexWSBBSLDA extends BSLDA
 	public LexWSBBSLDA(LDAParam parameters)
 	{
 		super(parameters);
-		for (int vocab=0; vocab<param.numVocab; vocab++)
-		{
-			tau[vocab]=randoms.nextGaussian(0.0, MathUtil.sqr(param.nu));
-		}
 	}
 	
 	/**

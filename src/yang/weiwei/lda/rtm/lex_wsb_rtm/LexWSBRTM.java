@@ -31,13 +31,6 @@ public class LexWSBRTM extends RTM
 	
 	protected WSBM wsbm;
 	
-	public void readCorpus(String corpusFileName) throws IOException
-	{
-		super.readCorpus(corpusFileName);
-		WSBMParam wsbmParam=new WSBMParam(param, numDocs);
-		wsbm=new WSBM(wsbmParam);
-	}
-	
 	/**
 	 * Read document links for WSBM
 	 * @param blockGraphFileName Document link file name
@@ -45,15 +38,22 @@ public class LexWSBRTM extends RTM
 	 */
 	public void readBlockGraph(String blockGraphFileName) throws IOException
 	{
+		WSBMParam wsbmParam=new WSBMParam(param, numDocs);
+		wsbm=new WSBM(wsbmParam);
 		wsbm.readGraph(blockGraphFileName);
 		wsbm.init();
+		
+		blockTopicCounts=new int[param.numBlocks][param.numTopics];
+		blockTokenCounts=new int[param.numBlocks];
+		if (param.blockFeat) rho=new double[param.numBlocks][param.numBlocks];
+		pi=new double[param.numBlocks][param.numTopics];
 	}
 	
 	protected void printParam()
 	{
 		super.printParam();
 		param.printBlockParam("\t");
-		wsbm.param.printParam("\t");
+		if (wsbm!=null) wsbm.param.printParam("\t");
 	}
 	
 	public void initialize()
@@ -70,7 +70,7 @@ public class LexWSBRTM extends RTM
 	
 	protected void initBlockAssigns()
 	{
-		if (wsbm.getNumEdges()==0) return;
+		if (wsbm==null) return;
 		for (int doc=0; doc<numDocs; doc++)
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
@@ -84,6 +84,7 @@ public class LexWSBRTM extends RTM
 	protected void printMetrics()
 	{
 		super.printMetrics();
+		if (wsbm==null) return;
 		IOUtil.println("Block Log Likelihood: "+format(wsbm.getLogLikelihood()));
 	}
 	
@@ -110,9 +111,17 @@ public class LexWSBRTM extends RTM
 			
 			if (param.verbose)
 			{
-				IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
-						"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\n\tAvg Weight: "+format(avgWeight)+
-						"\tError: "+format(error)+"\tPLR: "+format(PLR));
+				if (wsbm!=null)
+				{
+					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
+							"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\n\tAvg Weight: "+format(avgWeight)+
+							"\tError: "+format(error)+"\tPLR: "+format(PLR));
+				}
+				else
+				{
+					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
+							"\n\tAvg Weight: "+format(avgWeight)+"\tError: "+format(error)+"\tPLR: "+format(PLR));
+				}
 			}
 		}
 		
@@ -129,7 +138,7 @@ public class LexWSBRTM extends RTM
 	
 	protected void sampleBlock(int doc)
 	{
-		if (wsbm.getNumEdges()==0) return;
+		if (wsbm==null) return;
 		int oldBlock=wsbm.getBlockAssign(doc);
 		wsbm.sampleNode(doc);
 		int newBlock=wsbm.getBlockAssign(doc);
@@ -155,7 +164,7 @@ public class LexWSBRTM extends RTM
 		for (int token=0; token<corpus.get(doc).docLength(); token+=interval)
 		{
 			oldTopic=unassignTopic(doc, token);
-			if (wsbm.getNumEdges()>0)
+			if (wsbm!=null)
 			{
 				blockTopicCounts[wsbm.getBlockAssign(doc)][oldTopic]--;
 				blockTokenCounts[wsbm.getBlockAssign(doc)]--;
@@ -171,7 +180,7 @@ public class LexWSBRTM extends RTM
 			newTopic=sampleTopic(doc, token, oldTopic);
 			
 			assignTopic(doc, token, newTopic);
-			if (wsbm.getNumEdges()>0)
+			if (wsbm!=null)
 			{
 				blockTopicCounts[wsbm.getBlockAssign(doc)][newTopic]++;
 				blockTokenCounts[wsbm.getBlockAssign(doc)]++;
@@ -189,18 +198,21 @@ public class LexWSBRTM extends RTM
 	protected double topicUpdating(int doc, int topic, int vocab)
 	{
 		double score=0.0;
-		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
-				(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
-		if (wsbm.getNumEdges()==0) ratio=1.0/param.numTopics;
+		double ratio=1.0/param.numTopics;
+		if (wsbm!=null)
+		{
+			ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
+					(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
+		}
 		if (type==TRAIN)
 		{
-			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*
+			score=Math.log((param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*
 					(param.beta+topics[topic].getVocabCount(vocab))/
-					(param.beta*param.numVocab+topics[topic].getTotalTokens());
+					(param.beta*param.numVocab+topics[topic].getTotalTokens()));
 		}
 		else
 		{
-			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
+			score=Math.log((param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab]);
 		}
 		int i=0;
 		double temp;
@@ -208,7 +220,7 @@ public class LexWSBRTM extends RTM
 		{
 			temp=MathUtil.sigmoid(weight[i]+eta[topic]/corpus.get(doc).docLength()*
 					corpus.get(d).getTopicCount(topic)/corpus.get(d).docLength());
-			score*=(trainEdgeWeights.get(doc).get(d)>0? temp : 1.0-temp);
+			score+=Math.log(trainEdgeWeights.get(doc).get(d)>0? temp : 1.0-temp);
 			i++;
 		}
 		return score;
@@ -234,12 +246,15 @@ public class LexWSBRTM extends RTM
 		{
 			tau[vocab]=optimizable.getParameter(vocab+param.numTopics);
 		}
-		for (int b1=0; b1<param.numBlocks; b1++)
+		if (param.blockFeat && wsbm!=null)
 		{
-			for (int b2=0; b2<param.numBlocks; b2++)
+			for (int b1=0; b1<param.numBlocks; b1++)
 			{
-				int pos=b1*param.numBlocks+b2+param.numTopics+param.numVocab;
-				rho[b1][b2]=optimizable.getParameter(pos);
+				for (int b2=0; b2<param.numBlocks; b2++)
+				{
+					int pos=b1*param.numBlocks+b2+param.numTopics+param.numVocab;
+					rho[b1][b2]=optimizable.getParameter(pos);
+				}
 			}
 		}
 	}
@@ -260,19 +275,23 @@ public class LexWSBRTM extends RTM
 						corpus.get(doc2).getWordCount(token)/corpus.get(doc2).docLength();
 			}
 		}
-		int b1=wsbm.getBlockAssign(doc1),b2=wsbm.getBlockAssign(doc2);
-		weight+=rho[b1][b2]*wsbm.getBlockEdgeRate(b1, b2);
+		if (param.blockFeat && wsbm!=null)
+		{
+			int b1=wsbm.getBlockAssign(doc1),b2=wsbm.getBlockAssign(doc2);
+			weight+=rho[b1][b2]*wsbm.getBlockEdgeRate(b1, b2);
+		}
 		return weight;
 	}
 	
 	protected void computeLogLikelihood()
 	{
 		super.computeLogLikelihood();
-		if (wsbm.getNumEdges()>0) wsbm.computeLogLikelihood();
+		if (wsbm!=null) wsbm.computeLogLikelihood();
 	}
 	
 	protected void computePi()
 	{
+		if (wsbm==null) return;
 		for (int l=0; l<param.numBlocks; l++)
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
@@ -284,6 +303,11 @@ public class LexWSBRTM extends RTM
 	
 	protected void computeTheta()
 	{
+		if (wsbm==null)
+		{
+			super.computeTheta();
+			return;
+		}
 		computePi();
 		for (int doc=0; doc<numDocs; doc++)
 		{
@@ -302,6 +326,7 @@ public class LexWSBRTM extends RTM
 	 */
 	public void writeBlocks(String blockFileName) throws IOException
 	{
+		if (wsbm==null) return;
 		wsbm.writeBlocks(blockFileName);
 	}
 	
@@ -310,12 +335,14 @@ public class LexWSBRTM extends RTM
 	 */
 	public void printBlocks()
 	{
+		if (wsbm==null) return;
 		wsbm.printResults();
 	}
 	
 	public void addResults(LDAResult result)
 	{
 		super.addResults(result);
+		if (wsbm==null) return;
 		result.add(LDAResult.BLOCKLOGLIKELIHOOD, wsbm.getLogLikelihood());
 	}
 	
@@ -340,11 +367,13 @@ public class LexWSBRTM extends RTM
 	
 	public double getBlockEdgeRate(int block1, int block2)
 	{
+		if (wsbm==null) return 0.0;
 		return wsbm.getBlockEdgeRate(block1, block2);
 	}
 	
 	public double[][] getBlockEdgeRates()
 	{
+		if (wsbm==null) return null;
 		return wsbm.getBlockEdgeRates();
 	}
 	
@@ -354,6 +383,7 @@ public class LexWSBRTM extends RTM
 	 */
 	public double[] getBlockDist()
 	{
+		if (wsbm==null) return null;
 		return wsbm.getBlockDist();
 	}
 	
@@ -364,6 +394,7 @@ public class LexWSBRTM extends RTM
 	 */
 	public int getBlockAssign(int doc)
 	{
+		if (wsbm==null) return -1;
 		return wsbm.getBlockAssign(doc);
 	}
 	
@@ -373,6 +404,7 @@ public class LexWSBRTM extends RTM
 	 */
 	public double[][] getBlockTopicDist()
 	{
+		if (wsbm==null) return null;
 		return pi;
 	}
 	
@@ -384,6 +416,7 @@ public class LexWSBRTM extends RTM
 	 */
 	public double getBlockWeight(int b1, int b2)
 	{
+		if (wsbm==null) return 0.0;
 		return rho[b1][b2];
 	}
 	
@@ -393,6 +426,7 @@ public class LexWSBRTM extends RTM
 	 */
 	public double[][] getBlockWeights()
 	{
+		if (wsbm==null) return null;
 		return rho;
 	}
 	
@@ -404,11 +438,7 @@ public class LexWSBRTM extends RTM
 	protected void initVariables()
 	{
 		super.initVariables();
-		blockTopicCounts=new int[param.numBlocks][param.numTopics];
-		blockTokenCounts=new int[param.numBlocks];
 		tau=new double[param.numVocab];
-		rho=new double[param.numBlocks][param.numBlocks];
-		pi=new double[param.numBlocks][param.numTopics];
 	}
 	
 	protected void copyModel(LDA LDAModel)
@@ -418,11 +448,14 @@ public class LexWSBRTM extends RTM
 		{
 			tau[vocab]=((LexWSBRTM)LDAModel).tau[vocab];
 		}
-		for (int b1=0; b1<param.numBlocks; b1++)
+		if (param.blockFeat)
 		{
-			for (int b2=0; b2<param.numBlocks; b2++)
+			for (int b1=0; b1<param.numBlocks; b1++)
 			{
-				rho[b1][b2]=((LexWSBRTM)LDAModel).rho[b1][b2];
+				for (int b2=0; b2<param.numBlocks; b2++)
+				{
+					rho[b1][b2]=((LexWSBRTM)LDAModel).rho[b1][b2];
+				}
 			}
 		}
 	}
@@ -434,17 +467,6 @@ public class LexWSBRTM extends RTM
 	public LexWSBRTM(LDAParam parameters)
 	{
 		super(parameters);
-		for (int vocab=0; vocab<param.numVocab; vocab++)
-		{
-			tau[vocab]=randoms.nextGaussian(0.0, MathUtil.sqr(param.nu));
-		}
-		for (int b1=0; b1<param.numBlocks; b1++)
-		{
-			for (int b2=0; b2<param.numBlocks; b2++)
-			{
-				rho[b1][b2]=randoms.nextGaussian(0.0, MathUtil.sqr(param.nu));
-			}
-		}
 	}
 	
 	/**

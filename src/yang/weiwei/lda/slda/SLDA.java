@@ -504,10 +504,6 @@ public class SLDA extends LDA
 	public SLDA(LDAParam parameters)
 	{
 		super(parameters);
-		for (int topic=0; topic<param.numTopics; topic++)
-		{
-			eta[topic]=randoms.nextGaussian(0.0, MathUtil.sqr(param.nu));
-		}
 	}
 	
 	/**

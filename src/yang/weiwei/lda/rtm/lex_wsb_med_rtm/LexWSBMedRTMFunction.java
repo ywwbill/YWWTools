@@ -11,7 +11,14 @@ public class LexWSBMedRTMFunction implements ByGradientValue
 	public LexWSBMedRTMFunction(LexWSBMedRTM RTMInst)
 	{
 		this.rtm=RTMInst;
-		parameters=new double[rtm.param.numTopics+rtm.param.numVocab+rtm.param.numBlocks*rtm.param.numBlocks];
+		if (rtm.param.blockFeat && rtm.getWSBM()!=null)
+		{
+			parameters=new double[rtm.param.numTopics+rtm.param.numVocab+rtm.param.numBlocks*rtm.param.numBlocks];
+		}
+		else
+		{
+			parameters=new double[rtm.param.numTopics+rtm.param.numVocab];
+		}
 		for (int topic=0; topic<rtm.param.numTopics; topic++)
 		{
 			parameters[topic]=rtm.getTopicWeight(topic);
@@ -20,11 +27,14 @@ public class LexWSBMedRTMFunction implements ByGradientValue
 		{
 			parameters[vocab+rtm.param.numTopics]=rtm.getLexWeight(vocab);
 		}
-		for (int b1=0; b1<rtm.param.numBlocks; b1++)
+		if (rtm.param.blockFeat && rtm.getWSBM()!=null)
 		{
-			for (int b2=0; b2<rtm.param.numBlocks; b2++)
+			for (int b1=0; b1<rtm.param.numBlocks; b1++)
 			{
-				parameters[getPosition(b1, b2)]=rtm.getBlockWeight(b1, b2);
+				for (int b2=0; b2<rtm.param.numBlocks; b2++)
+				{
+					parameters[getPosition(b1, b2)]=rtm.getBlockWeight(b1, b2);
+				}
 			}
 		}
 	}
@@ -50,12 +60,15 @@ public class LexWSBMedRTMFunction implements ByGradientValue
 		{
 			value-=MathUtil.sqr(parameters[vocab+rtm.param.numTopics]/rtm.param.nu)/2.0;
 		}
-		for (int b1=0; b1<rtm.param.numBlocks; b1++)
+		if (rtm.param.blockFeat && rtm.getWSBM()!=null)
 		{
-			for (int b2=0; b2<rtm.param.numBlocks; b2++)
+			for (int b1=0; b1<rtm.param.numBlocks; b1++)
 			{
-				int pos=getPosition(b1, b2);
-				value-=MathUtil.sqr(parameters[pos]/rtm.param.nu)/2.0;
+				for (int b2=0; b2<rtm.param.numBlocks; b2++)
+				{
+					int pos=getPosition(b1, b2);
+					value-=MathUtil.sqr(parameters[pos]/rtm.param.nu)/2.0;
+				}
 			}
 		}
 		return value;
@@ -88,8 +101,11 @@ public class LexWSBMedRTMFunction implements ByGradientValue
 								rtm.getDoc(d).getWordCount(token)/rtm.getDoc(d).docLength();
 					}
 				}
-				int b1=rtm.getBlockAssign(doc),b2=rtm.getBlockAssign(d),pos=getPosition(b1, b2);
-				gradient[pos]-=commonTerm*rtm.getBlockEdgeRate(b1, b2);
+				if (rtm.param.blockFeat && rtm.getWSBM()!=null)
+				{
+					int b1=rtm.getBlockAssign(doc),b2=rtm.getBlockAssign(d),pos=getPosition(b1, b2);
+					gradient[pos]-=commonTerm*rtm.getBlockEdgeRate(b1, b2);
+				}
 			}
 		}
 		for (int topic=0; topic<rtm.param.numTopics; topic++)
@@ -100,12 +116,15 @@ public class LexWSBMedRTMFunction implements ByGradientValue
 		{
 			gradient[vocab+rtm.param.numTopics]-=parameters[vocab+rtm.param.numTopics]/MathUtil.sqr(rtm.param.nu);
 		}
-		for (int b1=0; b1<rtm.param.numBlocks; b1++)
+		if (rtm.param.blockFeat && rtm.getWSBM()!=null)
 		{
-			for (int b2=0; b2<rtm.param.numBlocks; b2++)
+			for (int b1=0; b1<rtm.param.numBlocks; b1++)
 			{
-				int pos=getPosition(b1, b2);
-				gradient[pos]-=parameters[pos]/MathUtil.sqr(rtm.param.nu);
+				for (int b2=0; b2<rtm.param.numBlocks; b2++)
+				{
+					int pos=getPosition(b1, b2);
+					gradient[pos]-=parameters[pos]/MathUtil.sqr(rtm.param.nu);
+				}
 			}
 		}
 	}
@@ -127,8 +146,11 @@ public class LexWSBMedRTMFunction implements ByGradientValue
 						rtm.getDoc(doc1).docLength()*rtm.getDoc(doc2).getWordCount(token)/rtm.getDoc(doc2).docLength();
 			}
 		}
-		int b1=rtm.getBlockAssign(doc1),b2=rtm.getBlockAssign(doc2);
-		weight+=parameters[getPosition(b1, b2)]*rtm.getBlockEdgeRate(b1, b2);
+		if (rtm.param.blockFeat && rtm.getWSBM()!=null)
+		{
+			int b1=rtm.getBlockAssign(doc1),b2=rtm.getBlockAssign(doc2);
+			weight+=parameters[getPosition(b1, b2)]*rtm.getBlockEdgeRate(b1, b2);
+		}
 		return weight;
 	}
 	

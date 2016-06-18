@@ -23,13 +23,6 @@ public class WSBTM extends LDA
 	
 	protected WSBM wsbm;
 	
-	public void readCorpus(String corpusFileName) throws IOException
-	{
-		super.readCorpus(corpusFileName);
-		WSBMParam wsbmParam=new WSBMParam(param, numDocs);
-		wsbm=new WSBM(wsbmParam);
-	}
-	
 	/**
 	 * Read graph for WSBM
 	 * @param graphFileName Graph file name
@@ -37,15 +30,21 @@ public class WSBTM extends LDA
 	 */
 	public void readGraph(String graphFileName) throws IOException
 	{
+		WSBMParam wsbmParam=new WSBMParam(param, numDocs);
+		wsbm=new WSBM(wsbmParam);
 		wsbm.readGraph(graphFileName);
 		wsbm.init();
+		
+		blockTopicCounts=new int[param.numBlocks][param.numTopics];
+		blockTokenCounts=new int[param.numBlocks];
+		pi=new double[param.numBlocks][param.numTopics];
 	}
 	
 	protected void printParam()
 	{
 		super.printParam();
 		param.printBlockParam("\t");
-		wsbm.param.printParam("\t");
+		if (wsbm!=null) wsbm.param.printParam("\t");
 	}
 	
 	public void initialize()
@@ -62,7 +61,7 @@ public class WSBTM extends LDA
 	
 	protected void initBlockAssigns()
 	{
-		if (wsbm.getNumEdges()==0) return;
+		if (wsbm==null) return;
 		for (int doc=0; doc<numDocs; doc++)
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
@@ -76,6 +75,7 @@ public class WSBTM extends LDA
 	protected void printMetrics()
 	{
 		super.printMetrics();
+		if (wsbm==null) return;
 		IOUtil.println("Block Log Likelihood: "+format(wsbm.getLogLikelihood()));
 	}
 	
@@ -92,8 +92,15 @@ public class WSBTM extends LDA
 			perplexity=Math.exp(-logLikelihood/numTestWords);
 			if (param.verbose)
 			{
-				IOUtil.println("<"+iteration+">"+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+
-						"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity));
+				if (wsbm!=null)
+				{
+					IOUtil.println("<"+iteration+">"+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+
+							"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity));
+				}
+				else
+				{
+					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity));
+				}
 			}
 		}
 		
@@ -110,7 +117,7 @@ public class WSBTM extends LDA
 	
 	protected void sampleBlock(int doc)
 	{
-		if (wsbm.getNumEdges()==0) return;
+		if (wsbm==null) return;
 		int oldBlock=wsbm.getBlockAssign(doc);
 		wsbm.sampleNode(doc);
 		int newBlock=wsbm.getBlockAssign(doc);
@@ -129,7 +136,7 @@ public class WSBTM extends LDA
 		for (int token=0; token<corpus.get(doc).docLength(); token+=interval)
 		{
 			oldTopic=unassignTopic(doc, token);
-			if (wsbm.getNumEdges()>0)
+			if (wsbm!=null)
 			{
 				blockTopicCounts[wsbm.getBlockAssign(doc)][oldTopic]--;
 				blockTokenCounts[wsbm.getBlockAssign(doc)]--;
@@ -138,7 +145,7 @@ public class WSBTM extends LDA
 			newTopic=sampleTopic(doc, token, oldTopic);
 			
 			assignTopic(doc, token, newTopic);
-			if (wsbm.getNumEdges()>0)
+			if (wsbm!=null)
 			{
 				blockTopicCounts[wsbm.getBlockAssign(doc)][newTopic]++;
 				blockTokenCounts[wsbm.getBlockAssign(doc)]++;
@@ -148,9 +155,12 @@ public class WSBTM extends LDA
 	
 	protected double topicUpdating(int doc, int topic, int vocab)
 	{
-		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
-				(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
-		if (wsbm.getNumEdges()==0) ratio=1.0/param.numTopics;
+		double ratio=1.0/param.numTopics;
+		if (wsbm!=null)
+		{
+			ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
+					(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
+		}
 		if (type==TRAIN)
 		{
 			return (param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*
@@ -163,17 +173,19 @@ public class WSBTM extends LDA
 	public void addResults(LDAResult result)
 	{
 		super.addResults(result);
+		if (wsbm==null) return;
 		result.add(LDAResult.BLOCKLOGLIKELIHOOD, wsbm.getLogLikelihood());
 	}
 	
 	protected void computeLogLikelihood()
 	{
 		super.computeLogLikelihood();
-		if (wsbm.getNumEdges()>0) wsbm.computeLogLikelihood();
+		if (wsbm!=null) wsbm.computeLogLikelihood();
 	}
 	
 	protected void computePi()
 	{
+		if (wsbm==null) return;
 		for (int l=0; l<param.numBlocks; l++)
 		{
 			for (int topic=0; topic<param.numTopics; topic++)
@@ -185,6 +197,11 @@ public class WSBTM extends LDA
 	
 	protected void computeTheta()
 	{
+		if (wsbm==null)
+		{
+			super.computeTheta();
+			return;
+		}
 		computePi();
 		for (int doc=0; doc<numDocs; doc++)
 		{
@@ -202,6 +219,7 @@ public class WSBTM extends LDA
 	 */
 	public double[][] getBlockTopicDist()
 	{
+		if (wsbm==null) return null;
 		return pi;
 	}
 	
@@ -212,6 +230,7 @@ public class WSBTM extends LDA
 	 */
 	public void writeBlocks(String blockFileName) throws IOException
 	{
+		if (wsbm==null) return;
 		wsbm.writeBlocks(blockFileName);
 	}
 	
@@ -220,15 +239,8 @@ public class WSBTM extends LDA
 	 */
 	public void printBlocks()
 	{
+		if (wsbm==null) return;
 		wsbm.printResults();
-	}
-	
-	protected void initVariables()
-	{
-		super.initVariables();
-		blockTopicCounts=new int[param.numBlocks][param.numTopics];
-		blockTokenCounts=new int[param.numBlocks];
-		pi=new double[param.numBlocks][param.numTopics];
 	}
 	
 	/**

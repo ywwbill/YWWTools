@@ -12,6 +12,7 @@ public class ToolLexWSBRTM extends ToolRTM
 	protected double b=1.0;
 	protected double gamma=1.0;
 	protected int numBlocks=10;
+	protected boolean blockFeat=false;
 	
 	protected String wsbmGraphFileName="";
 	protected String outputWSBMFileName=""; 
@@ -25,6 +26,7 @@ public class ToolLexWSBRTM extends ToolRTM
 		b=getArg("-b", args, 1.0);
 		gamma=getArg("-g", args, 1.0);
 		numBlocks=getArg("--blocks", args, 10);
+		blockFeat=findArg("--block-feature", args, false);
 		
 		wsbmGraphFileName=getArg("--wsbm-graph", args);
 		outputWSBMFileName=getArg("--output-wsbm", args);
@@ -75,6 +77,7 @@ public class ToolLexWSBRTM extends ToolRTM
 		param.b=b;
 		param.gamma=gamma;
 		param.numBlocks=numBlocks;
+		param.blockFeat=blockFeat;
 		return param;
 	}
 	

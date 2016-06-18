@@ -11,6 +11,7 @@ import yang.weiwei.lda.LDAParam;
 import yang.weiwei.lda.rtm.lex_wsb_rtm.LexWSBRTM;
 import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
+import yang.weiwei.wsbm.WSBM;
 
 /**
  * Lex-WSB-RTM with hinge loss
@@ -95,9 +96,17 @@ public class LexWSBMedRTM extends LexWSBRTM
 			
 			if (param.verbose)
 			{
-				IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
-						"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\n\tAvg Weight: "+format(avgWeight)+
-						"\tError: "+format(error)+"\tPLR: "+format(PLR));
+				if (wsbm!=null)
+				{
+					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
+							"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\n\tAvg Weight: "+format(avgWeight)+
+							"\tError: "+format(error)+"\tPLR: "+format(PLR));
+				}
+				else
+				{
+					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
+							"\n\tAvg Weight: "+format(avgWeight)+"\tError: "+format(error)+"\tPLR: "+format(PLR));
+				}
 			}
 		}
 		
@@ -113,18 +122,21 @@ public class LexWSBMedRTM extends LexWSBRTM
 	protected double topicUpdating(int doc, int topic, int vocab)
 	{
 		double score=0.0;
-		double ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
-				(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
-		if (wsbm.getNumEdges()==0) ratio=1.0/param.numTopics;
+		double ratio=1.0/param.numTopics;
+		if (wsbm!=null)
+		{
+			ratio=(blockTopicCounts[wsbm.getBlockAssign(doc)][topic]+param._alpha)/
+					(blockTokenCounts[wsbm.getBlockAssign(doc)]+param._alpha*param.numTopics);
+		}
 		if (type==TRAIN)
 		{
-			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*
+			score=Math.log((param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*
 					(param.beta+topics[topic].getVocabCount(vocab))/
-					(param.beta*param.numVocab+topics[topic].getTotalTokens());
+					(param.beta*param.numVocab+topics[topic].getTotalTokens()));
 		}
 		else
 		{
-			score=(param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
+			score=Math.log((param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab]);
 		}
 		int i=0;
 		for (int d : trainEdgeWeights.get(doc).keySet())
@@ -134,8 +146,8 @@ public class LexWSBMedRTM extends LexWSBRTM
 					(lambda.get(doc).get(d)*corpus.get(doc).docLength()*corpus.get(d).docLength());
 			double term2=MathUtil.sqr(param.c)*(MathUtil.sqr(eta[topic]*corpus.get(d).getTopicCount(topic))+
 					2.0*eta[topic]*corpus.get(d).getTopicCount(topic)*weight[i])/
-					(2.0*lambda.get(doc).get(d)*MathUtil.sqr(corpus.get(doc).docLength()*corpus.get(d).docLength()));
-			score*=Math.exp(term1-term2);
+					(2.0*lambda.get(doc).get(d)*MathUtil.sqr(corpus.get(doc).docLength())*MathUtil.sqr(corpus.get(d).docLength()));
+			score+=term1-term2;
 			i++;
 		}
 		return score;
@@ -161,12 +173,15 @@ public class LexWSBMedRTM extends LexWSBRTM
 		{
 			tau[vocab]=optimizable.getParameter(vocab+param.numTopics);
 		}
-		for (int b1=0; b1<param.numBlocks; b1++)
+		if (param.blockFeat && wsbm!=null)
 		{
-			for (int b2=0; b2<param.numBlocks; b2++)
+			for (int b1=0; b1<param.numBlocks; b1++)
 			{
-				int pos=b1*param.numBlocks+b2+param.numTopics+param.numVocab;
-				rho[b1][b2]=optimizable.getParameter(pos);
+				for (int b2=0; b2<param.numBlocks; b2++)
+				{
+					int pos=b1*param.numBlocks+b2+param.numTopics+param.numVocab;
+					rho[b1][b2]=optimizable.getParameter(pos);
+				}
 			}
 		}
 	}
@@ -199,6 +214,11 @@ public class LexWSBMedRTM extends LexWSBRTM
 		super.initVariables();
 		zeta=new ArrayList<HashMap<Integer, Double>>();
 		lambda=new ArrayList<HashMap<Integer, Double>>();
+	}
+	
+	protected WSBM getWSBM()
+	{
+		return wsbm;
 	}
 	
 	/**

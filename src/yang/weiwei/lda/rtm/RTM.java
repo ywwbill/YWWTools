@@ -122,6 +122,7 @@ public class RTM extends LDA
 		super.printParam();
 		param.printRTMParam("\t");
 		IOUtil.println("\t#train edges: "+numTrainEdges);
+		if (param.negEdge) IOUtil.println("\t#neg edges: "+(int)(numTrainEdges*param.negEdgeRatio));
 	}
 	
 	protected void printMetrics()
@@ -209,18 +210,40 @@ public class RTM extends LDA
 		}
 	}
 	
+	protected int sampleTopic(int doc, int token, int oldTopic)
+	{
+		int word=corpus.get(doc).getWord(token);
+		double topicScores[]=new double[param.numTopics];
+		for (int topic=0; topic<param.numTopics; topic++)
+		{
+			topicScores[topic]=topicUpdating(doc, topic, word);
+		}
+		
+		int newTopic=MathUtil.selectLogDiscrete(topicScores);
+		if (newTopic==-1)
+		{
+			newTopic=oldTopic;
+			for (int topic=0; topic<param.numTopics; topic++)
+			{
+				IOUtil.println(format(topicScores[topic]));
+			}
+		}
+		
+		return newTopic;
+	}
+	
 	protected double topicUpdating(int doc, int topic, int vocab)
 	{
 		double score=0.0;
 		if (type==TRAIN)
 		{
-			score=(alpha[topic]+corpus.get(doc).getTopicCount(topic))*
+			score=Math.log((alpha[topic]+corpus.get(doc).getTopicCount(topic))*
 					(param.beta+topics[topic].getVocabCount(vocab))/
-					(param.beta*param.numVocab+topics[topic].getTotalTokens());
+					(param.beta*param.numVocab+topics[topic].getTotalTokens()));
 		}
 		else
 		{
-			score=(alpha[topic]+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
+			score=Math.log((alpha[topic]+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab]);
 		}
 		
 		int i=0;
@@ -229,7 +252,7 @@ public class RTM extends LDA
 		{
 			temp=MathUtil.sigmoid(weight[i]+eta[topic]/corpus.get(doc).docLength()*
 					corpus.get(d).getTopicCount(topic)/corpus.get(d).docLength());
-			score*=(trainEdgeWeights.get(doc).get(d)>0? temp : 1.0-temp);
+			score+=Math.log(trainEdgeWeights.get(doc).get(d)>0? temp : 1.0-temp);
 			i++;
 		}
 		return score;
@@ -464,10 +487,6 @@ public class RTM extends LDA
 	public RTM(LDAParam parameters)
 	{
 		super(parameters);
-		for (int topic=0; topic<param.numTopics; topic++)
-		{
-			eta[topic]=randoms.nextGaussian(0.0, MathUtil.sqr(param.nu));
-		}
 	}
 	
 	/**

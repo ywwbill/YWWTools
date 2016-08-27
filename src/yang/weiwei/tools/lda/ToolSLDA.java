@@ -12,6 +12,7 @@ public class ToolSLDA extends ToolLDA
 	
 	protected String labelFileName="";
 	protected String predFileName="";
+	protected String regFileName="";
 	
 	public void parseCommand(String[] args)
 	{
@@ -22,6 +23,7 @@ public class ToolSLDA extends ToolLDA
 		
 		labelFileName=getArg("--label", args);
 		predFileName=getArg("--pred", args);
+		regFileName=getArg("--reg", args);
 	}
 	
 	protected boolean checkCommand()
@@ -75,9 +77,6 @@ public class ToolSLDA extends ToolLDA
 			lda.initialize();
 			lda.sample(numIters);
 			lda.writeModel(modelFileName);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (topicFileName.length()>0) lda.writeResult(topicFileName, numTopWords);
-			if (predFileName.length()>0) lda.writePredLabels(predFileName);
 		}
 		else
 		{
@@ -86,9 +85,15 @@ public class ToolSLDA extends ToolLDA
 			if (labelFileName.length()>0) lda.readLabels(labelFileName);
 			lda.initialize();
 			lda.sample(numIters);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (predFileName.length()>0) lda.writePredLabels(predFileName);
 		}
+		writeFiles(lda);
+	}
+	
+	protected void writeFiles(SLDA lda) throws IOException
+	{
+		super.writeFiles(lda);
+		if (predFileName.length()>0) lda.writePredLabels(predFileName);
+		if (regFileName.length()>0) lda.writeRegValues(regFileName);
 	}
 	
 	public void printHelp()
@@ -99,5 +104,6 @@ public class ToolSLDA extends ToolLDA
 		println("\t--sigma [optional]: Variance for the Gaussian generation of response variable in SLDA (default: 1.0).");
 		println("\t--nu [optional]: Variance of normal priors for weight vectors in SLDA and its extensions (default: 1.0).");
 		println("\t--pred [optional]: Predicted label file.");
+		println("\t--reg [optional]: Regression value file");
 	}
 }

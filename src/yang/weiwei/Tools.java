@@ -13,7 +13,6 @@ import yang.weiwei.tools.ToolStemmer;
 import yang.weiwei.tools.ToolTokenizer;
 import yang.weiwei.tools.ToolCorpusConverter;
 import yang.weiwei.tools.ToolInterface;
-import yang.weiwei.tools.ToolICTCLAS;
 
 public class Tools extends ToolInterface
 {	
@@ -63,7 +62,6 @@ public class Tools extends ToolInterface
 		case "stemmer": toolImpl=new ToolStemmer(); break;
 		case "tokenizer": toolImpl=new ToolTokenizer(); break;
 		case "corpus-converter": toolImpl=new ToolCorpusConverter(); break;
-		case "ictclas": toolImpl=new ToolICTCLAS(); break;
 		}
 		if (toolImpl!=null)
 		{
@@ -77,7 +75,6 @@ public class Tools extends ToolInterface
 		println("Arguments for Tools:");
 		println("\t--help [optional]: Print help information.");
 		println("\t--tool: Name of tool you want to use. Supported tools are");
-		println("\t\tICTCLAS: Chinese POS tagger.");
 		println("\t\tFile-Merger: Merge several files into a single one.");
 		println("\t\tLemmatizer: Lemmatize POS-tagged corpus. Support English only, but can support other languages given dictionary.");
 		println("\t\tPOS-Tagger: Tag words' POS. Support English only, but can support other languages given trained models.");
@@ -93,7 +90,6 @@ public class Tools extends ToolInterface
 	static
 	{
 		toolSet=new HashSet<String>();
-		toolSet.add("ictclas");
 		toolSet.add("file-merger");
 		toolSet.add("lemmatizer");
 		toolSet.add("pos-tagger");

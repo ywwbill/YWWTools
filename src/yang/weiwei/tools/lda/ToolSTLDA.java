@@ -24,8 +24,6 @@ public class ToolSTLDA extends ToolLDA
 			lda.initialize();
 			lda.sample(numIters);
 			lda.writeModel(modelFileName);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (topicFileName.length()>0) lda.writeResult(topicFileName, numTopWords);
 		}
 		else
 		{
@@ -33,7 +31,7 @@ public class ToolSTLDA extends ToolLDA
 			lda.readCorpus(corpusFileName);
 			lda.initialize();
 			lda.sample(numIters);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
 		}
+		writeFiles(lda);
 	}
 }

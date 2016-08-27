@@ -5,4 +5,5 @@
 /data/lda/model/*
 /data/lda/synthetic/*
 /data/wsbm/synthetic/*
+/target/*
 .DS_Store

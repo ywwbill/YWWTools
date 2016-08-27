@@ -391,17 +391,36 @@ public class RTM extends LDA
 	 */
 	public void writePred(String predFileName) throws IOException
 	{
-		double probs[][]=new double[numDocs][numDocs];
+		BufferedWriter bw=new BufferedWriter(new FileWriter(predFileName));
 		for (int doc1=0; doc1<numDocs; doc1++)
 		{
 			for (int doc2=doc1+1; doc2<numDocs; doc2++)
 			{
-				probs[doc1][doc2]=computeEdgeProb(doc1, doc2);
-				probs[doc2][doc1]=probs[doc1][doc2];
+				double prob=computeEdgeProb(doc1, doc2);
+				bw.write(prob+" ");
 			}
+			bw.newLine();
 		}
-		BufferedWriter bw=new BufferedWriter(new FileWriter(predFileName));
-		IOUtil.writeMatrix(bw, probs);
+		bw.close();
+	}
+	
+	/**
+	 * Write regression values to file
+	 * @param regFileName Regression value file name
+	 * @throws IOException IOException
+	 */
+	public void writeRegValues(String regFileName) throws IOException
+	{
+		BufferedWriter bw=new BufferedWriter(new FileWriter(regFileName));
+		for (int doc1=0; doc1<numDocs; doc1++)
+		{
+			for (int doc2=0; doc2<numDocs; doc2++)
+			{
+				double reg=computeWeight(doc1, doc2);
+				bw.write(reg+" ");
+			}
+			bw.newLine();
+		}
 		bw.close();
 	}
 	

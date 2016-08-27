@@ -16,6 +16,7 @@ public class ToolRTM extends ToolLDA
 	protected String rtmTrainGraphFileName="";
 	protected String rtmTestGraphFileName="";
 	protected String predFileName="";
+	protected String regFileName="";
 	
 	public void parseCommand(String[] args)
 	{
@@ -30,6 +31,7 @@ public class ToolRTM extends ToolLDA
 		rtmTrainGraphFileName=getArg("--rtm-train-graph", args);
 		rtmTestGraphFileName=getArg("--rtm-test-graph", args);
 		predFileName=getArg("--pred", args);
+		regFileName=getArg("--reg", args);
 	}
 	
 	protected boolean checkCommand()
@@ -104,9 +106,6 @@ public class ToolRTM extends ToolLDA
 			lda.initialize();
 			lda.sample(numIters);
 			lda.writeModel(modelFileName);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (topicFileName.length()>0) lda.writeResult(topicFileName, numTopWords);
-			if (predFileName.length()>0) lda.writePred(predFileName);
 		}
 		else
 		{
@@ -116,9 +115,15 @@ public class ToolRTM extends ToolLDA
 			lda.readGraph(rtmTestGraphFileName, RTM.TEST_GRAPH);
 			lda.initialize();
 			lda.sample(numIters);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (predFileName.length()>0) lda.writePred(predFileName);
 		}
+		writeFiles(lda);
+	}
+	
+	protected void writeFiles(RTM lda) throws IOException
+	{
+		super.writeFiles(lda);
+		if (predFileName.length()>0) lda.writePred(predFileName);
+		if (regFileName.length()>0) lda.writeRegValues(regFileName);
 	}
 	
 	public void printHelp()

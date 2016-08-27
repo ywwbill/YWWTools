@@ -25,9 +25,6 @@ public class ToolBSLDA extends ToolSLDA
 			lda.initialize();
 			lda.sample(numIters);
 			lda.writeModel(modelFileName);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (topicFileName.length()>0) lda.writeResult(topicFileName, numTopWords);
-			if (predFileName.length()>0) lda.writePredLabels(predFileName);
 		}
 		else
 		{
@@ -36,8 +33,7 @@ public class ToolBSLDA extends ToolSLDA
 			if (labelFileName.length()>0) lda.readLabels(labelFileName);
 			lda.initialize();
 			lda.sample(numIters);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (predFileName.length()>0) lda.writePredLabels(predFileName);
 		}
+		writeFiles(lda);
 	}
 }

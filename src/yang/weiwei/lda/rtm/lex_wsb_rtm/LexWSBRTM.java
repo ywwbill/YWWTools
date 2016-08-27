@@ -38,15 +38,12 @@ public class LexWSBRTM extends RTM
 	 */
 	public void readBlockGraph(String blockGraphFileName) throws IOException
 	{
-		WSBMParam wsbmParam=new WSBMParam(param, numDocs);
-		wsbm=new WSBM(wsbmParam);
+		if (wsbm==null)
+		{
+			WSBMParam wsbmParam=new WSBMParam(param, numDocs);
+			wsbm=new WSBM(wsbmParam);
+		}
 		wsbm.readGraph(blockGraphFileName);
-		wsbm.init();
-		
-		blockTopicCounts=new int[param.numBlocks][param.numTopics];
-		blockTokenCounts=new int[param.numBlocks];
-		if (param.blockFeat) rho=new double[param.numBlocks][param.numBlocks];
-		pi=new double[param.numBlocks][param.numTopics];
 	}
 	
 	protected void printParam()
@@ -59,12 +56,14 @@ public class LexWSBRTM extends RTM
 	public void initialize()
 	{
 		super.initialize();
+		wsbm.init();
 		initBlockAssigns();
 	}
 	
 	public void initialize(String topicAssignFileName) throws IOException
 	{
 		super.initialize(topicAssignFileName);
+		wsbm.init();
 		initBlockAssigns();
 	}
 	
@@ -327,7 +326,7 @@ public class LexWSBRTM extends RTM
 	public void writeBlocks(String blockFileName) throws IOException
 	{
 		if (wsbm==null) return;
-		wsbm.writeBlocks(blockFileName);
+		wsbm.writeBlockAssign(blockFileName);
 	}
 	
 	/**
@@ -438,6 +437,10 @@ public class LexWSBRTM extends RTM
 	protected void initVariables()
 	{
 		super.initVariables();
+		blockTopicCounts=new int[param.numBlocks][param.numTopics];
+		blockTokenCounts=new int[param.numBlocks];
+		if (param.blockFeat) rho=new double[param.numBlocks][param.numBlocks];
+		pi=new double[param.numBlocks][param.numTopics];
 		tau=new double[param.numVocab];
 	}
 	

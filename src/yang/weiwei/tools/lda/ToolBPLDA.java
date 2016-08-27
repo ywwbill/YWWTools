@@ -62,8 +62,6 @@ public class ToolBPLDA extends ToolLDA
 			lda.initialize();
 			lda.sample(numIters);
 			lda.writeModel(modelFileName);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (topicFileName.length()>0) lda.writeResult(topicFileName, numTopWords);
 		}
 		else
 		{
@@ -72,8 +70,8 @@ public class ToolBPLDA extends ToolLDA
 			if (blockFileName.length()>0) lda.readBlocks(blockFileName);
 			lda.initialize();
 			lda.sample(numIters);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
 		}
+		writeFiles(lda);
 	}
 	
 	public void printHelp()

@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":9,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":9,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -314,6 +314,12 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 </td>
 </tr>
 <tr id="i19" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#writeRegValues-java.lang.String-">writeRegValues</a></span>(java.lang.String&nbsp;regFileName)</code>
+<div class="block">Write document regression values to file</div>
+</td>
+</tr>
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/slda/SLDA.html#writeSelectedWords-java.util.Set-java.lang.String-">writeSelectedWords</a></span>(java.util.Set&lt;<a href="../../../../yang/weiwei/lda/util/LDAWord.html" title="class in yang.weiwei.lda.util">LDAWord</a>&gt;&nbsp;wordSet,
                   java.lang.String&nbsp;wordFileName)</code>
@@ -662,6 +668,23 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>wordSet</code> - Set of selected words</dd>
 <dd><code>wordFileName</code> - Word file name</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code> - IOException</dd>
+</dl>
+</li>
+</ul>
+<a name="writeRegValues-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>writeRegValues</h4>
+<pre>public&nbsp;void&nbsp;writeRegValues(java.lang.String&nbsp;regFileName)
+                    throws java.io.IOException</pre>
+<div class="block">Write document regression values to file</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>regFileName</code> - Regression value file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - IOException</dd>
 </dl>

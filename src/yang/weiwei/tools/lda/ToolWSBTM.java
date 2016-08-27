@@ -105,8 +105,6 @@ public class ToolWSBTM extends ToolLDA
 			lda.initialize();
 			lda.sample(numIters);
 			lda.writeModel(modelFileName);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (topicFileName.length()>0) lda.writeResult(topicFileName, numTopWords);
 		}
 		else
 		{
@@ -115,7 +113,16 @@ public class ToolWSBTM extends ToolLDA
 			if (wsbmGraphFileName.length()>0) lda.readGraph(wsbmGraphFileName);
 			lda.initialize();
 			lda.sample(numIters);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
+		}
+		writeFiles(lda);
+	}
+	
+	protected void writeFiles(WSBTM lda) throws IOException
+	{
+		super.writeFiles(lda);
+		if (wsbmGraphFileName.length()>0 && outputWSBMFileName.length()>0)
+		{
+			lda.writeBlocks(outputWSBMFileName);
 		}
 	}
 	

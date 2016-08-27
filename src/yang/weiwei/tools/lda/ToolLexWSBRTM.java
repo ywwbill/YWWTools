@@ -101,10 +101,6 @@ public class ToolLexWSBRTM extends ToolRTM
 			lda.initialize();
 			lda.sample(numIters);
 			lda.writeModel(modelFileName);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (topicFileName.length()>0) lda.writeResult(topicFileName, numTopWords);
-			if (predFileName.length()>0) lda.writePred(predFileName);
-			if (outputWSBMFileName.length()>0) lda.writeBlocks(outputWSBMFileName);
 		}
 		else
 		{
@@ -115,9 +111,16 @@ public class ToolLexWSBRTM extends ToolRTM
 			if (wsbmGraphFileName.length()>0) lda.readBlockGraph(wsbmGraphFileName);
 			lda.initialize();
 			lda.sample(numIters);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (predFileName.length()>0) lda.writePred(predFileName);
-			if (wsbmGraphFileName.length()>0 && outputWSBMFileName.length()>0) lda.writeBlocks(outputWSBMFileName);
+		}
+		writeFiles(lda);
+	}
+	
+	protected void writeFiles(LexWSBRTM lda) throws IOException
+	{
+		super.writeFiles(lda);
+		if (wsbmGraphFileName.length()>0 && outputWSBMFileName.length()>0)
+		{
+			lda.writeBlocks(outputWSBMFileName);
 		}
 	}
 	

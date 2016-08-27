@@ -29,6 +29,7 @@ public class ToolLDA extends ToolLDAInterface
 	protected String thetaFileName="";
 	protected String topicFileName="";
 	protected int numTopWords=10;
+	protected String topicCountFileName="";
 	
 	public void parseCommand(String[] args)
 	{
@@ -50,6 +51,7 @@ public class ToolLDA extends ToolLDAInterface
 		thetaFileName=getArg("--theta", args);
 		topicFileName=getArg("--output-topic", args);
 		numTopWords=getArg("--top-word", args, 10);
+		topicCountFileName=getArg("--topic-count", args);
 	}
 	
 	protected boolean checkCommand()
@@ -155,8 +157,6 @@ public class ToolLDA extends ToolLDAInterface
 			lda.initialize();
 			lda.sample(numIters);
 			lda.writeModel(modelFileName);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
-			if (topicFileName.length()>0) lda.writeResult(topicFileName, numTopWords);
 		}
 		else
 		{
@@ -164,8 +164,15 @@ public class ToolLDA extends ToolLDAInterface
 			lda.readCorpus(corpusFileName);
 			lda.initialize();
 			lda.sample(numIters);
-			if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
 		}
+		writeFiles(lda);
+	}
+	
+	protected void writeFiles(LDA lda) throws IOException
+	{
+		if (!test && topicFileName.length()>0) lda.writeResult(topicFileName, numTopWords);
+		if (thetaFileName.length()>0) lda.writeDocTopicDist(thetaFileName);
+		if (topicCountFileName.length()>0) lda.writeDocTopicCounts(topicCountFileName);
 	}
 
 	public void printHelp()

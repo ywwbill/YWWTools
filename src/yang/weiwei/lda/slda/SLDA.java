@@ -414,6 +414,23 @@ public class SLDA extends LDA
 		bw.close();
 	}
 	
+	/**
+	 * Write document regression values to file
+	 * @param regFileName Regression value file name
+	 * @throws IOException IOException
+	 */
+	public void writeRegValues(String regFileName) throws IOException
+	{
+		BufferedWriter bw=new BufferedWriter(new FileWriter(regFileName));
+		for (int doc=0; doc<numDocs; doc++)
+		{
+			double reg=computeWeight(doc);
+			bw.write(reg+"");
+			bw.newLine();
+		}
+		bw.close();
+	}
+	
 	protected void getNumTestWords()
 	{
 		numTestWords=numWords;

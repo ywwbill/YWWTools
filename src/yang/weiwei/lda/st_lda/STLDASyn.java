@@ -50,7 +50,7 @@ public class STLDASyn extends LDASyn
 	public void compareParams(STLDA lda)
 	{
 		matchTopics(phi, lda.getTopicVocabDist());
-		compareTheta(theta, lda.theta);
+		compareTheta(theta, lda.getShortDocTopicDist());
 		comparePhi(phi, lda.getTopicVocabDist());
 	}
 	
@@ -94,7 +94,7 @@ public class STLDASyn extends LDASyn
 	public void writeSynModel(STLDA lda, String synModelFileName) throws IOException
 	{
 		BufferedWriter bw=new BufferedWriter(new FileWriter(synModelFileName));
-		IOUtil.writeVector(bw, lda.theta);
+		IOUtil.writeVector(bw, lda.getShortDocTopicDist());
 		IOUtil.writeMatrix(bw, lda.getTopicVocabDist());
 		bw.close();
 	}

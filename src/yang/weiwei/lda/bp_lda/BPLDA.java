@@ -8,7 +8,6 @@ import yang.weiwei.lda.LDA;
 import yang.weiwei.lda.LDACfg;
 import yang.weiwei.lda.LDAParam;
 import yang.weiwei.lda.util.LDADoc;
-import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 
 /**
@@ -217,28 +216,19 @@ public class BPLDA extends LDA
 	
 	public static void main(String args[]) throws IOException
 	{
-		String seg[]=Thread.currentThread().getStackTrace()[1].getClassName().split("\\.");
-		String modelName=seg[seg.length-1];
-		LDAParam parameters=new LDAParam(LDACfg.vocabFileName);
-		LDAResult trainResults=new LDAResult();
-		LDAResult testResults=new LDAResult();
+		LDAParam parameters=new LDAParam(LDACfg.rtmVocabFileName);
 		
 		BPLDA LDATrain=new BPLDA(parameters);
-		LDATrain.readCorpus(LDACfg.trainCorpusFileName);
-		LDATrain.readBlocks(LDACfg.trainClusterFileName);
+		LDATrain.readCorpus(LDACfg.rtmTrainCorpusFileName);
+		LDATrain.readBlocks(LDACfg.rtmTrainClusterFileName);
 		LDATrain.initialize();
 		LDATrain.sample(LDACfg.numTrainIters);
-		LDATrain.addResults(trainResults);
 //		LDATrain.writeModel(LDACfg.getModelFileName(modelName));
 		
 		BPLDA LDATest=new BPLDA(LDATrain, parameters);
 //		BPLDA LDATest=new BPLDA(LDACfg.getModelFileName(modelName), parameters);
-		LDATest.readCorpus(LDACfg.testCorpusFileName);
+		LDATest.readCorpus(LDACfg.rtmTestCorpusFileName);
 		LDATest.initialize();
 		LDATest.sample(LDACfg.numTestIters);
-		LDATest.addResults(testResults);
-		
-		trainResults.printResults(modelName+" Training Perplexity:", LDAResult.PERPLEXITY);
-		testResults.printResults(modelName+" Test Perplexity:", LDAResult.PERPLEXITY);
 	}
 }

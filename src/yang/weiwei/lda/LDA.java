@@ -10,7 +10,6 @@ import java.util.Arrays;
 
 import cc.mallet.util.Randoms;
 import yang.weiwei.lda.util.LDADoc;
-import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.lda.util.LDATopic;
 import yang.weiwei.lda.util.LDAWord;
 import yang.weiwei.util.MathUtil;
@@ -313,16 +312,6 @@ public class LDA
 		{
 			alpha[topic]*=param.alpha*param.numTopics/newAlphaSum;
 		}
-	}
-	
-	/**
-	 * Add log likelihood and perplexity results to result collector
-	 * @param result Result collector
-	 */
-	public void addResults(LDAResult result)
-	{
-		result.add(LDAResult.LOGLIKELIHOOD, logLikelihood);
-		result.add(LDAResult.PERPLEXITY, perplexity);
 	}
 	
 	protected void computeLogLikelihood()
@@ -721,27 +710,18 @@ public class LDA
 	
 	public static void main(String args[]) throws IOException
 	{	
-		String seg[]=Thread.currentThread().getStackTrace()[1].getClassName().split("\\.");
-		String modelName=seg[seg.length-1];
-		LDAParam parameters=new LDAParam(LDACfg.vocabFileName);
-		LDAResult trainResults=new LDAResult();
-		LDAResult testResults=new LDAResult();
+		LDAParam parameters=new LDAParam(LDACfg.sldaVocabFileName);
 		
 		LDA LDATrain=new LDA(parameters);
-		LDATrain.readCorpus(LDACfg.trainCorpusFileName);
+		LDATrain.readCorpus(LDACfg.sldaTrainCorpusFileName);
 		LDATrain.initialize();
 		LDATrain.sample(LDACfg.numTrainIters);
-		LDATrain.addResults(trainResults);
 //		LDATrain.writeModel(LDACfg.getModelFileName(modelName));
 		
 		LDA LDATest=new LDA(LDATrain, parameters);
 //		LDA LDATest=new LDA(LDACfg.getModelFileName(modelName), parameters);
-		LDATest.readCorpus(LDACfg.testCorpusFileName);
+		LDATest.readCorpus(LDACfg.sldaTestCorpusFileName);
 		LDATest.initialize();
 		LDATest.sample(LDACfg.numTestIters);
-		LDATest.addResults(testResults);
-		
-		trainResults.printResults(modelName+" Training Perplexity:", LDAResult.PERPLEXITY);
-		testResults.printResults(modelName+" Test Perplexity:", LDAResult.PERPLEXITY);
 	}
 }

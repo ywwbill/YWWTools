@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":9,"i12":10,"i13":10,"i14":10,"i15":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":9,"i11":10,"i12":10,"i13":10,"i14":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -200,88 +200,82 @@ extends <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html" title="c
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></span>(<a href="../../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</code>
-<div class="block">Add log likelihood and perplexity results to result collector</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#copyModel-yang.weiwei.lda.LDA-">copyModel</a></span>(<a href="../../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a>&nbsp;LDAModel)</code>&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#getBlockAssign-int-">getBlockAssign</a></span>(int&nbsp;doc)</code>
 <div class="block">Get block assignment of the given document</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>double[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#getBlockDist--">getBlockDist</a></span>()</code>
 <div class="block">Get block distribution</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#getBlockEdgeRate-int-int-">getBlockEdgeRate</a></span>(int&nbsp;block1,
                 int&nbsp;block2)</code>&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>double[][]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#getBlockEdgeRates--">getBlockEdgeRates</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>double[][]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#getBlockTopicDist--">getBlockTopicDist</a></span>()</code>
 <div class="block">Get block distribution over topics</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#getLexWeight-int-">getLexWeight</a></span>(int&nbsp;vocab)</code>
 <div class="block">Get a word's weight</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>double[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#getLexWeights--">getLexWeights</a></span>()</code>
 <div class="block">Get words' weights</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#initialize--">initialize</a></span>()</code>
 <div class="block">Initialize LDA member variables</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#initialize-java.lang.String-">initialize</a></span>(java.lang.String&nbsp;topicAssignFileName)</code>
 <div class="block">Initialize LDA member variables with user-provided topic assignments (may be unstable)</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#main-java.lang.String:A-">main</a></span>(java.lang.String[]&nbsp;args)</code>&nbsp;</td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#printBlocks--">printBlocks</a></span>()</code>
 <div class="block">Print blocks on console</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#readBlockGraph-java.lang.String-">readBlockGraph</a></span>(java.lang.String&nbsp;blockGraphFileName)</code>
 <div class="block">Read document links for WSBM</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
 <div class="block">Sample for given number of iterations</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../yang/weiwei/lda/slda/lex_wsb_bs_lda/LexWSBBSLDA.html#writeBlocks-java.lang.String-">writeBlocks</a></span>(java.lang.String&nbsp;blockFileName)</code>
 <div class="block">Write blocks to file</div>
@@ -481,23 +475,6 @@ extends <a href="../../../../../yang/weiwei/lda/slda/bs_lda/BSLDA.html" title="c
 <h4>printBlocks</h4>
 <pre>public&nbsp;void&nbsp;printBlocks()</pre>
 <div class="block">Print blocks on console</div>
-</li>
-</ul>
-<a name="addResults-yang.weiwei.lda.util.LDAResult-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addResults</h4>
-<pre>public&nbsp;void&nbsp;addResults(<a href="../../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">LDA</a></code></span></div>
-<div class="block">Add log likelihood and perplexity results to result collector</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../yang/weiwei/lda/slda/SLDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../yang/weiwei/lda/slda/SLDA.html" title="class in yang.weiwei.lda.slda">SLDA</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>result</code> - Result collector</dd>
-</dl>
 </li>
 </ul>
 <a name="getLexWeight-int-">

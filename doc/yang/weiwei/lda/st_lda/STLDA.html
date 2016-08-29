@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":9,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -48,7 +48,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../yang/weiwei/lda/st_lda/ShortLDADoc.html" title="class in yang.weiwei.lda.st_lda"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../yang/weiwei/lda/st_lda/STLDASyn.html" title="class in yang.weiwei.lda.st_lda"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -185,31 +185,65 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>int[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#getDocTopicAssign--">getDocTopicAssign</a></span>()</code>
-<div class="block">Get all documents' topic assignments</div>
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#getNumShortDocs--">getNumShortDocs</a></span>()</code>
+<div class="block">Get number of short documents</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>int[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#getTopicCounts--">getTopicCounts</a></span>()</code>
-<div class="block">Get number of documents assigned to topics</div>
+<td class="colFirst"><code><a href="../../../../yang/weiwei/lda/st_lda/ShortLDADoc.html" title="class in yang.weiwei.lda.st_lda">ShortLDADoc</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#getShortDoc-int-">getShortDoc</a></span>(int&nbsp;doc)</code>
+<div class="block">Get a specific short document</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>double[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#getTopicDist--">getTopicDist</a></span>()</code>
-<div class="block">Get topic distribution</div>
+<td class="colFirst"><code>int[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#getShortDocTopicAssign--">getShortDocTopicAssign</a></span>()</code>
+<div class="block">Get short documents' topic assignments</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#main-java.lang.String:A-">main</a></span>(java.lang.String[]&nbsp;args)</code>&nbsp;</td>
+<td class="colFirst"><code>double[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#getShortDocTopicDist--">getShortDocTopicDist</a></span>()</code>
+<div class="block">Get short documents' background topic distribution</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#writeDocTopicAssign-java.lang.String-">writeDocTopicAssign</a></span>(java.lang.String&nbsp;topicAssignFileName)</code>
-<div class="block">Write documents' topic assignments to file</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#initialize-java.lang.String-java.lang.String-">initialize</a></span>(java.lang.String&nbsp;topicAssignFileName,
+          java.lang.String&nbsp;shortTopicAssignFileName)</code>&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#main-java.lang.String:A-">main</a></span>(java.lang.String[]&nbsp;args)</code>&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#readShortCorpus-java.lang.String-">readShortCorpus</a></span>(java.lang.String&nbsp;shortCorpusFileName)</code>
+<div class="block">Read short corpus</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#readShortCorpus-java.lang.String-boolean-">readShortCorpus</a></span>(java.lang.String&nbsp;shortCorpusFileName,
+               boolean&nbsp;indexed)</code>&nbsp;</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
+<div class="block">Sample for given number of iterations</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#writeShortDocTopicAssign-java.lang.String-">writeShortDocTopicAssign</a></span>(java.lang.String&nbsp;topicAssignFileName)</code>
+<div class="block">Write short documents' topic assignments to file</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/st_lda/STLDA.html#writeShortDocTopicDist-java.lang.String-">writeShortDocTopicDist</a></span>(java.lang.String&nbsp;shortDocTopicDistFileName)</code>
+<div class="block">Write short documents' background topic distribution to file</div>
 </td>
 </tr>
 </table>
@@ -218,7 +252,7 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;yang.weiwei.lda.<a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></h3>
-<code><a href="../../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getDoc-int-">getDoc</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getDocTopicCounts--">getDocTopicCounts</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getDocTopicDist--">getDocTopicDist</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getLogLikelihood--">getLogLikelihood</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getNumDocs--">getNumDocs</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getNumWords--">getNumWords</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getPerplexity--">getPerplexity</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getTokenTopicAssign--">getTokenTopicAssign</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getTopic-int-">getTopic</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getTopicVocabDist--">getTopicVocabDist</a>, <a href="../../../../yang/weiwei/lda/LDA.html#initialize--">initialize</a>, <a href="../../../../yang/weiwei/lda/LDA.html#initialize-java.lang.String-">initialize</a>, <a href="../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">readCorpus</a>, <a href="../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-boolean-">readCorpus</a>, <a href="../../../../yang/weiwei/lda/LDA.html#sample-int-">sample</a>, <a href="../../../../yang/weiwei/lda/LDA.html#topWordsByFreq-int-int-">topWordsByFreq</a>, <a href="../../../../yang/weiwei/lda/LDA.html#topWordsByWeight-int-int-">topWordsByWeight</a>, <a href="../../../../yang/weiwei/lda/LDA.html#writeDocTopicCounts-java.lang.String-">writeDocTopicCounts</a>, <a href="../../../../yang/weiwei/lda/LDA.html#writeDocTopicDist-java.lang.String-">writeDocTopicDist</a>, <a href="../../../../yang/weiwei/lda/LDA.html#writeModel-java.lang.String-">writeModel</a>, <a href="../../../../yang/weiwei/lda/LDA.html#writeResult-java.lang.String-int-">writeResult</a>, <a href="../../../../yang/weiwei/lda/LDA.html#writeTokenTopicAssign-java.lang.String-">writeTokenTopicAssign</a></code></li>
+<code><a href="../../../../yang/weiwei/lda/LDA.html#getDoc-int-">getDoc</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getDocTopicCounts--">getDocTopicCounts</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getDocTopicDist--">getDocTopicDist</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getLogLikelihood--">getLogLikelihood</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getNumDocs--">getNumDocs</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getNumWords--">getNumWords</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getPerplexity--">getPerplexity</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getTokenTopicAssign--">getTokenTopicAssign</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getTopic-int-">getTopic</a>, <a href="../../../../yang/weiwei/lda/LDA.html#getTopicVocabDist--">getTopicVocabDist</a>, <a href="../../../../yang/weiwei/lda/LDA.html#initialize--">initialize</a>, <a href="../../../../yang/weiwei/lda/LDA.html#initialize-java.lang.String-">initialize</a>, <a href="../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-">readCorpus</a>, <a href="../../../../yang/weiwei/lda/LDA.html#readCorpus-java.lang.String-boolean-">readCorpus</a>, <a href="../../../../yang/weiwei/lda/LDA.html#topWordsByFreq-int-int-">topWordsByFreq</a>, <a href="../../../../yang/weiwei/lda/LDA.html#topWordsByWeight-int-int-">topWordsByWeight</a>, <a href="../../../../yang/weiwei/lda/LDA.html#writeDocTopicCounts-java.lang.String-">writeDocTopicCounts</a>, <a href="../../../../yang/weiwei/lda/LDA.html#writeDocTopicDist-java.lang.String-">writeDocTopicDist</a>, <a href="../../../../yang/weiwei/lda/LDA.html#writeModel-java.lang.String-">writeModel</a>, <a href="../../../../yang/weiwei/lda/LDA.html#writeResult-java.lang.String-int-">writeResult</a>, <a href="../../../../yang/weiwei/lda/LDA.html#writeTokenTopicAssign-java.lang.String-">writeTokenTopicAssign</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -298,60 +332,157 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getDocTopicAssign--">
+<a name="readShortCorpus-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getDocTopicAssign</h4>
-<pre>public&nbsp;int[]&nbsp;getDocTopicAssign()</pre>
-<div class="block">Get all documents' topic assignments</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Documents' topic assignments</dd>
-</dl>
-</li>
-</ul>
-<a name="getTopicCounts--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getTopicCounts</h4>
-<pre>public&nbsp;int[]&nbsp;getTopicCounts()</pre>
-<div class="block">Get number of documents assigned to topics</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Number of documents assigned to topics</dd>
-</dl>
-</li>
-</ul>
-<a name="getTopicDist--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getTopicDist</h4>
-<pre>public&nbsp;double[]&nbsp;getTopicDist()</pre>
-<div class="block">Get topic distribution</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Topic distribution</dd>
-</dl>
-</li>
-</ul>
-<a name="writeDocTopicAssign-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>writeDocTopicAssign</h4>
-<pre>public&nbsp;void&nbsp;writeDocTopicAssign(java.lang.String&nbsp;topicAssignFileName)
-                         throws java.io.IOException</pre>
-<div class="block">Write documents' topic assignments to file</div>
+<h4>readShortCorpus</h4>
+<pre>public&nbsp;void&nbsp;readShortCorpus(java.lang.String&nbsp;shortCorpusFileName)
+                     throws java.io.IOException</pre>
+<div class="block">Read short corpus</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>topicAssignFileName</code> - Topic assignment file name</dd>
+<dd><code>shortCorpusFileName</code> - Short corpus file name</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code> - IOException</dd>
+</dl>
+</li>
+</ul>
+<a name="readShortCorpus-java.lang.String-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>readShortCorpus</h4>
+<pre>public&nbsp;void&nbsp;readShortCorpus(java.lang.String&nbsp;shortCorpusFileName,
+                            boolean&nbsp;indexed)
+                     throws java.io.IOException</pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd>
+</dl>
+</li>
+</ul>
+<a name="initialize-java.lang.String-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>initialize</h4>
+<pre>public&nbsp;void&nbsp;initialize(java.lang.String&nbsp;topicAssignFileName,
+                       java.lang.String&nbsp;shortTopicAssignFileName)
+                throws java.io.IOException</pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd>
+</dl>
+</li>
+</ul>
+<a name="sample-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sample</h4>
+<pre>public&nbsp;void&nbsp;sample(int&nbsp;numIters)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html#sample-int-">LDA</a></code></span></div>
+<div class="block">Sample for given number of iterations</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../yang/weiwei/lda/LDA.html#sample-int-">sample</a></code>&nbsp;in class&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numIters</code> - Number of iterations</dd>
+</dl>
+</li>
+</ul>
+<a name="getShortDocTopicAssign--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getShortDocTopicAssign</h4>
+<pre>public&nbsp;int[]&nbsp;getShortDocTopicAssign()</pre>
+<div class="block">Get short documents' topic assignments</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Short documents' topic assignments</dd>
+</dl>
+</li>
+</ul>
+<a name="getShortDocTopicDist--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getShortDocTopicDist</h4>
+<pre>public&nbsp;double[]&nbsp;getShortDocTopicDist()</pre>
+<div class="block">Get short documents' background topic distribution</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Short documents' background topic distribution</dd>
+</dl>
+</li>
+</ul>
+<a name="getNumShortDocs--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNumShortDocs</h4>
+<pre>public&nbsp;int&nbsp;getNumShortDocs()</pre>
+<div class="block">Get number of short documents</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Number of short documents</dd>
+</dl>
+</li>
+</ul>
+<a name="getShortDoc-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getShortDoc</h4>
+<pre>public&nbsp;<a href="../../../../yang/weiwei/lda/st_lda/ShortLDADoc.html" title="class in yang.weiwei.lda.st_lda">ShortLDADoc</a>&nbsp;getShortDoc(int&nbsp;doc)</pre>
+<div class="block">Get a specific short document</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>doc</code> - Short document number</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Corresponding short document object</dd>
+</dl>
+</li>
+</ul>
+<a name="writeShortDocTopicDist-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>writeShortDocTopicDist</h4>
+<pre>public&nbsp;void&nbsp;writeShortDocTopicDist(java.lang.String&nbsp;shortDocTopicDistFileName)
+                            throws java.io.IOException</pre>
+<div class="block">Write short documents' background topic distribution to file</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>shortDocTopicDistFileName</code> - Short documents' background topic distribution file name</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code> - IOException</dd>
+</dl>
+</li>
+</ul>
+<a name="writeShortDocTopicAssign-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>writeShortDocTopicAssign</h4>
+<pre>public&nbsp;void&nbsp;writeShortDocTopicAssign(java.lang.String&nbsp;topicAssignFileName)
+                              throws java.io.IOException</pre>
+<div class="block">Write short documents' topic assignments to file</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>topicAssignFileName</code> - Short documents' topic assignment file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - IOException</dd>
 </dl>
@@ -399,7 +530,7 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../yang/weiwei/lda/st_lda/ShortLDADoc.html" title="class in yang.weiwei.lda.st_lda"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../yang/weiwei/lda/st_lda/STLDASyn.html" title="class in yang.weiwei.lda.st_lda"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

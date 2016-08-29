@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":9,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":9,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -204,74 +204,68 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></span>(<a href="../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</code>
-<div class="block">Add log likelihood and perplexity results to result collector</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getPLR--">getPLR</a></span>()</code>
 <div class="block">Get predictive link rank</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getTopicWeight-int-">getTopicWeight</a></span>(int&nbsp;topic)</code>
 <div class="block">Get the weight of a topic</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>double[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getTopicWeights--">getTopicWeights</a></span>()</code>
 <div class="block">Get topic weights</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getTrainEdgeWeight-int-int-">getTrainEdgeWeight</a></span>(int&nbsp;doc1,
                   int&nbsp;doc2)</code>&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;java.lang.Integer&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#getTrainLinkedDocs-int-">getTrainLinkedDocs</a></span>(int&nbsp;doc)</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#main-java.lang.String:A-">main</a></span>(java.lang.String[]&nbsp;args)</code>&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#readCorpus-java.lang.String-">readCorpus</a></span>(java.lang.String&nbsp;corpusFileName)</code>
 <div class="block">Read corpus</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#readGraph-java.lang.String-int-">readGraph</a></span>(java.lang.String&nbsp;graphFileName,
          int&nbsp;graphType)</code>
 <div class="block">Read document links</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#sample-int-">sample</a></span>(int&nbsp;numIters)</code>
 <div class="block">Sample for given number of iterations</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#writePLR-java.lang.String-">writePLR</a></span>(java.lang.String&nbsp;plrFileName)</code>
 <div class="block">Write predictive link rank to file</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#writePred-java.lang.String-">writePred</a></span>(java.lang.String&nbsp;predFileName)</code>
 <div class="block">Write predicted document link probabilities to file</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../yang/weiwei/lda/rtm/RTM.html#writeRegValues-java.lang.String-">writeRegValues</a></span>(java.lang.String&nbsp;regFileName)</code>
 <div class="block">Write regression values to file</div>
@@ -450,23 +444,6 @@ extends <a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiw
 <dd><code><a href="../../../../yang/weiwei/lda/LDA.html#sample-int-">sample</a></code>&nbsp;in class&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>numIters</code> - Number of iterations</dd>
-</dl>
-</li>
-</ul>
-<a name="addResults-yang.weiwei.lda.util.LDAResult-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addResults</h4>
-<pre>public&nbsp;void&nbsp;addResults(<a href="../../../../yang/weiwei/lda/util/LDAResult.html" title="class in yang.weiwei.lda.util">LDAResult</a>&nbsp;result)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">LDA</a></code></span></div>
-<div class="block">Add log likelihood and perplexity results to result collector</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../yang/weiwei/lda/LDA.html#addResults-yang.weiwei.lda.util.LDAResult-">addResults</a></code>&nbsp;in class&nbsp;<code><a href="../../../../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>result</code> - Result collector</dd>
 </dl>
 </li>
 </ul>

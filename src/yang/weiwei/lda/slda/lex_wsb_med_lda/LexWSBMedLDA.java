@@ -7,7 +7,6 @@ import yang.weiwei.util.MathUtil;
 import yang.weiwei.lda.LDACfg;
 import yang.weiwei.lda.LDAParam;
 import yang.weiwei.lda.slda.lex_wsb_bs_lda.LexWSBBSLDA;
-import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 
 /**
@@ -69,24 +68,31 @@ public class LexWSBMedLDA extends LexWSBBSLDA
 			computeLogLikelihood();
 			perplexity=Math.exp(-logLikelihood/numTestWords);
 			
-			if (type==TRAIN)
-			{
-				computeError();
-				computeAccuracy();
-			}
 			if (param.verbose)
 			{
+				IOUtil.print("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+
+						"\tPPX: "+format(perplexity));
 				if (wsbm!=null)
 				{
-					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
-							"\tError: "+format(error)+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\tAccuracy: "+format(accuracy));
+					IOUtil.print("\tBlock Log-LLD: "+format(wsbm.getLogLikelihood()));
 				}
-				else
-				{
-					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
-							"\tError: "+format(error)+"\tAccuracy: "+format(accuracy));
-				}
+				IOUtil.println();
 			}
+			
+			computeError();
+			if (param.verbose && numLabels>0)
+			{
+				IOUtil.print("\tError: "+format(error));
+			}
+			
+			computeAccuracy();
+			if (param.verbose && numLabels>0)
+			{
+				IOUtil.print("\tAccuracy: "+format(accuracy));
+			}
+			
+			if (param.verbose) IOUtil.println();
+			
 			if (param.updateAlpha && iteration%param.updateAlphaInterval==0 && type==TRAIN)
 			{
 				updateHyperParam();
@@ -227,31 +233,23 @@ public class LexWSBMedLDA extends LexWSBBSLDA
 	
 	public static void main(String args[]) throws IOException
 	{
-		String seg[]=Thread.currentThread().getStackTrace()[1].getClassName().split("\\.");
-		String modelName=seg[seg.length-1];
-		LDAParam parameters=new LDAParam(LDACfg.vocabFileName);
-		LDAResult trainResults=new LDAResult();
-		LDAResult testResults=new LDAResult();
+		LDAParam parameters=new LDAParam(LDACfg.sldaVocabFileName);
 		
 		LexWSBMedLDA LDATrain=new LexWSBMedLDA(parameters);
-		LDATrain.readCorpus(LDACfg.trainCorpusFileName);
-		LDATrain.readLabels(LDACfg.trainLabelFileName);
-		LDATrain.readBlockGraph(LDACfg.trainGraphFileName);
+		LDATrain.readCorpus(LDACfg.sldaTrainCorpusFileName);
+		LDATrain.readLabels(LDACfg.sldaTrainLabelFileName);
+//		LDATrain.readBlockGraph(LDACfg.sldaTrainGraphFileName);
 		LDATrain.initialize();
 		LDATrain.sample(LDACfg.numTrainIters);
-		LDATrain.addResults(trainResults);
 //		LDATrain.writeModel(LDACfg.getModelFileName(modelName));
 		
 		LexWSBMedLDA LDATest=new LexWSBMedLDA(LDATrain, parameters);
 //		LexWSBMedLDA LDATest=new LexWSBMedLDA(LDACfg.getModelFileName(modelName), parameters);
-		LDATest.readCorpus(LDACfg.testCorpusFileName);
-		LDATest.readBlockGraph(LDACfg.testGraphFileName);
+		LDATest.readCorpus(LDACfg.sldaTestCorpusFileName);
+		LDATest.readLabels(LDACfg.sldaTestLabelFileName);
+//		LDATest.readBlockGraph(LDACfg.sldaTestGraphFileName);
 		LDATest.initialize();
 		LDATest.sample(LDACfg.numTestIters);
-		LDATest.addResults(testResults);
-		LDATest.writePredLabels(LDACfg.predLabelFileName);
-		
-		trainResults.printResults(modelName+" Training Error: ", LDAResult.ERROR);
-		testResults.printResults(modelName+" Test Error: ", LDAResult.ERROR);
+//		LDATest.writePredLabels(LDACfg.sldaPredLabelFileName);
 	}
 }

@@ -10,7 +10,6 @@ import yang.weiwei.lda.LDA;
 import yang.weiwei.lda.LDACfg;
 import yang.weiwei.lda.LDAParam;
 import yang.weiwei.lda.rtm.RTM;
-import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 
 import com.google.gson.annotations.Expose;
@@ -42,6 +41,11 @@ public class LexWSBRTM extends RTM
 		{
 			WSBMParam wsbmParam=new WSBMParam(param, numDocs);
 			wsbm=new WSBM(wsbmParam);
+			
+			blockTopicCounts=new int[param.numBlocks][param.numTopics];
+			blockTokenCounts=new int[param.numBlocks];
+			if (param.blockFeat) rho=new double[param.numBlocks][param.numBlocks];
+			pi=new double[param.numBlocks][param.numTopics];
 		}
 		wsbm.readGraph(blockGraphFileName);
 	}
@@ -56,14 +60,14 @@ public class LexWSBRTM extends RTM
 	public void initialize()
 	{
 		super.initialize();
-		wsbm.init();
+		if (wsbm!=null) wsbm.init();
 		initBlockAssigns();
 	}
 	
 	public void initialize(String topicAssignFileName) throws IOException
 	{
 		super.initialize(topicAssignFileName);
-		wsbm.init();
+		if (wsbm!=null) wsbm.init();
 		initBlockAssigns();
 	}
 	
@@ -104,24 +108,37 @@ public class LexWSBRTM extends RTM
 			{
 				optimize();
 			}
-			computeError();
-			computeAvgWeight();
-			if (iteration%param.showPLRInterval==0 || iteration==numIters) computePLR();
 			
 			if (param.verbose)
 			{
+				IOUtil.print("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+
+						"\tPPX: "+format(perplexity));
 				if (wsbm!=null)
 				{
-					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
-							"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+"\n\tAvg Weight: "+format(avgWeight)+
-							"\tError: "+format(error)+"\tPLR: "+format(PLR));
+					IOUtil.print("\tBlock Log-LLD: "+format(wsbm.getLogLikelihood()));
 				}
-				else
-				{
-					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity)+
-							"\n\tAvg Weight: "+format(avgWeight)+"\tError: "+format(error)+"\tPLR: "+format(PLR));
-				}
+				IOUtil.println();
 			}
+			
+			computeAvgWeight();
+			if (param.verbose && numTestEdges>0)
+			{
+				IOUtil.print("\tAvg Weight: "+format(avgWeight));
+			}
+			
+			computeError();
+			if (param.verbose && numTestEdges>0)
+			{
+				IOUtil.print("\tError: "+format(error));
+			}
+			
+			if (iteration%param.showPLRInterval==0 || iteration==numIters) computePLR();
+			if (param.verbose && numTestEdges>0)
+			{
+				IOUtil.print("\tPLR: "+format(PLR));
+			}
+			
+			if (param.verbose) IOUtil.println();
 		}
 		
 		if (type==TRAIN)
@@ -338,13 +355,6 @@ public class LexWSBRTM extends RTM
 		wsbm.printResults();
 	}
 	
-	public void addResults(LDAResult result)
-	{
-		super.addResults(result);
-		if (wsbm==null) return;
-		result.add(LDAResult.BLOCKLOGLIKELIHOOD, wsbm.getLogLikelihood());
-	}
-	
 	/**
 	 * Get a word's weight
 	 * @param vocab Word
@@ -437,10 +447,6 @@ public class LexWSBRTM extends RTM
 	protected void initVariables()
 	{
 		super.initVariables();
-		blockTopicCounts=new int[param.numBlocks][param.numTopics];
-		blockTokenCounts=new int[param.numBlocks];
-		if (param.blockFeat) rho=new double[param.numBlocks][param.numBlocks];
-		pi=new double[param.numBlocks][param.numTopics];
 		tau=new double[param.numVocab];
 	}
 	
@@ -495,32 +501,24 @@ public class LexWSBRTM extends RTM
 	
 	public static void main(String args[]) throws IOException
 	{
-		String seg[]=Thread.currentThread().getStackTrace()[1].getClassName().split("\\.");
-		String modelName=seg[seg.length-1];
-		LDAParam parameters=new LDAParam(LDACfg.vocabFileName);
+		LDAParam parameters=new LDAParam(LDACfg.rtmVocabFileName);
 		parameters.updateAlpha=false;
-		LDAResult trainResult=new LDAResult();
-		LDAResult testResult=new LDAResult();
 		
 		LexWSBRTM RTMTrain=new LexWSBRTM(parameters);
-		RTMTrain.readCorpus(LDACfg.trainCorpusFileName);
-		RTMTrain.readGraph(LDACfg.trainGraphFileName, TRAIN_GRAPH);
-		RTMTrain.readGraph(LDACfg.trainGraphFileName, TEST_GRAPH);
-		RTMTrain.readBlockGraph(LDACfg.trainGraphFileName);
+		RTMTrain.readCorpus(LDACfg.rtmTrainCorpusFileName);
+		RTMTrain.readGraph(LDACfg.rtmTrainLinkFileName, TRAIN_GRAPH);
+		RTMTrain.readGraph(LDACfg.rtmTrainLinkFileName, TEST_GRAPH);
+		RTMTrain.readBlockGraph(LDACfg.rtmTrainLinkFileName);
 		RTMTrain.initialize();
 		RTMTrain.sample(LDACfg.numTrainIters);
-		RTMTrain.addResults(trainResult);
 //		RTMTrain.writeModel(LDACfg.getModelFileName(modelName));
 		
 		LexWSBRTM RTMTest=new LexWSBRTM(RTMTrain, parameters);
 //		LexWSBRTM RTMTest=new LexWSBRTM(LDACfg.getModelFileName(modelName), parameters);
-		RTMTest.readCorpus(LDACfg.testCorpusFileName);
-		RTMTest.readGraph(LDACfg.testGraphFileName, TEST_GRAPH);
+		RTMTest.readCorpus(LDACfg.rtmTestCorpusFileName);
+		RTMTest.readGraph(LDACfg.rtmTestLinkFileName, TEST_GRAPH);
 		RTMTest.initialize();
 		RTMTest.sample(LDACfg.numTestIters);
-		RTMTest.addResults(testResult);
-		
-		trainResult.printResults(modelName+" Training PLR: ", LDAResult.PLR);
-		testResult.printResults(modelName+" Test PLR: ", LDAResult.PLR);
+//		RTMTest.writePred(LDACfg.rtmPredLinkFileName);
 	}
 }

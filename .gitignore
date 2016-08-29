@@ -7,3 +7,4 @@
 /data/wsbm/synthetic/*
 /target/*
 .DS_Store
+/*.jar

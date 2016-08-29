@@ -10,7 +10,6 @@ import cc.mallet.optimize.LimitedMemoryBFGS;
 import yang.weiwei.lda.LDACfg;
 import yang.weiwei.lda.LDAParam;
 import yang.weiwei.lda.slda.SLDA;
-import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 import yang.weiwei.util.MathUtil;
 
@@ -70,14 +69,27 @@ public class BSLDA extends SLDA
 			if (type==TRAIN)
 			{
 				optimize();
-				computeError();
-				computeAccuracy();
 			}
 			if (param.verbose)
 			{
 				IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+
-						"\tPPX: "+format(perplexity)+"\tError: "+format(error)+"\tAccuracy: "+format(accuracy));
+						"\tPPX: "+format(perplexity));
 			}
+			
+			computeError();
+			if (param.verbose && numLabels>0)
+			{
+				IOUtil.print("\tError: "+format(error));
+			}
+			
+			computeAccuracy();
+			if (param.verbose && numLabels>0)
+			{
+				IOUtil.print("\tAccuracy: "+format(accuracy));
+			}
+			
+			if (param.verbose) IOUtil.println();
+			
 			if (param.updateAlpha && iteration%param.updateAlphaInterval==0 && type==TRAIN)
 			{
 				updateHyperParam();
@@ -268,29 +280,21 @@ public class BSLDA extends SLDA
 	
 	public static void main(String args[]) throws IOException
 	{
-		String seg[]=Thread.currentThread().getStackTrace()[1].getClassName().split("\\.");
-		String modelName=seg[seg.length-1];
-		LDAParam parameters=new LDAParam(LDACfg.vocabFileName);
-		LDAResult trainResults=new LDAResult();
-		LDAResult testResults=new LDAResult();
+		LDAParam parameters=new LDAParam(LDACfg.sldaVocabFileName);
 		
 		BSLDA LDATrain=new BSLDA(parameters);
-		LDATrain.readCorpus(LDACfg.trainCorpusFileName);
-		LDATrain.readLabels(LDACfg.trainLabelFileName);
+		LDATrain.readCorpus(LDACfg.sldaTrainCorpusFileName);
+		LDATrain.readLabels(LDACfg.sldaTrainLabelFileName);
 		LDATrain.initialize();
 		LDATrain.sample(LDACfg.numTrainIters);
-		LDATrain.addResults(trainResults);
 //		LDATrain.writeModel(LDACfg.getModelFileName(modelName));
 		
 		BSLDA LDATest=new BSLDA(LDATrain, parameters);
 //		BSLDA LDATest=new BSLDA(LDACfg.getModelFileName(modelName), parameters);
-		LDATest.readCorpus(LDACfg.testCorpusFileName);
+		LDATest.readCorpus(LDACfg.sldaTestCorpusFileName);
+		LDATest.readLabels(LDACfg.sldaTestLabelFileName);
 		LDATest.initialize();
 		LDATest.sample(LDACfg.numTestIters);
-		LDATest.addResults(testResults);
-		LDATest.writePredLabels(LDACfg.predLabelFileName);
-		
-		trainResults.printResults(modelName+" Training Error: ", LDAResult.ERROR);
-		testResults.printResults(modelName+" Test Error: ", LDAResult.ERROR);
+//		LDATest.writePredLabels(LDACfg.sldaPredLabelFileName);
 	}
 }

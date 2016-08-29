@@ -193,10 +193,6 @@
 </dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/rtm/RTMDocProb.html#getDocNo--">getDocNo()</a></span> - Method in class yang.weiwei.lda.rtm.<a href="../yang/weiwei/lda/rtm/RTMDocProb.html" title="class in yang.weiwei.lda.rtm">RTMDocProb</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/STLDA.html#getDocTopicAssign--">getDocTopicAssign()</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/STLDA.html" title="class in yang.weiwei.lda.st_lda">STLDA</a></dt>
-<dd>
-<div class="block">Get all documents' topic assignments</div>
-</dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/LDA.html#getDocTopicCounts--">getDocTopicCounts()</a></span> - Method in class yang.weiwei.lda.<a href="../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></dt>
 <dd>
 <div class="block">Get documents' number of tokens assigned to every topic</div>
@@ -269,6 +265,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/slda/SLDAFunction.html#getNumParameters--">getNumParameters()</a></span> - Method in class yang.weiwei.lda.slda.<a href="../yang/weiwei/lda/slda/SLDAFunction.html" title="class in yang.weiwei.lda.slda">SLDAFunction</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/STLDA.html#getNumShortDocs--">getNumShortDocs()</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/STLDA.html" title="class in yang.weiwei.lda.st_lda">STLDA</a></dt>
+<dd>
+<div class="block">Get number of short documents</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/LDA.html#getNumWords--">getNumWords()</a></span> - Method in class yang.weiwei.lda.<a href="../yang/weiwei/lda/LDA.html" title="class in yang.weiwei.lda">LDA</a></dt>
 <dd>
 <div class="block">Get number of tokens in the corpus</div>
@@ -326,6 +326,18 @@
 <dd>
 <div class="block">Returns the length of the word resulting from the stemming process.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/STLDA.html#getShortDoc-int-">getShortDoc(int)</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/STLDA.html" title="class in yang.weiwei.lda.st_lda">STLDA</a></dt>
+<dd>
+<div class="block">Get a specific short document</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/STLDA.html#getShortDocTopicAssign--">getShortDocTopicAssign()</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/STLDA.html" title="class in yang.weiwei.lda.st_lda">STLDA</a></dt>
+<dd>
+<div class="block">Get short documents' topic assignments</div>
+</dd>
+<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/STLDA.html#getShortDocTopicDist--">getShortDocTopicDist()</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/STLDA.html" title="class in yang.weiwei.lda.st_lda">STLDA</a></dt>
+<dd>
+<div class="block">Get short documents' background topic distribution</div>
+</dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/LDACfg.html#getSynBlockGraphFileName-java.lang.String-">getSynBlockGraphFileName(String)</a></span> - Static method in class yang.weiwei.lda.<a href="../yang/weiwei/lda/LDACfg.html" title="class in yang.weiwei.lda">LDACfg</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/LDACfg.html#getSynCorpusFileName-java.lang.String-">getSynCorpusFileName(String)</a></span> - Static method in class yang.weiwei.lda.<a href="../yang/weiwei/lda/LDACfg.html" title="class in yang.weiwei.lda">LDACfg</a></dt>
@@ -350,6 +362,8 @@
 <dd>
 <div class="block">Get a specific topic</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/ShortLDADoc.html#getTopicAssign--">getTopicAssign()</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/ShortLDADoc.html" title="class in yang.weiwei.lda.st_lda">ShortLDADoc</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/util/LDADoc.html#getTopicAssign-int-">getTopicAssign(int)</a></span> - Method in class yang.weiwei.lda.util.<a href="../yang/weiwei/lda/util/LDADoc.html" title="class in yang.weiwei.lda.util">LDADoc</a></dt>
 <dd>
 <div class="block">Get a token's topic assignment</div>
@@ -357,14 +371,6 @@
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/util/LDADoc.html#getTopicCount-int-">getTopicCount(int)</a></span> - Method in class yang.weiwei.lda.util.<a href="../yang/weiwei/lda/util/LDADoc.html" title="class in yang.weiwei.lda.util">LDADoc</a></dt>
 <dd>
 <div class="block">Get number of tokens assigned to a topic</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/STLDA.html#getTopicCounts--">getTopicCounts()</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/STLDA.html" title="class in yang.weiwei.lda.st_lda">STLDA</a></dt>
-<dd>
-<div class="block">Get number of documents assigned to topics</div>
-</dd>
-<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/STLDA.html#getTopicDist--">getTopicDist()</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/STLDA.html" title="class in yang.weiwei.lda.st_lda">STLDA</a></dt>
-<dd>
-<div class="block">Get topic distribution</div>
 </dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/slda/SLDATopicWeight.html#getTopicNo--">getTopicNo()</a></span> - Method in class yang.weiwei.lda.slda.<a href="../yang/weiwei/lda/slda/SLDATopicWeight.html" title="class in yang.weiwei.lda.slda">SLDATopicWeight</a></dt>
 <dd>
@@ -440,6 +446,8 @@
 <dd>
 <div class="block">Get the weight of this word</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/ShortLDADoc.html#getWord-int-">getWord(int)</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/ShortLDADoc.html" title="class in yang.weiwei.lda.st_lda">ShortLDADoc</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/util/LDADoc.html#getWord-int-">getWord(int)</a></span> - Method in class yang.weiwei.lda.util.<a href="../yang/weiwei/lda/util/LDADoc.html" title="class in yang.weiwei.lda.util">LDADoc</a></dt>
 <dd>
 <div class="block">Get a token</div>
@@ -448,6 +456,8 @@
 <dd>
 <div class="block">Get word</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/ShortLDADoc.html#getWordCount-int-">getWordCount(int)</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/ShortLDADoc.html" title="class in yang.weiwei.lda.st_lda">ShortLDADoc</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/util/LDADoc.html#getWordCount-int-">getWordCount(int)</a></span> - Method in class yang.weiwei.lda.util.<a href="../yang/weiwei/lda/util/LDADoc.html" title="class in yang.weiwei.lda.util">LDADoc</a></dt>
 <dd>
 <div class="block">Get the frequency of a given word</div>
@@ -456,6 +466,8 @@
 <dd>
 <div class="block">Get this topic's word distribution</div>
 </dd>
+<dt><span class="memberNameLink"><a href="../yang/weiwei/lda/st_lda/ShortLDADoc.html#getWordSet--">getWordSet()</a></span> - Method in class yang.weiwei.lda.st_lda.<a href="../yang/weiwei/lda/st_lda/ShortLDADoc.html" title="class in yang.weiwei.lda.st_lda">ShortLDADoc</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="../yang/weiwei/lda/util/LDADoc.html#getWordSet--">getWordSet()</a></span> - Method in class yang.weiwei.lda.util.<a href="../yang/weiwei/lda/util/LDADoc.html" title="class in yang.weiwei.lda.util">LDADoc</a></dt>
 <dd>
 <div class="block">Get set of unique words in this document</div>

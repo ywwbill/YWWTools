@@ -1,14 +1,16 @@
 package yang.weiwei.lda.st_lda;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 
 import yang.weiwei.util.MathUtil;
 import yang.weiwei.lda.LDA;
 import yang.weiwei.lda.LDACfg;
 import yang.weiwei.lda.LDAParam;
-import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 
 /**
@@ -18,48 +20,159 @@ import yang.weiwei.util.IOUtil;
  */
 public class STLDA extends LDA
 {
-	protected int docTopicAssign[];
-	protected int topicCounts[];
-	protected double theta[];
+	protected int numShortDocs;
+	protected ArrayList<ShortLDADoc> shortCorpus;
+	protected double shortTheta[];
+	protected int shortDocTopicCounts[];
+	
+	/**
+	 * Read short corpus
+	 * @param shortCorpusFileName Short corpus file name
+	 * @throws IOException IOException
+	 */
+	public void readShortCorpus(String shortCorpusFileName) throws IOException
+	{
+		readShortCorpus(shortCorpusFileName, true);
+	}
+	
+	public void readShortCorpus(String shortCorpusFileName, boolean indexed) throws IOException
+	{
+		BufferedReader br=new BufferedReader(new FileReader(shortCorpusFileName));
+		String line;
+		while ((line=br.readLine())!=null)
+		{
+			if (indexed)
+			{
+				shortCorpus.add(new ShortLDADoc(line, param.numTopics, param.numVocab));
+			}
+			else
+			{
+				shortCorpus.add(new ShortLDADoc(line, param.numTopics, param.vocabMap));
+			}
+		}
+		br.close();
+		numShortDocs=shortCorpus.size();
+	}
+	
+	protected void printParam()
+	{
+		super.printParam();
+		IOUtil.println("\t#short docs: "+numShortDocs);
+	}
 	
 	protected void initDocVariables()
 	{
 		super.initDocVariables();
-		docTopicAssign=new int[numDocs];
-		theta=new double[param.numTopics];
-		topicCounts=new int[param.numTopics];
+		for (int doc=0; doc<numShortDocs; doc++)
+		{
+			numWords+=shortCorpus.get(doc).docLength();
+			int sampleSize=getSampleSize(shortCorpus.get(doc).docLength());
+			updateDenom+=(double)(sampleSize)/(double)(sampleSize+param.alpha*param.numTopics);
+		}
+		getNumTestWords();
 	}
 	
 	protected void initTopicAssigns()
 	{
-		for (int doc=0; doc<numDocs; doc++)
+		super.initTopicAssigns();
+		for (ShortLDADoc doc : shortCorpus)
 		{
 			int topic=randoms.nextInt(param.numTopics);
-			docTopicAssign[doc]=topic;
-			topicCounts[topic]++;
-			for (int token=0; token<corpus.get(doc).docLength(); token++)
+			doc.assignTopic(topic);
+			shortDocTopicCounts[topic]++;
+			
+			int interval=getSampleInterval();
+			for (int token=0; token<doc.docLength(); token+=interval)
 			{
-				int word=corpus.get(doc).getWord(token);
+				int word=doc.getWord(token);
 				topics[topic].addVocab(word);
 			}
 		}
 	}
 	
-	protected void sampleDoc(int doc)
+	public void initialize(String topicAssignFileName,
+			String shortTopicAssignFileName) throws IOException
 	{
-		int oldTopic=docTopicAssign[doc];
-		topicCounts[oldTopic]--;
-		for (int token=0; token<corpus.get(doc).docLength(); token++)
+		super.initialize(shortTopicAssignFileName);
+		initShortTopicAssigns(shortTopicAssignFileName);
+	}
+	
+	protected void initShortTopicAssigns(String shortTopicAssignFileName) throws IOException
+	{
+		BufferedReader br=new BufferedReader(new FileReader(shortTopicAssignFileName));
+		String line;
+		for (int doc=0; doc<numShortDocs; doc++)
 		{
-			topics[oldTopic].removeVocab(corpus.get(doc).getWord(token));
+			line=br.readLine();
+			int topic=randoms.nextInt(param.numTopics);
+			if (line!=null && line.length()>0)
+			{
+				topic=Integer.valueOf(line);
+			}
+			
+			shortCorpus.get(doc).assignTopic(topic);
+			int interval=getSampleInterval();
+			for (int token=0; token<shortCorpus.get(doc).docLength(); token+=interval)
+			{
+				int word=shortCorpus.get(doc).getWord(token);
+				topics[topic].addVocab(word);
+			}
+		}
+		br.close();
+	}
+	
+	public void sample(int numIters)
+	{
+		for (int iteration=1; iteration<=numIters; iteration++)
+		{
+			for (int doc=0; doc<numDocs; doc++)
+			{
+				sampleDoc(doc);
+			}
+			for (int doc=0; doc<numShortDocs; doc++)
+			{
+				sampleShortDoc(doc);
+			}
+			computeLogLikelihood();
+			perplexity=Math.exp(-logLikelihood/numTestWords);
+			if (param.verbose)
+			{
+				IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity));
+			}
+			if (param.updateAlpha && iteration%param.updateAlphaInterval==0 && type==TRAIN)
+			{
+				updateHyperParam();
+			}
 		}
 		
+		if (type==TRAIN && param.verbose)
+		{
+			for (int topic=0; topic<param.numTopics; topic++)
+			{
+				IOUtil.println(topWordsByFreq(topic, 10));
+			}
+		}
+	}
+	
+	protected void sampleShortDoc(int doc)
+	{
+		int oldTopic,newTopic,interval=getSampleInterval();;
 		double topicScores[]=new double[param.numTopics];
+		
+		oldTopic=shortCorpus.get(doc).getTopicAssign();
+		shortCorpus.get(doc).unassignTopic();
+		shortDocTopicCounts[oldTopic]--;
+		for (int token=0; token<shortCorpus.get(doc).docLength(); token+=interval)
+		{
+			int word=shortCorpus.get(doc).getWord(token);
+			topics[oldTopic].removeVocab(word);
+		}
+		
 		for (int topic=0; topic<param.numTopics; topic++)
 		{
-			topicScores[topic]=topicUpdating(doc, topic);
+			topicScores[topic]=shortTopicUpdating(doc, topic);
 		}
-		int newTopic=MathUtil.selectLogDiscrete(topicScores);
+		newTopic=MathUtil.selectLogDiscrete(topicScores);
 		if (newTopic==-1)
 		{
 			newTopic=oldTopic;
@@ -69,73 +182,71 @@ public class STLDA extends LDA
 			}
 		}
 		
-		docTopicAssign[doc]=newTopic;
-		topicCounts[newTopic]++;
-		for (int token=0; token<corpus.get(doc).docLength(); token++)
+		shortCorpus.get(doc).assignTopic(newTopic);
+		shortDocTopicCounts[newTopic]++;
+		for (int token=0; token<shortCorpus.get(doc).docLength(); token+=interval)
 		{
-			topics[newTopic].addVocab(corpus.get(doc).getWord(token));
+			int word=shortCorpus.get(doc).getWord(token);
+			topics[newTopic].addVocab(word);
 		}
 	}
 	
-	protected double topicUpdating(int doc, int topic)
+	protected double shortTopicUpdating(int doc, int topic)
 	{
+		double score1=Math.log(shortDocTopicCounts[topic]+alpha[topic]);
+		double score2=0.0;
 		if (type==TRAIN)
 		{
-			double score1=Math.log(topicCounts[topic]+alpha[topic]);
-			double score2=0.0;
-			for (int word : corpus.get(doc).getWordSet())
+			for (int word : shortCorpus.get(doc).getWordSet())
 			{
-				int count=corpus.get(doc).getWordCount(word);
+				int count=shortCorpus.get(doc).getWordCount(word);
 				for (int i=0; i<count; i++)
 				{
 					score2+=Math.log(topics[topic].getVocabCount(word)+param.beta+i);
 				}
 			}
-			for (int i=0; i<corpus.get(doc).docLength(); i++)
+			for (int i=0; i<shortCorpus.get(doc).docLength(); i++)
 			{
 				score2-=Math.log(topics[topic].getTotalTokens()+param.numVocab*param.beta+i);
 			}
-			return score1+score2;
 		}
-		double score1=Math.log(topicCounts[topic]+alpha[topic]);
-		double score2=0.0;
-		for (int token=0; token<corpus.get(doc).docLength(); token++)
+		else
 		{
-			int word=corpus.get(doc).getWord(token);
-			score2+=Math.log(phi[topic][word]);
+			for (int word : shortCorpus.get(doc).getWordSet())
+			{
+				int count=shortCorpus.get(doc).getWordCount(word);
+				score2+=Math.log(phi[topic][word])*count;
+			}
 		}
 		return score1+score2;
 	}
 	
 	protected void computeLogLikelihood()
 	{
-		computeTheta();
-		if (type==TRAIN)
-		{
-			computePhi();
-		}
+		super.computeLogLikelihood();
+		computeShortTheta();
 		
 		double sum;
-		logLikelihood=0.0;
-		for (int doc=0; doc<numDocs; doc++)
+		for (int doc=0; doc<numShortDocs; doc++)
 		{
-			for (int word : corpus.get(doc).getWordSet())
+			for (int word : shortCorpus.get(doc).getWordSet())
 			{
 				sum=0.0;
 				for (int topic=0; topic<param.numTopics; topic++)
 				{
-					sum+=theta[topic]*phi[topic][word];
+					sum+=shortTheta[topic]*phi[topic][word];
 				}
-				logLikelihood+=Math.log(sum*corpus.get(doc).getWordCount(word));
+				logLikelihood+=Math.log(sum)*shortCorpus.get(doc).getWordCount(word);
 			}
 		}
 	}
 	
-	protected void computeTheta()
+	protected void computeShortTheta()
 	{
 		for (int topic=0; topic<param.numTopics; topic++)
 		{
-			theta[topic]=(alpha[topic]+topicCounts[topic])/(param.alpha*param.numTopics+numDocs);
+			shortTheta[topic]=(alpha[topic]+shortDocTopicCounts[topic])/
+					(param.alpha*param.numTopics+numShortDocs);
 		}
 	}
 	
@@ -160,42 +271,77 @@ public class STLDA extends LDA
 	}
 	
 	/**
-	 * Get all documents' topic assignments
-	 * @return Documents' topic assignments
+	 * Get short documents' topic assignments
+	 * @return Short documents' topic assignments
 	 */
-	public int[] getDocTopicAssign()
+	public int[] getShortDocTopicAssign()
 	{
-		return docTopicAssign;
+		int shortDocTopicAssign[]=new int[numShortDocs];
+		for (int doc=0; doc<numShortDocs; doc++)
+		{
+			shortDocTopicAssign[doc]=shortCorpus.get(doc).getTopicAssign();
+		}
+		return shortDocTopicAssign;
 	}
 	
 	/**
-	 * Get number of documents assigned to topics
-	 * @return Number of documents assigned to topics
+	 * Get short documents' background topic distribution
+	 * @return Short documents' background topic distribution
 	 */
-	public int[] getTopicCounts()
+	public double[] getShortDocTopicDist()
 	{
-		return topicCounts;
+		return shortTheta;
 	}
 	
 	/**
-	 * Get topic distribution
-	 * @return Topic distribution
+	 * Get number of short documents
+	 * @return Number of short documents
 	 */
-	public double[] getTopicDist()
+	public int getNumShortDocs()
 	{
-		return theta;
+		return numShortDocs;
 	}
 	
 	/**
-	 * Write documents' topic assignments to file
-	 * @param topicAssignFileName Topic assignment file name
+	 * Get a specific short document
+	 * @param doc Short document number
+	 * @return Corresponding short document object
+	 */
+	public ShortLDADoc getShortDoc(int doc)
+	{
+		return shortCorpus.get(doc);
+	}
+	
+	/**
+	 * Write short documents' background topic distribution to file
+	 * @param shortDocTopicDistFileName Short documents' background topic distribution file name
 	 * @throws IOException IOException
 	 */
-	public void writeDocTopicAssign(String topicAssignFileName) throws IOException
+	public void writeShortDocTopicDist(String shortDocTopicDistFileName) throws IOException
+	{
+		BufferedWriter bw=new BufferedWriter(new FileWriter(shortDocTopicDistFileName));
+		IOUtil.writeVector(bw, shortTheta);
+		bw.close();
+	}
+	
+	/**
+	 * Write short documents' topic assignments to file
+	 * @param topicAssignFileName Short documents' topic assignment file name
+	 * @throws IOException IOException
+	 */
+	public void writeShortDocTopicAssign(String topicAssignFileName) throws IOException
 	{
 		BufferedWriter bw=new BufferedWriter(new FileWriter(topicAssignFileName));
-		IOUtil.writeVector(bw, docTopicAssign);
+		IOUtil.writeVector(bw, getShortDocTopicAssign());
 		bw.close();
+	}
+	
+	protected void initVariables()
+	{
+		super.initVariables();
+		shortCorpus=new ArrayList<ShortLDADoc>();
+		shortTheta=new double[param.numTopics];
+		shortDocTopicCounts=new int[param.numTopics];
 	}
 	
 	/**
@@ -230,29 +376,20 @@ public class STLDA extends LDA
 	
 	public static void main(String args[]) throws IOException
 	{
-		String seg[]=Thread.currentThread().getStackTrace()[1].getClassName().split("\\.");
-		String modelName=seg[seg.length-1];
-		LDAParam parameters=new LDAParam(LDACfg.vocabFileName);
-		LDAResult trainResults=new LDAResult();
-		LDAResult testResults=new LDAResult();
+		LDAParam parameters=new LDAParam(LDACfg.stldaVocabFileName);
 		
 		STLDA LDATrain=new STLDA(parameters);
-		LDATrain.readCorpus(LDACfg.trainCorpusFileName);
+		LDATrain.readCorpus(LDACfg.stldaLongCorpusFileName);
+		LDATrain.readShortCorpus(LDACfg.stldaShortCorpusFileName);
 		LDATrain.initialize();
-//		LDATrain.sample(LDACfg.numTrainIters);
-		LDATrain.sample(10);
-		LDATrain.addResults(trainResults);
+		LDATrain.sample(LDACfg.numTrainIters);
 //		LDATrain.writeModel(LDACfg.getModelFileName(modelName));
 		
 		STLDA LDATest=new STLDA(LDATrain, parameters);
 //		STLDA LDATest=new STLDA(LDACfg.getModelFileName(modelName), parameters);
-		LDATest.readCorpus(LDACfg.testCorpusFileName);
+		LDATest.readCorpus(LDACfg.stldaLongCorpusFileName);
+		LDATest.readShortCorpus(LDACfg.stldaShortCorpusFileName);
 		LDATest.initialize();
-//		LDATest.sample(LDACfg.numTestIters);
-		LDATest.sample(10);
-		LDATest.addResults(testResults);
-		
-		trainResults.printResults(modelName+" Training Perplexity:", LDAResult.PERPLEXITY);
-		testResults.printResults(modelName+" Test Perplexity:", LDAResult.PERPLEXITY);
+		LDATest.sample(LDACfg.numTestIters);
 	}
 }

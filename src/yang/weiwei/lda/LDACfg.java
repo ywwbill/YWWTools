@@ -13,21 +13,25 @@ public final class LDACfg
 	public static int numTrainIters=20;
 	public static int numTestIters=20;
 	
-	public static String vocabFileName=dataPath+"vocab";
+	public static String sldaDataPath=dataPath+"slda"+File.separator;
+	public static String sldaVocabFileName=sldaDataPath+"vocab";
+	public static String sldaTrainCorpusFileName=sldaDataPath+"corpus-train";
+	public static String sldaTestCorpusFileName=sldaDataPath+"corpus-test";
+	public static String sldaTrainLabelFileName=sldaDataPath+"labels-train";
+	public static String sldaTestLabelFileName=sldaDataPath+"labels-test";
 	
-	public static String rawCorpusFileName=dataPath+"corpus-raw";
-	public static String corpusFileName=dataPath+"corpus";
-	public static String trainCorpusFileName=dataPath+"corpus-train";
-	public static String testCorpusFileName=dataPath+"corpus-test";
+	public static String rtmDataPath=dataPath+"rtm"+File.separator;
+	public static String rtmVocabFileName=rtmDataPath+"vocab";
+	public static String rtmTrainCorpusFileName=rtmDataPath+"corpus-train";
+	public static String rtmTestCorpusFileName=rtmDataPath+"corpus-test";
+	public static String rtmTrainLinkFileName=rtmDataPath+"links-train";
+	public static String rtmTestLinkFileName=rtmDataPath+"links-test";
+	public static String rtmTrainClusterFileName=rtmDataPath+"clusters-train";
 	
-	public static String trainLabelFileName=dataPath+"labels-train";
-	public static String predLabelFileName=dataPath+"labels-pred";
-	
-	public static String trainClusterFileName=dataPath+"cluster-train";
-	public static String testClusterFileName=dataPath+"cluster-test";
-	
-	public static String trainGraphFileName=dataPath+"graph-train";
-	public static String testGraphFileName=dataPath+"graph-test";
+	public static String stldaDataPath=dataPath+"st-lda"+File.separator;
+	public static String stldaVocabFileName=stldaDataPath+"vocab";
+	public static String stldaLongCorpusFileName=stldaDataPath+"corpus-news";
+	public static String stldaShortCorpusFileName=stldaDataPath+"corpus-tweets";
 	
 	//output
 	public static String getModelFileName(String modelName)

@@ -5,7 +5,6 @@ import java.io.IOException;
 import yang.weiwei.lda.LDA;
 import yang.weiwei.lda.LDACfg;
 import yang.weiwei.lda.LDAParam;
-import yang.weiwei.lda.util.LDAResult;
 import yang.weiwei.util.IOUtil;
 import yang.weiwei.wsbm.WSBM;
 import yang.weiwei.wsbm.WSBMParam;
@@ -30,14 +29,16 @@ public class WSBTM extends LDA
 	 */
 	public void readGraph(String graphFileName) throws IOException
 	{
-		WSBMParam wsbmParam=new WSBMParam(param, numDocs);
-		wsbm=new WSBM(wsbmParam);
+		if (wsbm==null)
+		{
+			WSBMParam wsbmParam=new WSBMParam(param, numDocs);
+			wsbm=new WSBM(wsbmParam);
+			
+			blockTopicCounts=new int[param.numBlocks][param.numTopics];
+			blockTokenCounts=new int[param.numBlocks];
+			pi=new double[param.numBlocks][param.numTopics];
+		}
 		wsbm.readGraph(graphFileName);
-		wsbm.init();
-		
-		blockTopicCounts=new int[param.numBlocks][param.numTopics];
-		blockTokenCounts=new int[param.numBlocks];
-		pi=new double[param.numBlocks][param.numTopics];
 	}
 	
 	protected void printParam()
@@ -50,12 +51,14 @@ public class WSBTM extends LDA
 	public void initialize()
 	{
 		super.initialize();
+		if (wsbm!=null) wsbm.init();
 		initBlockAssigns();
 	}
 	
 	public void initialize(String topicAssignFileName) throws IOException
 	{
 		super.initialize(topicAssignFileName);
+		if (wsbm!=null) wsbm.init();
 		initBlockAssigns();
 	}
 	
@@ -92,15 +95,12 @@ public class WSBTM extends LDA
 			perplexity=Math.exp(-logLikelihood/numTestWords);
 			if (param.verbose)
 			{
+				IOUtil.print("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity));
 				if (wsbm!=null)
 				{
-					IOUtil.println("<"+iteration+">"+"\tBlock Log-LLD: "+format(wsbm.getLogLikelihood())+
-							"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity));
+					IOUtil.print("\tBlock Log-LLD: "+format(wsbm.getLogLikelihood()));
 				}
-				else
-				{
-					IOUtil.println("<"+iteration+">"+"\tLog-LLD: "+format(logLikelihood)+"\tPPX: "+format(perplexity));
-				}
+				IOUtil.println();
 			}
 		}
 		
@@ -168,13 +168,6 @@ public class WSBTM extends LDA
 					(param.beta*param.numVocab+topics[topic].getTotalTokens());
 		}
 		return (param.alpha*param.numTopics*ratio+corpus.get(doc).getTopicCount(topic))*phi[topic][vocab];
-	}
-	
-	public void addResults(LDAResult result)
-	{
-		super.addResults(result);
-		if (wsbm==null) return;
-		result.add(LDAResult.BLOCKLOGLIKELIHOOD, wsbm.getLogLikelihood());
 	}
 	
 	protected void computeLogLikelihood()
@@ -275,30 +268,21 @@ public class WSBTM extends LDA
 	
 	public static void main(String args[]) throws IOException
 	{	
-		String seg[]=Thread.currentThread().getStackTrace()[1].getClassName().split("\\.");
-		String modelName=seg[seg.length-1];
-		LDAParam parameters=new LDAParam(LDACfg.vocabFileName);
+		LDAParam parameters=new LDAParam(LDACfg.rtmVocabFileName);
 		parameters.updateAlpha=false;
-		LDAResult trainResults=new LDAResult();
-		LDAResult testResults=new LDAResult();
 		
 		WSBTM LDATrain=new WSBTM(parameters);
-		LDATrain.readCorpus(LDACfg.trainCorpusFileName);
-		LDATrain.readGraph(LDACfg.trainGraphFileName);
+		LDATrain.readCorpus(LDACfg.rtmTrainCorpusFileName);
+		LDATrain.readGraph(LDACfg.rtmTrainLinkFileName);
 		LDATrain.initialize();
 		LDATrain.sample(LDACfg.numTrainIters);
-		LDATrain.addResults(trainResults);
 //		LDATrain.writeModel(LDACfg.getModelFileName(modelName));
 		
 		WSBTM LDATest=new WSBTM(LDATrain, parameters);
 //		WSBTM LDATest=new WSBTM(LDACfg.getModelFileName(modelName), parameters);
-		LDATest.readCorpus(LDACfg.testCorpusFileName);
-		LDATest.readGraph(LDACfg.testGraphFileName);
+		LDATest.readCorpus(LDACfg.rtmTestCorpusFileName);
+		LDATest.readGraph(LDACfg.rtmTestLinkFileName);
 		LDATest.initialize();
 		LDATest.sample(LDACfg.numTestIters);
-		LDATest.addResults(testResults);
-		
-		trainResults.printResults(modelName+" Training Perplexity:", LDAResult.PERPLEXITY);
-		testResults.printResults(modelName+" Test Perplexity:", LDAResult.PERPLEXITY);
 	}
 }

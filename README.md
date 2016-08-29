@@ -268,11 +268,17 @@ java -cp YWWTools.jar:deps.jar yang.weiwei.Tools --tool lda --model bp-lda --voc
 ### <h3 id="st_lda_cmd">ST-LDA: Single Topic [LDA](#lda_cmd)</h3>
 
 ```
-java -cp YWWTools.jar:deps.jar yang.weiwei.Tools --tool lda --model st-lda --vocab <vocab-file> --corpus <corpus-file> --trained-model <model-file>
+java -cp YWWTools.jar:deps.jar yang.weiwei.Tools --tool lda --model st-lda --vocab <vocab-file> --corpus <corpus-file> --short-corpus <short-corpus-file> --trained-model <model-file>
 ```
 
+- Implementation of [(Hong et al., 2016)](#st_lda_ref).
 - Each document can only be assigned to one topic.
 - Extends [LDA](#lda_cmd).
+- Semi-optional arguments
+	- `--short-corpus <short-corpus-file>` [at least one of `--short-corpus` and `--corpus` should be specified]: Short corpus file.
+- Optional arguments
+	- `--short-theta <short-theta-file>`: Short documents' background topic distribution file.
+	- `--short-topic-assign <short-topic-assign-file>`: Short documents' topic assignment file.
 
 ### <h3 id="wsb_tm_cmd">WSB-TM: Weighted Stochastic Block Topic Model</h3>
 
@@ -612,7 +618,28 @@ Here are examples for running some algorithms in this package. For more informat
 
 - Class: `yang.weiwei.lda.st_lda.STLDA`
 - Extends [LDA](#lda_code).
-- Code examples are the same with [LDA](#lda_code).
+- Training code example
+
+		LDAParam param = new LDAParam("vocab_file_name");
+		STLDA ldaTrain = new STLDA(param);
+		ldaTrain.readCorpus("long_corpus_file_name");
+		ldaTrain.readShortCorpus("short_corpus_file_name");
+		ldaTrain.initialize();
+		ldaTrain.sample(100);
+		ldaTrain.writeShortDocTopicDist("short_theta_file_name"); // optional, write short documents' topic distribution to file
+		ldaTrain.writeShortDocTopicAssign("short_topic_assign_file_name"); // optional, write short documents' topic assignments to file
+
+- Test code example
+
+		LDAParam param = new LDAParam("vocab_file_name");
+		STLDA ldaTest = new STLDA(ldaTrain, param);
+		// STLDA ldaTest = new STLDA("model_file_name", param);
+		ldaTest.readCorpus("long_corpus_file_name");
+		ldaTest.readShortCorpus("short_corpus_file_name");
+		ldaTest.initialize();
+		ldaTest.sample(100);
+		ldaTest.writeShortDocTopicDist("short_theta_file_name"); // optional
+		ldaTest.writeShortDocTopicAssign("short_topic_assign_file_name"); // optional
 
 ### <h3 id="wsb_tm_code">WSB-TM</h3>
 
@@ -671,7 +698,7 @@ Here are examples for running some algorithms in this package. For more informat
 
 ## <h2 id="citation">Citation</h2>
 
-- If you use [Lex-WSB-RTM](#lex_wsb_rtm_cmd), [Lex-WSB-Med-RTM](#lex_wsb_med_rtm_cmd), [Lex-WSB-BS-LDA](#lex_wsb_bs_lda_cmd), and/or [Lex-WSB-Med-LDA](#lex_wsb_med_lda_cmd), please cite
+- If you use [Lex-WSB-RTM](#lex_wsb_rtm_cmd) (aka LBS-RTM), [Lex-WSB-Med-RTM](#lex_wsb_med_rtm_cmd) (aka LBH-RTM), [Lex-WSB-BS-LDA](#lex_wsb_bs_lda_cmd), and/or [Lex-WSB-Med-LDA](#lex_wsb_med_lda_cmd), please cite
 
 		@InProceedings{Yang:Boyd-Graber:Resnik-2016,
 			Title = {A Discriminative Topic Model using Document Network Structure},
@@ -679,6 +706,16 @@ Here are examples for running some algorithms in this package. For more informat
 			Author = {Weiwei Yang and Jordan Boyd-Graber and Philip Resnik},
 			Year = {2016},
 			Location = {Berlin, Germany},
+		}
+
+- If you use [ST-LDA](#st_lda_cmd), please cite
+
+		@InProceedings{Hong:Yang:Resnik:Frias-Martinez-2016,
+			Title = {Uncovering Topic Dynamics of Social Media and News: The Case of Ferguson},
+			Booktitle = {International Conference on Social Informatics},
+			Author = {Lingzi Hong and Weiwei Yang and Philip Resnik and Vanessa Frias-Martinez},
+			Year = {2016},
+			Location = {Bellevue, WA, USA}
 		}
 
 ## <h2 id="ref">References</h2>
@@ -704,6 +741,10 @@ Jonathan Chang and David M. Blei. 2010. Hierarchical relational models for docum
 ### <h3 id="lex_wsb_med_rtm_ref">[Lex-WSB-Med-RTM](#lex_wsb_med_rtm_cmd): [RTM](#rtm_cmd) with WSB-computed Block Priors, Lexical Weights, and Hinge Loss
 
 Weiwei Yang, Jordan Boyd-Graber, and Philip Resnik. 2016. A discriminative topic model using document network structure. In Proceedings of Association for Computational Linguistics.
+
+### <h3 id="st_lda_ref">[ST-LDA](#st_lda_cmd): Single Topic [LDA](#lda_cmd)
+
+Lingzi Hong, Weiwei Yang, Philip Resnik, and Vanessa Frias-Martinez. 2016. Uncovering topic dynamics of social media and news: The case of Ferguson. In Proceedings of International Conference on Social Informatics.
 
 ### <h3 id="wsbm_ref">[WSBM](#wsbm_cmd): Weighted Stochastic Block Model</h3>
 

@@ -88,7 +88,6 @@ java -cp YWWTools.jar:deps.jar yang.weiwei.Tools --tool <tool-name> --arg-1 <arg
 	- [Stemmer](#stemmer_cmd): Stem words. Support English only.
 	- [Tokenizer](#tokenizer_cmd): Tokenize corpus. Support English only, but can support other languages given trained models.
 	- [Corpus-Converter](#corpus_converter_cmd): Convert word corpus into indexed corpus (for [LDA](#lda_cmd)) and vice versa.
-	- [ICTCLAS](#ictclas_cmd): Chinese POS tagger.
 - You can always use `--help` to see help information of 
 	- supported tool names if you don't specify a tool name
 

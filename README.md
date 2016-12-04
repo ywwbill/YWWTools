@@ -405,7 +405,7 @@ java -cp YWWTools.jar:deps.jar yang.weiwei.Tools --tool tokenizer --corpus <corp
 ### <h3 id="corpus_converter_cmd">Corpus Converter</h3>
 
 ```
-java -cp YWWTools.jar:deps.jar yang.weiwei.Tools --tool corpus-convertor {--get-vocab|--to-index|--to-word} --word-corpus <word-corpus-file> --index-corpus <index-corpus-file> --vocab <vocab-file>
+java -cp YWWTools.jar:deps.jar yang.weiwei.Tools --tool corpus-converter {--get-vocab|--to-index|--to-word} --word-corpus <word-corpus-file> --index-corpus <index-corpus-file> --vocab <vocab-file>
 ```
 
 - New implementation

@@ -213,7 +213,7 @@ public class WSBTM extends LDA
 	public double[][] getBlockTopicDist()
 	{
 		if (wsbm==null) return null;
-		return pi;
+		return pi.clone();
 	}
 	
 	/**

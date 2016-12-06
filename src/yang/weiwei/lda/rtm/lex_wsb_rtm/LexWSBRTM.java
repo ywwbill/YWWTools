@@ -371,7 +371,7 @@ public class LexWSBRTM extends RTM
 	 */
 	public double[] getLexWeights()
 	{
-		return tau;
+		return tau.clone();
 	}
 	
 	public double getBlockEdgeRate(int block1, int block2)
@@ -414,7 +414,7 @@ public class LexWSBRTM extends RTM
 	public double[][] getBlockTopicDist()
 	{
 		if (wsbm==null) return null;
-		return pi;
+		return pi.clone();
 	}
 	
 	/**
@@ -436,7 +436,7 @@ public class LexWSBRTM extends RTM
 	public double[][] getBlockWeights()
 	{
 		if (wsbm==null) return null;
-		return rho;
+		return rho.clone();
 	}
 	
 	protected WSBM getWSBM()
@@ -453,19 +453,10 @@ public class LexWSBRTM extends RTM
 	protected void copyModel(LDA LDAModel)
 	{
 		super.copyModel(LDAModel);
-		for (int vocab=0; vocab<param.numVocab; vocab++)
-		{
-			tau[vocab]=((LexWSBRTM)LDAModel).tau[vocab];
-		}
+		tau=((LexWSBRTM)LDAModel).tau.clone();
 		if (param.blockFeat)
 		{
-			for (int b1=0; b1<param.numBlocks; b1++)
-			{
-				for (int b2=0; b2<param.numBlocks; b2++)
-				{
-					rho[b1][b2]=((LexWSBRTM)LDAModel).rho[b1][b2];
-				}
-			}
+			rho=((LexWSBRTM)LDAModel).rho.clone();
 		}
 	}
 	

@@ -468,7 +468,7 @@ public class SLDA extends LDA
 	 */
 	public double[] getTopicWeights()
 	{
-		return eta;
+		return eta.clone();
 	}
 	
 	/**
@@ -509,10 +509,7 @@ public class SLDA extends LDA
 	protected void copyModel(LDA LDAModel)
 	{
 		super.copyModel(LDAModel);
-		for (int topic=0; topic<param.numTopics; topic++)
-		{
-			eta[topic]=((SLDA)LDAModel).eta[topic];
-		}
+		eta=((SLDA)LDAModel).eta.clone();
 	}
 	
 	/**

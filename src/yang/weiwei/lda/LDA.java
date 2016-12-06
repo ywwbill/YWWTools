@@ -403,7 +403,7 @@ public class LDA
 	 */
 	public double[][] getDocTopicDist()
 	{
-		return theta;
+		return theta.clone();
 	}
 	
 	/**
@@ -412,7 +412,7 @@ public class LDA
 	 */
 	public double[][] getTopicVocabDist()
 	{
-		return phi;
+		return phi.clone();
 	}
 	
 	/**
@@ -631,18 +631,8 @@ public class LDA
 	
 	protected void copyModel(LDA LDAModel)
 	{
-		for (int topic=0; topic<param.numTopics; topic++)
-		{
-			alpha[topic]=LDAModel.alpha[topic];
-		}
-		
-		for (int topic=0; topic<param.numTopics; topic++)
-		{
-			for (int vocab=0; vocab<param.numVocab; vocab++)
-			{
-				phi[topic][vocab]=LDAModel.phi[topic][vocab];
-			}
-		}
+		alpha=LDAModel.alpha.clone();
+		phi=LDAModel.phi.clone();
 	}
 	
 	protected static String format(double num)

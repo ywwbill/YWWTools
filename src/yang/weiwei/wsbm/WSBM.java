@@ -342,7 +342,7 @@ public class WSBM
 	 */
 	public double[][] getBlockEdgeRates()
 	{
-		return omega;
+		return omega.clone();
 	}
 	
 	/**
@@ -361,7 +361,7 @@ public class WSBM
 	 */
 	public double[] getBlockDist()
 	{
-		return mu;
+		return mu.clone();
 	}
 	
 	/**

@@ -326,7 +326,7 @@ public class LexWSBBSLDA extends BSLDA
 	 */
 	public double[] getLexWeights()
 	{
-		return tau;
+		return tau.clone();
 	}
 	
 	public double getBlockEdgeRate(int block1, int block2)
@@ -369,7 +369,7 @@ public class LexWSBBSLDA extends BSLDA
 	public double[][] getBlockTopicDist()
 	{
 		if (wsbm==null) return null;
-		return pi;
+		return pi.clone();
 	}
 	
 	protected WSBM getWSBM()
@@ -386,6 +386,7 @@ public class LexWSBBSLDA extends BSLDA
 	public void copyModel(LDA LDAModel)
 	{
 		super.copyModel(LDAModel);
+		tau=((LexWSBBSLDA)LDAModel).tau.clone();
 		for (int vocab=0; vocab<param.numVocab; vocab++)
 		{
 			tau[vocab]=((LexWSBBSLDA)LDAModel).tau[vocab];

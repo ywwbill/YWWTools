@@ -290,7 +290,7 @@ public class STLDA extends LDA
 	 */
 	public double[] getShortDocTopicDist()
 	{
-		return shortTheta;
+		return shortTheta.clone();
 	}
 	
 	/**

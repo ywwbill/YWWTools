@@ -477,7 +477,7 @@ public class RTM extends LDA
 	 */
 	public double[] getTopicWeights()
 	{
-		return eta;
+		return eta.clone();
 	}
 	
 	public Set<Integer> getTrainLinkedDocs(int doc)
@@ -501,10 +501,7 @@ public class RTM extends LDA
 	protected void copyModel(LDA LDAModel)
 	{
 		super.copyModel(LDAModel);
-		for (int topic=0; topic<param.numTopics; topic++)
-		{
-			eta[topic]=((RTM)LDAModel).eta[topic];
-		}
+		eta=((RTM)LDAModel).eta.clone();
 	}
 	
 	/**

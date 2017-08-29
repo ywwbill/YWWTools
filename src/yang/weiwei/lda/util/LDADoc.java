@@ -149,7 +149,7 @@ public class LDADoc
 	}
 	
 	/**
-	 * Get number of tokens assigned to a topic
+	 * Get the number of tokens assigned to a topic
 	 * @param topic Topic number
 	 * @return Number of tokens assigned to this topic
 	 */
@@ -159,7 +159,7 @@ public class LDADoc
 	}
 	
 	/**
-	 * Get set of unique words in this document
+	 * Get the set of unique words in this document
 	 * @return Set of unique words
 	 */
 	public Set<Integer> getWordSet()

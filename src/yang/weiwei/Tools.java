@@ -7,10 +7,12 @@ import yang.weiwei.tools.ToolLDAInterface;
 import yang.weiwei.tools.ToolWSBM;
 import yang.weiwei.tools.ToolSCC;
 import yang.weiwei.tools.ToolStoplist;
+import yang.weiwei.tools.ToolTLDA;
 import yang.weiwei.tools.ToolLemmatizer;
 import yang.weiwei.tools.ToolPOSTagger;
 import yang.weiwei.tools.ToolStemmer;
 import yang.weiwei.tools.ToolTokenizer;
+import yang.weiwei.tools.ToolTreeBuilder;
 import yang.weiwei.tools.ToolCorpusConverter;
 import yang.weiwei.tools.ToolInterface;
 
@@ -54,6 +56,8 @@ public class Tools extends ToolInterface
 		switch (tool)
 		{
 		case "lda": toolImpl=new ToolLDAInterface(); break;
+		case "tlda": toolImpl=new ToolTLDA(); break;
+		case "tree-builder": toolImpl=new ToolTreeBuilder(); break;
 		case "wsbm": toolImpl=new ToolWSBM(); break;
 		case "scc": toolImpl=new ToolSCC(); break;
 		case "stoplist": toolImpl=new ToolStoplist(); break;
@@ -85,6 +89,8 @@ public class Tools extends ToolInterface
 		println("\t\tSCC: Strongly connected components.");
 		println("\t\tWSBM: Weighted stochastic block model. Find blocks in a network.");
 		println("\t\tLDA: Latent Dirichlet allocation. Include a variety of extensions.");
+		println("\t\ttLDA: tree LDA.");
+		println("\t\tTree-Builder: Tool for building two-level, HAC, and HAC-LD trees.");
 	}
 	
 	static
@@ -100,6 +106,8 @@ public class Tools extends ToolInterface
 		toolSet.add("scc");
 		toolSet.add("wsbm");
 		toolSet.add("lda");
+		toolSet.add("tlda");
+		toolSet.add("tree-builder");
 	}
 	
 	public static void main(String args[]) throws IOException

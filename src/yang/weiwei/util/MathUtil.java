@@ -196,6 +196,13 @@ public class MathUtil
 		return v;
 	}
 	
+	// compute log (a+b) given log a and log b
+	public static double logSum(double logA, double logB)
+	{
+		double logMax=Math.max(logA, logB);
+		return Math.log(Math.exp(logA-logMax)+Math.exp(logB-logMax))+logMax;
+	}
+	
 	public static double[][] invert(double a[][]) 
 	{
 		int n = a.length;

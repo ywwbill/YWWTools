@@ -683,15 +683,7 @@ public class LDA
 	 */
 	public LDA(String modelFileName, LDAParam parameters) throws IOException
 	{
-		BufferedReader br=new BufferedReader(new FileReader(modelFileName));
-		String model="",line;
-		while ((line=br.readLine())!=null)
-		{
-			model+=line;
-		}
-		br.close();
-		
-		LDA LDATrain=gson.fromJson(model, this.getClass());
+		LDA LDATrain=gson.fromJson(new FileReader(modelFileName), this.getClass());
 		this.type=TEST;
 		this.param=parameters;
 		initVariables();

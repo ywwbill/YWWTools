@@ -117,7 +117,7 @@ public class LDAParam
 	}
 	
 	/**
-	 * Initialize parameter object with vocabulary file
+	 * Initialize a parameter object with vocabulary file
 	 * @param vocabFileName Vocabulary file name
 	 * @throws IOException IOException
 	 */

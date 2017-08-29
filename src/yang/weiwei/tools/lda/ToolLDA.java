@@ -207,5 +207,6 @@ public class ToolLDA extends ToolLDAInterface
 		println("\t--theta [optional]: File for document distribution over topics.");
 		println("\t--output-topic [optional]: File for showing topics.");
 		println("\t--top-word [optional]: Number of words to give when showing topics (default: 10).");
+		println("\t--topic-count [optional]: File for document-topic counts.");
 	}
 }
